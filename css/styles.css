@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap');
+
 .jumbotron,
 .card-body,
 .container,
@@ -189,7 +191,219 @@ a.custom-card:hover {
   color: orange;
 }
 
-.autitos {
-  display: flex;
-  flex-direction: row;
+body {
+  background-image: url(/img/fondo-01.png);
+  background-size: contain;
 }
+
+.autitos {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* 3 columnas de igual ancho */
+  grid-gap: 20px;
+  position: relative;
+  margin-right: 5%;
+  grid-gap: 30px;
+  max-width: 800px;
+  place-items: center;
+  
+}
+
+ul {
+  list-style-type: none;
+}
+
+#auto1, #auto2, #auto3, #auto4, #auto5 {
+  width: 300px;
+  background-color: #fff;
+  border-radius: 15px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+  margin: 20px;
+  padding: 20px;
+  text-align: center;
+  border: 6px solid orange;
+  width: 400px; 
+  height: 500px
+}
+
+#auto1 img, #auto2 img, #auto3 img, #auto4 img, #auto5 img {
+  width: 365px;
+  height: 249px;
+  top: 180px;
+  left: 800px;
+  right: 800px;
+  object-fit: cover;
+  border: 2px solid black;
+  margin-left: -8.67px;
+ }
+
+
+#subtituloautos {
+  margin-left: 0%;
+  margin-top: 1%;
+  position: relative;
+  right: 12%;
+  background-color:#ff9500; 
+  opacity: 45%;
+  color: #fff;
+  font-family: 'Font Voces', sans-serif;
+  font-weight: 400; 
+  font-size: 60px;
+  padding: 0.5rem 1rem;
+  border: white 2px;
+  box-shadow: 0px 4px 6px rgb(0, 0, 0);
+  text-align: center;
+  width: fit-content;
+}
+
+#dato1, #dato6, #dato11, #dato16, #dato21 {
+  margin-top: 7%;
+  text-align: left;
+  font-size: 150%;
+  font-family: "Quicksand", sans-serif;
+}
+
+#dato2, #dato7, #dato12, #dato17, #dato22 {
+  text-align: left;
+  font-weight: bold;
+  margin-top: 5%;
+}
+
+#dato3, #dato8, #dato13, #dato18, #dato23{
+  text-align: left;
+  margin-top: 5%;
+  font-family: "Quicksand", sans-serif;
+  font-size: large;
+}
+
+#dato4, #dato24 {
+  text-align: right;
+  margin-top: 3%;
+  font-family: "Quicksand", sans-serif;
+}
+
+#dato19{
+  text-align: right;
+  margin-top: -5%;
+  font-family: "Quicksand", sans-serif;
+}
+
+#dato9 {
+  text-align: right;
+  margin-top: 5%;
+  font-family: "Quicksand", sans-serif;
+}
+
+#dato14{
+  text-align: right;
+  margin-top: 4%;
+  font-family: "Quicksand", sans-serif;
+  
+}
+
+
+.button {
+  position: absolute;
+  border: none;
+  background-color: white;
+  color: #212121;
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 10px;
+  font-weight: 300;
+  gap: 5px;
+  border-radius: 10px;
+  transition: all 0.6s cubic-bezier(0.23, 1, 0.320, 1);
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.button span {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1;
+}
+
+.button::before {
+  content: "";
+  position: absolute;
+  background-color: #ff9500; 
+  width: 100%;
+  height: 100%;
+  left: 0%;
+  bottom: 0%;
+  transform: translate(-100%, 100%);
+  border-radius: inherit;
+}
+
+.button svg {
+  fill: #ff9500; 
+  transition: all 0.6s cubic-bezier(0.23, 1, 0.320, 1);
+}
+
+.button:hover::before {
+  animation: shakeBack 0.6s forwards;
+}
+
+.button:hover svg {
+  fill: white;
+  scale: 1.3;
+}
+
+.button:active {
+  box-shadow: none;
+}
+
+@keyframes shakeBack {
+  0% {
+    transform: translate(-100%, 100%);
+  }
+
+  50% {
+    transform: translate(20%, -20%);
+  }
+
+  100% {
+    transform: translate(0%, 0%);
+  }
+}
+
+.masInfo{
+  display: flex;
+  margin-left: auto;
+  margin-top: -11%;
+}
+
+
+.button img{
+transition: transform 0.3s ease-in-out;
+}
+
+
+.masInfo{
+  width: 20px;
+  height: 20px;
+  background-color: rgba(255, 255, 255, 0);
+  border-radius: 20px;
+  border: bold;
+  position: relative;
+  top: 2%;
+  border: none;
+  
+}
+
+.masInfo #imagenMas1, .masInfo #imagenMas2, .masInfo #imagenMas3, .masInfo #imagenMas4, .masInfo #imagenMas5{
+  width: 20px;
+  height: 20px;
+  align-items: center;
+  border: white;
+  position: relative;
+  left: 41%;
+  top: -15%;
+}
+
