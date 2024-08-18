@@ -11,8 +11,8 @@
   <link href="css/styles.css" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   <style>
-    body {
-      background-color: rgb(248, 249, 250);
+    body{
+      background-image: url("img/fondo-01.png");
     }
   </style>
 </head>
@@ -21,7 +21,9 @@
   <main class="mt-5">
     <div class="container">
       <form class="login">
-        <img class="carro" src="recursoslogin/carro.png" alt="carro">
+        <div class="div-img">
+        <img src="img/cart-02.png" alt="carro" width="145" height="145">
+        </div>
         <label>
           <i class="fa-solid fa-user"></i>
           <input class="campos" placeholder="USUARIO" type="text" id="user" size="30">
@@ -31,15 +33,16 @@
           <input class="campos" placeholder="CONTRASEÑA" type="password" id="password" size="30">
         </label>
     
-        <button id="button">INGRESAR</button>
+        <a id="ingresar" href="index.html">
+          <button><strong>INGRESAR</strong></button>
+        </a>
         <a href="#" class="link">¿Olvidaste tu contraseña?</a>
-  
       </form>
     </div>
 
   </main>
   <footer class="text-muted">
-    <div class="container">
+    <div class="footer-content">
       <p class="float-end">
         <a href="#">Volver arriba</a>
       </p>
