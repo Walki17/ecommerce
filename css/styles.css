@@ -196,7 +196,7 @@ body{
   background-size: cover;
 }
 
-.container{
+.contenedor{
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -238,7 +238,7 @@ form label input {
   font-size: 18px;
 }
 
-#ingresar{
+#botoning{
   position: relative;
   color: rgb(0, 0, 0);
   border: none;
@@ -250,9 +250,14 @@ form label input {
   box-shadow: 0px 5px 6px 0;
 }
 
-#ingresar:hover{
+#botoning:hover{
   top:-3px;
   box-shadow: 0px 5px 6px 0;
+}
+
+#botoning a {
+  text-decoration: none;
+  color: black;
 }
 
 button{
