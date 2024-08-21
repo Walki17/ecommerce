@@ -12,3 +12,10 @@ document.addEventListener("DOMContentLoaded", function(){
         window.location = "products.html"
     });
 });
+
+/* window.onload = function() {
+  const estaLogueado = localStorage.getItem('estaLogueado');
+  if (estaLogueado !== 'true') {
+    window.location.href = 'login.html';
+  }
+}; */
