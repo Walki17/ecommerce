@@ -1,4 +1,5 @@
 document.addEventListener("DOMContentLoaded", function(){
+
     document.getElementById("autos").addEventListener("click", function() {
         localStorage.setItem("catID", 101);
         window.location = "products.html"
@@ -13,9 +14,14 @@ document.addEventListener("DOMContentLoaded", function(){
     });
 });
 
-/* window.onload = function() {
-  const estaLogueado = localStorage.getItem('estaLogueado');
-  if (estaLogueado !== 'true') {
-    window.location.href = 'login.html';
-  }
-}; */
+
+
+
+document.addEventListener('DOMContentLoaded', function(event) {
+  if (localStorage.getItem("usuarios") == null) {
+      alert("Debes iniciar sesión primero");
+        window.location.href = "login.html";
+  }else{
+    console.log("Bienvenido!")
+  };
+});
