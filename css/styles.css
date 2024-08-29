@@ -513,7 +513,7 @@ transition: transform 0.3s ease-in-out;
     grid-template-columns: repeat(1, 1fr);
     padding: 3rem 2rem;
   }
-}
+
 .login{
   margin-left: auto;
   margin-right: auto;
@@ -538,7 +538,7 @@ button {
   padding: 3rem 2rem;
   font-size: 11px;
 }
-
+}
 /* 1366 x 768  */
 @media (min-width: 1366px) {
   .autitos {
