@@ -191,6 +191,13 @@ a.custom-card:hover {
   color: orange;
 }
 
+body{
+  background-color: #f8f9fa;
+  background-repeat: no-repeat;
+  background-position: center top;
+  background-size: cover;
+}
+
 .contenedor{
   display: flex;
   flex-direction: column;
@@ -279,10 +286,6 @@ form .link {
   padding-bottom: 3rem;
 }
 
-body {
-  background-image: url(/img/fondo01.png);
-  background-size: contain;
-}
 
 .autitos {
   display: grid;
