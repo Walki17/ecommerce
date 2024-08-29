@@ -279,20 +279,6 @@ form .link {
   padding-bottom: 3rem;
 }
 
-@media screen and (max-width: 768px){
-  .text-muted{
-    grid-template-columns: repeat(2, 1fr);
-    gap: 2rem;
-  }
-}
-
-@media screen and (max-width: 426px){
-  .text-muted{
-    grid-template-columns: repeat(1, 1fr);
-    padding: 3rem 2rem;
-  }
-}
-
 body {
   background-image: url(/img/fondo01.png);
   background-size: contain;
@@ -307,8 +293,7 @@ body {
   grid-gap: 30px;
   max-width: 800px;
   place-items: center;
-  
-  
+    
 }
 
 ul {
@@ -516,6 +501,43 @@ transition: transform 0.3s ease-in-out;
   box-sizing: border-box;
 }
 
+@media screen and (max-width: 768px){
+  .text-muted{
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+  }
+}
+
+@media screen and (max-width: 426px){
+  .text-muted{
+    grid-template-columns: repeat(1, 1fr);
+    padding: 3rem 2rem;
+  }
+}
+.login{
+  margin-left: auto;
+  margin-right: auto;
+  padding: 1px 0.1em 1px;
+}
+
+form label input {
+  margin-bottom: 4px;
+  font-size: 14px;
+}
+
+form label{
+  margin: 8px;
+}
+
+button {
+  font-size: 14px;
+}
+
+.text-muted{
+  grid-template-columns: repeat(1, 1fr);
+  padding: 3rem 2rem;
+  font-size: 11px;
+}
 
 /* 1366 x 768  */
 @media (min-width: 1366px) {
