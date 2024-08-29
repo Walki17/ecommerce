@@ -517,6 +517,16 @@ transition: transform 0.3s ease-in-out;
 }
 
 
+/* 1366 x 768  */
+@media (min-width: 1366px) {
+  .autitos {
+    margin-left: -12%;
+  }
+  #subtituloautos{
+    margin-left: 2%;
+  }
+}
+
 /* 768 x 1024 px */
 @media (min-width: 768px) and (max-width: 1024px) {
   .autitos {
@@ -548,8 +558,11 @@ transition: transform 0.3s ease-in-out;
 #dato9, #dato4, #dato24 {
        margin-top: 0.05%;
   }
-#dato14, #dato19 {
-      margin-top: -2%;
+#dato14 {
+      margin-top: 1%;
+}
+#dato19 {
+  margin-top: -8%;
 }
 
 #subtituloautos{
