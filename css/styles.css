@@ -191,6 +191,13 @@ a.custom-card:hover {
   color: orange;
 }
 
+body{
+  background-color: #f8f9fa;
+  background-repeat: no-repeat;
+  background-position: center top;
+  background-size: cover;
+}
+
 .contenedor{
   display: flex;
   flex-direction: column;
@@ -279,24 +286,6 @@ form .link {
   padding-bottom: 3rem;
 }
 
-@media screen and (max-width: 768px){
-  .text-muted{
-    grid-template-columns: repeat(2, 1fr);
-    gap: 2rem;
-  }
-}
-
-@media screen and (max-width: 426px){
-  .text-muted{
-    grid-template-columns: repeat(1, 1fr);
-    padding: 3rem 2rem;
-  }
-}
-
-body {
-  background-image: url(/img/fondo01.png);
-  background-size: contain;
-}
 
 .autitos {
   display: grid;
@@ -307,8 +296,7 @@ body {
   grid-gap: 30px;
   max-width: 800px;
   place-items: center;
-  
-  
+    
 }
 
 ul {
@@ -508,4 +496,172 @@ transition: transform 0.3s ease-in-out;
   position: relative;
   left: 41%;
   top: -15%;
+}
+
+
+.autitos ul,
+.autitos ul li {
+  box-sizing: border-box;
+}
+
+@media screen and (max-width: 768px){
+  .text-muted{
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+  }
+}
+
+@media screen and (max-width: 426px){
+  .text-muted{
+    grid-template-columns: repeat(1, 1fr);
+    padding: 3rem 2rem;
+  }
+
+.login{
+  margin-left: auto;
+  margin-right: auto;
+  padding: 1px 0.1em 1px;
+}
+
+form label input {
+  margin-bottom: 4px;
+  font-size: 14px;
+}
+
+form label{
+  margin: 8px;
+}
+
+button {
+  font-size: 14px;
+}
+
+.text-muted{
+  grid-template-columns: repeat(1, 1fr);
+  padding: 3rem 2rem;
+  font-size: 11px;
+}
+}
+/* 1366 x 768  */
+@media (min-width: 1366px) {
+  .autitos {
+    margin-left: -12%;
+  }
+  #subtituloautos{
+    margin-left: 2%;
+  }
+}
+
+/* 768 x 1024 px */
+@media (min-width: 768px) and (max-width: 1024px) {
+  .autitos {
+    width: 100%; /* Pantalla completa en elementos pequeños */
+    display: flex; /* Cambia a flexbox para que se stackeen verticalmente */
+    flex-wrap: wrap; /* Controla la dirección en la cual serán apilados los elementos */
+    margin: center;
+    gap: 0px;
+  }
+
+  .autitos ul {
+    width: 100%;
+  }
+
+#dato1, #dato6, #dato11, #dato16, #dato21 {
+  font-size: 25px;
+}
+#dato2, #dato7, #dato12, #dato17, #dato22 {
+  font-size: 16px;
+}
+
+#dato3, #dato8, #dato13, #dato18, #dato23 {
+  font-size: 18px;
+}
+#dato4, #dato9, #dato14, #dato19, #dato24{
+  font-size: 16px;
+}
+
+#dato9, #dato4, #dato24 {
+       margin-top: 0.05%;
+  }
+#dato14 {
+      margin-top: 1%;
+}
+#dato19 {
+  margin-top: -8%;
+}
+
+#subtituloautos{
+  margin-left: 10%;
+  font-size: 30px;
+}
+#boton1, #boton2, #boton3, #boton4, #boton5 {
+  display: none;
+}
+#auto1 img, #auto2 img, #auto3 img, #auto4 img, #auto5 img {
+  width: 250px;
+  height: 150px;
+}
+#auto1, #auto2, #auto3, #auto4, #auto5 {
+  width: 300px; 
+  height: 400px
+}
+.autitos button{
+  display: none;
+}
+}
+
+/* 320 x 568 px */
+
+@media (max-width: 767px) {
+  .autitos {
+    width: 100%; /* Pantalla completa en elementos pequeños */
+    display: flex; /* Cambia a flexbox para que se stackeen verticalmente */
+    flex-wrap: wrap; /* Controla la dirección en la cual serán apilados los elementos */
+    margin: center;
+    gap: 0px;
+  }
+
+  .autitos ul {
+    width: 100%;
+  }
+
+#dato1, #dato6, #dato11, #dato16, #dato21 {
+  font-size: 20px;
+}
+#dato2, #dato7, #dato12, #dato17, #dato22 {
+  font-size: 12px;
+}
+
+#dato3, #dato8, #dato13, #dato18, #dato23 {
+  font-size: 16px;
+}
+#dato4, #dato9, #dato14, #dato19, #dato24{
+  font-size: 12px;
+}
+
+#dato9, #dato4, #dato24 {
+       margin-top: 0.05%;
+  }
+#dato14, #dato19 {
+      margin-top: -2%;
+}
+
+#subtituloautos{
+  margin-left: 10%;
+  font-size: 30px;
+}
+#boton1, #boton2, #boton3, #boton4, #boton5 {
+  display: none;
+}
+#auto1 img, #auto2 img, #auto3 img, #auto4 img, #auto5 img {
+  width: 200px;
+  height: 100px;
+}
+#auto1, #auto2, #auto3, #auto4, #auto5 {
+  width: 300px; 
+  height: 330px
+}
+.autitos button{
+  display: none;
+}
 }
