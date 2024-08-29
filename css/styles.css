@@ -509,3 +509,121 @@ transition: transform 0.3s ease-in-out;
   left: 41%;
   top: -15%;
 }
+
+
+.autitos ul,
+.autitos ul li {
+  box-sizing: border-box;
+}
+
+
+/* 768 x 1024 px */
+@media (min-width: 768px) and (max-width: 1024px) {
+  .autitos {
+    width: 100%; /* Pantalla completa en elementos pequeños */
+    display: flex; /* Cambia a flexbox para que se stackeen verticalmente */
+    flex-wrap: wrap; /* Controla la dirección en la cual serán apilados los elementos */
+    margin: center;
+    gap: 0px;
+  }
+
+  .autitos ul {
+    width: 100%;
+  }
+
+#dato1, #dato6, #dato11, #dato16, #dato21 {
+  font-size: 25px;
+}
+#dato2, #dato7, #dato12, #dato17, #dato22 {
+  font-size: 16px;
+}
+
+#dato3, #dato8, #dato13, #dato18, #dato23 {
+  font-size: 18px;
+}
+#dato4, #dato9, #dato14, #dato19, #dato24{
+  font-size: 16px;
+}
+
+#dato9, #dato4, #dato24 {
+       margin-top: 0.05%;
+  }
+#dato14, #dato19 {
+      margin-top: -2%;
+}
+
+#subtituloautos{
+  margin-left: 10%;
+  font-size: 30px;
+}
+#boton1, #boton2, #boton3, #boton4, #boton5 {
+  display: none;
+}
+#auto1 img, #auto2 img, #auto3 img, #auto4 img, #auto5 img {
+  width: 250px;
+  height: 150px;
+}
+#auto1, #auto2, #auto3, #auto4, #auto5 {
+  width: 300px; 
+  height: 400px
+}
+.autitos button{
+  display: none;
+}
+}
+
+/* 320 x 568 px */
+
+@media (max-width: 767px) {
+  .autitos {
+    width: 100%; /* Pantalla completa en elementos pequeños */
+    display: flex; /* Cambia a flexbox para que se stackeen verticalmente */
+    flex-wrap: wrap; /* Controla la dirección en la cual serán apilados los elementos */
+    margin: center;
+    gap: 0px;
+  }
+
+  .autitos ul {
+    width: 100%;
+  }
+
+#dato1, #dato6, #dato11, #dato16, #dato21 {
+  font-size: 20px;
+}
+#dato2, #dato7, #dato12, #dato17, #dato22 {
+  font-size: 12px;
+}
+
+#dato3, #dato8, #dato13, #dato18, #dato23 {
+  font-size: 16px;
+}
+#dato4, #dato9, #dato14, #dato19, #dato24{
+  font-size: 12px;
+}
+
+#dato9, #dato4, #dato24 {
+       margin-top: 0.05%;
+  }
+#dato14, #dato19 {
+      margin-top: -2%;
+}
+
+#subtituloautos{
+  margin-left: 10%;
+  font-size: 30px;
+}
+#boton1, #boton2, #boton3, #boton4, #boton5 {
+  display: none;
+}
+#auto1 img, #auto2 img, #auto3 img, #auto4 img, #auto5 img {
+  width: 200px;
+  height: 100px;
+}
+#auto1, #auto2, #auto3, #auto4, #auto5 {
+  width: 300px; 
+  height: 330px
+}
+.autitos button{
+  display: none;
+}
+}
