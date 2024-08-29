@@ -21,6 +21,5 @@ formularioLogin.addEventListener('click', (e)=> {
   const usuariosTotales = JSON.parse(localStorage.getItem('usuarios')) || []
   usuariosTotales.push({usuario: usuario, contraseña: contrasena})
   localStorage.setItem('usuarios', JSON.stringify(usuariosTotales))
+  
 });
-
-
