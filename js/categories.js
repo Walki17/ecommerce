@@ -40,6 +40,8 @@ function setCatID(id) {
     window.location = "products.html"
 }
 
+
+
 function showCategoriesList(){
 
     let htmlContentToAppend = "";
@@ -150,3 +152,23 @@ document.getElementsByClassName("nav-item")[3].innerHTML=` <a class="nav-link">
              <path d="M6 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6m-5 6s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1zM11 3.5a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 0 1h-4a.5.5 0 0 1-.5-.5m.5 2.5a.5.5 0 0 0 0 1h4a.5.5 0 0 0 0-1zm2 3a.5.5 0 0 0 0 1h2a.5.5 0 0 0 0-1zm0 3a.5.5 0 0 0 0 1h2a.5.5 0 0 0 0-1z"/>
           </svg>  
      ${ultimoUsuario.usuario}</a>`
+
+
+     document.addEventListener("keydown", function (evento) {
+        if (evento.target.id === "buscador") {
+          if (evento.key === "Escape") {
+            evento.target.value = "";
+            return;
+          }
+      
+          const terminoBusqueda = evento.target.value.toLowerCase();
+          const productos = document.querySelectorAll("#autitos .card");
+      
+          productos.forEach(producto => {
+            const textoProducto = producto.textContent.toLowerCase();
+            const hayCoincidencia = textoProducto.includes(terminoBusqueda);
+      
+            producto.classList.toggle("filtro", !hayCoincidencia);
+          });
+        }
+      });
