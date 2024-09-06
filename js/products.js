@@ -223,3 +223,25 @@ sortBysoldCountButton.addEventListener('click', () => {
   console.log(products);
 });
 
+
+
+
+document.addEventListener("keydown", function (evento) {
+        if (evento.target.id === "buscador") {
+          if (evento.key === "Escape") {
+            evento.target.value = "";
+            return;
+          }
+      
+          const terminoBusqueda = evento.target.value.toLowerCase();
+          const productos = document.querySelectorAll('div .ul');
+      
+          productos.forEach(producto => {
+            const textoProducto = producto.textContent.toLowerCase();
+            const hayCoincidencia = textoProducto.includes(terminoBusqueda);
+      
+            producto.classList.toggle("filtro", !hayCoincidencia);
+          });
+        }
+      });
+
