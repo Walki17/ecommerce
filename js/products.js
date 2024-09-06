@@ -163,9 +163,63 @@ document.getElementsByClassName("nav-item")[3].innerHTML=` <a class="nav-link">
           </svg>  
      ${ultimoUsuario.usuario}</a>`
 
-     
+
+    /*constantes para la funcion de filtro*/
+
+   const minCostInput = document.getElementById('minCost');
+   const maxCostInput = document.getElementById('maxCost');
+   const filterButton = document.getElementById('filterButton');
+   const clearButton = document.getElementById('clearButton');
 
 
+   const products = [
+    { id: ('auto1'), cost: 13500, soldCount: 14 },
+    { id: ('auto2'), cost: 14500, soldCount: 52 },
+    { id: ('auto3'), cost: 12500, soldCount: 25 },
+    { id: ('auto4'), cost: 15200, soldCount: 17 },
+    { id: ('auto5'), cost: 3500000, soldCount: 0 }
+ ];
+
+ // Funcion para filtrar precios en base a un rango 
+  function filterProductsByCost() {
+  const minCost = (minCostInput.value) || 0;
+  const maxCost = (maxCostInput.value) || Number.MAX_VALUE;
+
+  const filteredProducts = products.filter(product => {
+    const productCost = parseInt(product.cost);
+    return productCost >= minCost && productCost <= maxCost;
+  });
+}
+
+// Funcion para limpiar los filtros y mostrar todos los productos*/
+function clearFilters() {
+  minCostInput.value = '';
+  maxCostInput.value = '';
+}
+
+// Event listeners para los filtros y boton de limpiar
+filterButton.addEventListener('click', filterProductsByCost);
+clearButton.addEventListener('click', clearFilters);
+
+/*constantes para botones de ordenamiento*/
+
+const sortAscButton = document.getElementById('sortAsc');
+const sortDescButton = document.getElementById('sortDesc');
+const sortBysoldCountButton = document.getElementById('sortBysoldCount');   
 
 
+sortAscButton.addEventListener('click', () => {
+  products.sort((a, b) => a.cost - b.cost);
+  console.log(products);
+});
+
+sortDescButton.addEventListener('click', () => {
+  products.sort((a, b) => b.cost - a.cost);
+  console.log(products);
+});
+
+sortBysoldCountButton.addEventListener('click', () => {
+  products.sort((a, b) => b.soldCount - a.soldCount);
+  console.log(products);
+});
 

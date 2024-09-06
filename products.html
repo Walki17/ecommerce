@@ -5,13 +5,11 @@
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <title>eMercado - Todo lo que busques está aquí</title>
-
+  
   <link href="https://fonts.googleapis.com/css?family=Raleway:300,300i,400,400i,700,700i,900,900i" rel="stylesheet">
   <link href="css/font-awesome.min.css" rel="stylesheet">
   <link href="css/bootstrap.min.css" rel="stylesheet">
   <link href="css/styles.css" rel="stylesheet">
-
-
 <style>
     body{
       background-image: url("img/fondo01.png");
@@ -46,7 +44,59 @@
     </div>
   </nav>
   <main class="pb-5 container">
-    <h1 id="subtituloautos"> Autos </h1>
+  <h1 id="subtituloautos"> Autos </h1>
+
+   <!--AQUI VAN LOS FILTROS-->
+
+   <div class="filtros">
+    <!-- Filtros de Precio -->
+   
+    <div class="row">
+        <div class="tituloPrecio">
+          <p>Precio</p>
+        </div>
+        <div class="col">
+            <label for="minCost"></label>
+            <input type="number" id="minCost" class="form-control" placeholder="Min Cost">
+        </div>
+        <div class="col">
+            <label for="maxCost"></label>
+            <input type="number" id="maxCost" class="form-control" placeholder="Max Cost">
+        </div>
+        <div class="col">
+            <button id="filterButton" class="btn btn-primary mt-4">Filtrar</button>
+            <button id="clearButton" class="btn btn-secondary mt-4">Limpiar</button>
+        </div>
+    </div>
+
+    <!-- Ordenamiento -->
+    <div class="row">
+        <div class="col text-end">
+            <div class="btn-group btn-group-toggle mb-4" data-bs-toggle="buttons">
+                <input type="radio" class="btn-check" name="options" id="sortAsc">
+                <label class="btn btn-light" for="sortAsc"><i class="fas fa-sort-amount-up"></i>$</label>
+                <input type="radio" class="btn-check" name="options" id="sortDesc">
+                <label class="btn btn-light" for="sortDesc"><i class="fas fa-sort-amount-down mr-1"></i>$</label>
+                <input type="radio" class="btn-check" name="options" id="sortBysoldCount" checked>
+                <label class="btn btn-light" for="sortBysoldCount"><i class="fas fa-sort-amount-down mr-1"></i>$</label>
+            </div>
+        </div>
+    </div>
+
+    <!-- Listado de Productos -->
+    <div id="productList" class="product-list row">
+        <!-- Los productos se renderizarán aquí -->
+    </div>
+</div>
+
+
+    <!-- Listado de Productos -->
+    <div id="productList" class="product-list row">
+      <!-- Los productos se renderizarán aquí -->
+   </div>
+
+
+   <!--AQUI Terminan LOS FILTROS-->
 
   <div class="autitos">
     <ul id="auto1">
@@ -144,6 +194,7 @@
   <script src="js/bootstrap.bundle.min.js"></script>
   <script src="js/init.js"></script>
   <script src="js/products.js"></script>
+
 </body>
 
 </html>
