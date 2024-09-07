@@ -287,45 +287,9 @@ form .link {
 }
 
 
-.autitos {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr); /* 3 columnas de igual ancho */
-  grid-gap: 20px;
-  position: relative;
-  margin-right: 5%;
-  grid-gap: 30px;
-  max-width: 800px;
-  place-items: center;
-    
-}
-
 ul {
   list-style-type: none;
 }
-
-#auto1, #auto2, #auto3, #auto4, #auto5 {
-  width: 300px;
-  background-color: #fff;
-  border-radius: 15px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
-  margin: 20px;
-  padding: 20px;
-  text-align: center;
-  border: 6px solid orange;
-  width: 400px; 
-  height: 500px
-}
-
-#auto1 img, #auto2 img, #auto3 img, #auto4 img, #auto5 img {
-  width: 365px;
-  height: 249px;
-  top: 180px;
-  left: 800px;
-  right: 800px;
-  object-fit: cover;
-  border: 2px solid black;
-  margin-left: -8.67px;
- }
 
 
 #subtituloautos {
@@ -344,110 +308,6 @@ ul {
   box-shadow: 0px 4px 6px rgb(0, 0, 0);
   text-align: center;
   width: fit-content;
-}
-
-#dato1, #dato6, #dato11, #dato16, #dato21 {
-  margin-top: 7%;
-  text-align: left;
-  font-size: 150%;
-  font-family: "Quicksand", sans-serif;
-}
-
-#dato2, #dato7, #dato12, #dato17, #dato22 {
-  text-align: left;
-  font-weight: bold;
-  margin-top: 5%;
-}
-
-#dato3, #dato8, #dato13, #dato18, #dato23{
-  text-align: left;
-  margin-top: 5%;
-  font-family: "Quicksand", sans-serif;
-  font-size: large;
-}
-
-#dato4, #dato24 {
-  text-align: right;
-  margin-top: 3%;
-  font-family: "Quicksand", sans-serif;
-}
-
-#dato19{
-  text-align: right;
-  margin-top: -5%;
-  font-family: "Quicksand", sans-serif;
-}
-
-#dato9 {
-  text-align: right;
-  margin-top: 5%;
-  font-family: "Quicksand", sans-serif;
-}
-
-#dato14{
-  text-align: right;
-  margin-top: 4%;
-  font-family: "Quicksand", sans-serif;
-  
-}
-
-
-.button {
-  position: absolute;
-  border: none;
-  background-color: white;
-  color: #212121;
-  padding: 10px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 10px;
-  font-weight: 300;
-  gap: 5px;
-  border-radius: 10px;
-  transition: all 0.6s cubic-bezier(0.23, 1, 0.320, 1);
-  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
-  cursor: pointer;
-  overflow: hidden;
-  z-index: 1;
-}
-
-.button span {
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 1;
-}
-
-.button::before {
-  content: "";
-  position: absolute;
-  background-color: #ff9500; 
-  width: 100%;
-  height: 100%;
-  left: 0%;
-  bottom: 0%;
-  transform: translate(-100%, 100%);
-  border-radius: inherit;
-}
-
-.button svg {
-  fill: #ff9500; 
-  transition: all 0.6s cubic-bezier(0.23, 1, 0.320, 1);
-}
-
-.button:hover::before {
-  animation: shakeBack 0.6s forwards;
-}
-
-.button:hover svg {
-  fill: white;
-  scale: 1.3;
-}
-
-.button:active {
-  box-shadow: none;
 }
 
 @keyframes shakeBack {
@@ -504,164 +364,150 @@ transition: transform 0.3s ease-in-out;
   box-sizing: border-box;
 }
 
-@media screen and (max-width: 768px){
-  .text-muted{
-    grid-template-columns: repeat(2, 1fr);
-    gap: 2rem;
-  }
+.contenedor-product{
+  background: white;
+  border-style: solid;
+  border-radius: 15px;
+  border-color: orange;
+  box-shadow: 0px 6px 5px rgb(49, 49, 49);
+  padding: 50px;
+  padding: 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra suave */
+  max-width: 1500px; /* Ajusta el ancho máximo según tus necesidades */
+  margin: 0 auto; /* Centra el contenedor horizontalmente   
+ */
 }
 
-@media screen and (max-width: 426px){
-  .text-muted{
-    grid-template-columns: repeat(1, 1fr);
-    padding: 3rem 2rem;
-  }
+/* De aca para abajo es el estilo de products-info */
 
-.login{
-  margin-left: auto;
-  margin-right: auto;
-  padding: 1px 0.1em 1px;
+
+.imagenes-product {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
 }
 
-form label input {
-  margin-bottom: 4px;
-  font-size: 14px;
+.imagenes-product img {
+  width: 25%;
+  height: 150px;
+  object-fit: cover;
 }
 
-form label{
-  margin: 8px;
+.informacion {
+  text-align: center;
+  
 }
 
-button {
-  font-size: 14px;
+.informacion h2 {
+  font-size: 28px; 
+  margin-bottom: 10px;
+  text-align: left;
+  margin-left: 500px; /* Añade un margen izquierdo de 50 píxeles */
+
 }
 
-.text-muted{
-  grid-template-columns: repeat(1, 1fr);
-  padding: 3rem 2rem;
-  font-size: 11px;
+.informacion p {
+  font-size: 16px;
+  margin-bottom: 15px;
+  text-align: left;
+  margin-left: 500px; /* Añade un margen izquierdo de 50 píxeles */
 }
+
+.descripcion {
+  margin-top: 20px;
 }
-/* 1366 x 768  */
-@media (min-width: 1366px) {
-  .autitos {
-    margin-left: -12%;
-  }
-  #subtituloautos{
-    margin-left: 2%;
-  }
+
+.stock h5{
+  text-align: left;
+  margin-left: 500px; /* Añade un margen izquierdo de 50 píxeles */
+
 }
+
+.cantidad-contenedor {
+  display: flex;
+  align-items: center;
+  margin-left: 500px; /* Añade un margen izquierdo de 50 píxeles */
+
+  
+}
+
+.cantidad {
+  width: 40px;
+  text-align: center;
+}
+
+.disminuir, .aumentar {
+  cursor: pointer;
+  width: 20px;
+  text-align: center;
+}
+
+#comprar {
+  position: relative;
+  color: rgb(248, 218, 161);
+  border: none;
+  border-radius: 5px;
+  background: rgb(253, 176, 32);
+  margin: 10px;
+  padding: 10px 15px;
+  cursor: pointer;
+}
+
+#agregar {
+  position: relative;
+  color: rgb(253, 176, 32);
+  border: none;
+  border-radius: 5px;
+  background: rgb(248, 218, 161);
+  margin: 10px;
+  padding: 10px 15px;
+  cursor: pointer;
+
+}
+
+.table1, .table2 {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 45%; /* Ajusta el ancho de las tablas según sea necesario */
+  display: inline-block;
+  vertical-align: top; /* Alinea la parte superior de las tablas */
+  margin-right: 10px; /* Añade un margen derecho para separar las tablas */
+}
+
+.table1, .table2 td, th {
+  text-align: left;
+}
+
+.table1 tr:nth-child(even) {
+    background-color: #dddddd;
+}
+
+.table2 tr:nth-child(even) {
+    background-color: #dddddd;
+}
+
+
+/* Hasta aca es el estilo de products-info */
+
+
+@media screen and (max-width: 768px){}
+
+@media screen and (max-width: 426px){}
 
 /* 768 x 1024 px */
-@media (min-width: 768px) and (max-width: 1024px) {
-  .autitos {
-    width: 100%; /* Pantalla completa en elementos pequeños */
-    display: flex; /* Cambia a flexbox para que se stackeen verticalmente */
-    flex-wrap: wrap; /* Controla la dirección en la cual serán apilados los elementos */
-    margin: center;
-    gap: 0px;
-  }
+@media (min-width: 768px) and (max-width: 1024px) { }
 
-  .autitos ul {
-    width: 100%;
-  }
 
-#dato1, #dato6, #dato11, #dato16, #dato21 {
-  font-size: 25px;
-}
-#dato2, #dato7, #dato12, #dato17, #dato22 {
-  font-size: 16px;
-}
-
-#dato3, #dato8, #dato13, #dato18, #dato23 {
-  font-size: 18px;
-}
-#dato4, #dato9, #dato14, #dato19, #dato24{
-  font-size: 16px;
-}
-
-#dato9, #dato4, #dato24 {
-       margin-top: 0.05%;
-  }
-#dato14 {
-      margin-top: 1%;
-}
-#dato19 {
-  margin-top: -8%;
-}
-
-#subtituloautos{
-  margin-left: 10%;
-  font-size: 30px;
-}
-#boton1, #boton2, #boton3, #boton4, #boton5 {
-  display: none;
-}
-#auto1 img, #auto2 img, #auto3 img, #auto4 img, #auto5 img {
-  width: 250px;
-  height: 150px;
-}
-#auto1, #auto2, #auto3, #auto4, #auto5 {
-  width: 300px; 
-  height: 400px
-}
-.autitos button{
-  display: none;
-}
-}
 
 /* 320 x 568 px */
 
-@media (max-width: 767px) {
-  .autitos {
-    width: 100%; /* Pantalla completa en elementos pequeños */
-    display: flex; /* Cambia a flexbox para que se stackeen verticalmente */
-    flex-wrap: wrap; /* Controla la dirección en la cual serán apilados los elementos */
-    margin: center;
-    gap: 0px;
-  }
+@media (max-width: 767px) {}
 
-  .autitos ul {
-    width: 100%;
-  }
 
-#dato1, #dato6, #dato11, #dato16, #dato21 {
-  font-size: 20px;
-}
-#dato2, #dato7, #dato12, #dato17, #dato22 {
-  font-size: 12px;
-}
-
-#dato3, #dato8, #dato13, #dato18, #dato23 {
-  font-size: 16px;
-}
-#dato4, #dato9, #dato14, #dato19, #dato24{
-  font-size: 12px;
-}
-
-#dato9, #dato4, #dato24 {
-       margin-top: 0.05%;
-  }
-#dato14, #dato19 {
-      margin-top: -2%;
-}
-
-#subtituloautos{
-  margin-left: 10%;
-  font-size: 30px;
-}
-#boton1, #boton2, #boton3, #boton4, #boton5 {
-  display: none;
-}
-#auto1 img, #auto2 img, #auto3 img, #auto4 img, #auto5 img {
-  width: 200px;
-  height: 100px;
-}
-#auto1, #auto2, #auto3, #auto4, #auto5 {
-  width: 300px; 
-  height: 330px
-}
-.autitos button{
-  display: none;
-}
+.card{
+  border-color: #ff9500;
+  border-width: 2px;
+  border-radius: 15px;
+  display: flex;
+  flex-wrap: wrap;
 }
