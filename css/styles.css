@@ -511,3 +511,20 @@ transition: transform 0.3s ease-in-out;
   display: flex;
   flex-wrap: wrap;
 }
+
+
+.botonesParaFiltros {
+  display: flex;
+  margin: 0 30% 2%;
+  justify-content: space-between;
+}
+
+#btnfiltro{
+  background-color: #fff;
+  border-color: black;
+  border-style: outset;
+  margin-left: 1%;
+}
+
+
+
