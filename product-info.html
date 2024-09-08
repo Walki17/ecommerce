@@ -41,11 +41,24 @@
       </div>
     </div>
   </nav>
-  <main>     <!-- aca empieza lo que hice -->
+  <main> 
+
+    <nav class="path" style="--bs-breadcrumb-divider: url(&#34;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8'%3E%3Cpath d='M2.5 0L1 1.5 3.5 4 1 6.5 2.5 8l4-4-4-4z' fill='%236c757d'/%3E%3C/svg%3E&#34;);" aria-label="breadcrumb">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+        <li class="breadcrumb-item active" aria-current="page"><a href="categories.html">Categorias</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Producto</li>
+      </ol>
+    </nav>
+
+    <div id="productInfo"></div>
+
+    
+    <!-- aca empieza lo que hice 
     <div class="contenedor-product">
         <div class="producto">
           <div class="imagenes-product">
-            <img src="img/car1.jpg" alt="Imagen del producto 1">
+            <img src="img/prod50921_1.jpg" alt="Imagen del producto 1">
             </div>
         
           <div class="informacion">
@@ -64,126 +77,14 @@
               <button id="agregar"><strong>Agregar al carrito</strong></button>
             </div>
           </div>
-        
-          <div class="caracteristicas">
 
-                <h5>Caracteristicas</h5>
-                
-                <table class="table1">
-                  <tr>
-                    <th>Motor</th>
-                    <th>ONYX JOY</th>
-                  </tr>
-                  <tr>
-                    <td>Combustible</td>
-                    <td>Nafta</td>
-                  </tr>
-                  <tr>
-                    <td>Cilindrada (cm3)</td>
-                    <td>1.0</td>
-                  </tr>
-                  <tr>
-                    <td>Tipo</td>
-                    <td>Delantero Transversal</td>
-                  </tr>
-                  <tr>
-                    <td>Island Trading</td>
-                    <td>Helen Bennett</td>
-                  </tr>
-                  <tr>
-                    <td>Laughing Bacchus Winecellars</td>
-                    <td>Yoshi Tannamuri</td>
-                  </tr>
-                  <tr>
-                    <td>Magazzini Alimentari Riuniti</td>
-                    <td>Giovanni Rovelli</td>
-                  </tr>
-                  <tr>
-                    <td>Magazzini Alimentari Riuniti</td>
-                    <td>Giovanni Rovelli</td>
-                  </tr>
-                  <tr>
-                    <td>Magazzini Alimentari Riuniti</td>
-                    <td>Giovanni Rovelli</td>
-                  </tr>
-                  <tr>
-                    <td>Magazzini Alimentari Riuniti</td>
-                    <td>Giovanni Rovelli</td>
-                  </tr>
-                  <tr>
-                    <td>Magazzini Alimentari Riuniti</td>
-                    <td>Giovanni Rovelli</td>
-                  </tr>
-                  <tr>
-                    <td>Magazzini Alimentari Riuniti</td>
-                    <td>Giovanni Rovelli</td>
-                  </tr>
-                  <tr>
-                    <td>Magazzini Alimentari Riuniti</td>
-                    <td>Giovanni Rovelli</td>
-                  </tr>
-                  <tr>
-                    <td>Magazzini Alimentari Riuniti</td>
-                    <td>Giovanni Rovelli</td>
-                  </tr>
-                  <tr>
-                    <td>Magazzini Alimentari Riuniti</td>
-                    <td>Giovanni Rovelli</td>
-                  </tr>
-                </table>
-
-                <table class="table2">
-                  <tr>
-                    <th>Motor</th>
-                    <th>ONYX JOY</th>
-                  </tr>
-                  <tr>
-                    <td>Combustible</td>
-                    <td>Nafta</td>
-                  </tr>
-                  <tr>
-                    <td>Cilindrada (cm3)</td>
-                    <td>1.0</td>
-                  </tr>
-                  <tr>
-                    <td>Tipo</td>
-                    <td>Delantero Transversal</td>
-                  </tr>
-                  <tr>
-                    <td>Island Trading</td>
-                    <td>Helen Bennett</td>
-                  </tr>
-                  <tr>
-                    <td>Laughing Bacchus Winecellars</td>
-                    <td>Yoshi Tannamuri</td>
-                  </tr>
-                  <tr>
-                    <td>Laughing Bacchus Winecellars</td>
-                    <td>Yoshi Tannamuri</td>
-                  </tr>
-                  <tr>
-                    <td>Laughing Bacchus Winecellars</td>
-                    <td>Yoshi Tannamuri</td>
-                  </tr>
-                  <tr>
-                    <td>Laughing Bacchus Winecellars</td>
-                    <td>Yoshi Tannamuri</td>
-                  </tr>
-                  <tr>
-                    <td>Laughing Bacchus Winecellars</td>
-                    <td>Yoshi Tannamuri</td>
-                  </tr>
-
-                </table>
-                                             
-          </div>
         
           <div class="descripcion">
             <h5>Descripcion</h5>
             <br>
             <p>Generación 2019, variedad de colores. Motor 1.0, ideal para ciudad. <br>Con aire acondicionado, dirección eléctrica, tapizados en tela, limpiador y lavador eléctrico de vidrio trasero, parasol acompañante con espejo, vidrio eléctrico en puertas delanteras y asiento trasero con respaldo rebatible.</p>
         </div>
-        <!-- hasta aca llega lo que hice -->
+         hasta aca llega lo que hice -->
   </main>
   <footer class="text-muted">
     <div class="container">
@@ -202,8 +103,10 @@
     </div>
   </div>
   <script src="js/bootstrap.bundle.min.js"></script>
-  <script src="js/init.js"></script>
-  <script src="js/product-info.js"></script>
-</body>
+<script src="js/init.js"></script>
+<script src="js/products.js"></script>  <script src="js/product-info.js" defer></script>
+
+
+  </body> 
 
 </html>
