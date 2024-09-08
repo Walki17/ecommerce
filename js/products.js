@@ -26,8 +26,8 @@ fetch(DATOS)
         card.classList.add("col-md-3", "mb-4");
 
         const cardContent = `
-          <div class="card" style="cursor: pointer;" onclick="selectProduct(${producto.id})">
-            <img src="${producto.image}" class="card-img-top" alt="Producto">
+          <div class="card-product" style="cursor: pointer;" onclick="selectProduct(${producto.id})">
+            <img src="${producto.image}" class="card-img-product" alt="Producto">
             <h5 class="card-title">${producto.name}</h5>
             <p class="card-text">${producto.description}</p>
             <p>${producto.currency} ${formatter.format(producto.cost)}</p>
@@ -91,8 +91,8 @@ function filtrado() {
 
               card.innerHTML = `
                 <div class="col">
-                  <div class="card">
-                    <img src="${auto.image}" class="card-img-top" alt="Productos" style="width: 15rem;">
+                  <div class="card-product">
+                    <img src="${auto.image}" class="card-img-product" alt="Productos" style="width: 15rem;">
                     <div class="card-body">
                       <h5 class="card-title">${auto.name}</h5>
                       <p class="card-text">${auto.description}</p>
@@ -146,8 +146,8 @@ function filtrado() {
 
                 card.innerHTML = `
                   <div class="col">
-                    <div class="card">
-                      <img src="${auto.image}" class="card-img-top" alt="Productos" style="width: 15rem;">
+                    <div class="card-product">
+                      <img src="${auto.image}" class="card-img-product" alt="Productos" style="width: 15rem;">
                       <div class="card-body">
                         <h5 class="card-title">${auto.name}</h5>
                         <p class="card-text">${auto.description}</p>
@@ -199,8 +199,8 @@ function filtrado() {
 
                 card.innerHTML = `
                   <div id="test" class="col">
-                    <div class="card">
-                      <img src="${auto.image}" class="card-img-top" alt="Productos" style="width: 15rem;">
+                    <div class="card-product">
+                      <img src="${auto.image}" class="card-img-product" alt="Productos" style="width: 15rem;">
                       <div class="card-body">
                         <h5 class="card-title">${auto.name}</h5>
                         <p class="card-text">${auto.description}</p>
@@ -250,8 +250,8 @@ function filtrado4() {
                 card.classList.add("col-md-3", "mb-4");
 
                 card.innerHTML = `
-                    <div class="card">
-                        <img src="${auto.image}" class="card-img-top" alt="Productos" style="width: 15rem;">
+                    <div class="card-product">
+                        <img src="${auto.image}" class="card-img-product" alt="Productos" style="width: 15rem;">
                         <div class="card-body">
                             <h5 class="card-title">${auto.name}</h5>
                             <p class="card-text">${auto.description}</p>
