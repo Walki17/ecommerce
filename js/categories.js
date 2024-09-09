@@ -40,8 +40,6 @@ function setCatID(id) {
     window.location = "products.html"
 }
 
-
-
 function showCategoriesList(){
 
     let htmlContentToAppend = "";
@@ -154,21 +152,58 @@ document.getElementsByClassName("nav-item")[3].innerHTML=` <a class="nav-link">
      ${ultimoUsuario.usuario}</a>`
 
 
-     document.addEventListener("keydown", function (evento) {
-        if (evento.target.id === "buscador") {
-          if (evento.key === "Escape") {
-            evento.target.value = "";
-            return;
-          }
+
+
+     
+     const catid = localStorage.getItem("catID");
+     const urls = [];
+for (let catid = 101; catid <= 109; catid++) {
+    urls.push(`https://japceibal.github.io/emercado-api/cats_products/${catid}.json`);
+}
+
+
+     function buscarVariosUrl(urls) {
+        const resp = Promise.all(urls.map((url) => fetch(url)))
+          .then((resp) => {
+            return Promise.all(resp.map((response) => response.json()));
+          })
+          .then((datita) => {
+            const mapeo = datita.flatMap((data) => data.products);
       
-          const terminoBusqueda = evento.target.value.toLowerCase();
-          const productos = document.querySelectorAll("#autitos .card");
+            // filtro cada vez que cambia el valor del input
+            document.getElementById('filtrocat').addEventListener('input', () => {
+              const filtroCat = document.getElementById("filtrocat").value.toLowerCase();
+              const productosFiltrados = mapeo.filter((producto) =>
+                producto.name.toLowerCase().includes(filtroCat) || 
+                producto.description.toLowerCase().includes(filtroCat)
+              );
       
-          productos.forEach(producto => {
-            const textoProducto = producto.textContent.toLowerCase();
-            const hayCoincidencia = textoProducto.includes(terminoBusqueda);
+              // limpio el div
+              document.getElementById("cat-list-container").innerHTML = '';
+              // printeo productos
+              productosFiltrados.forEach((producto) => {
+                const newDiv = document.createElement('div');
+    newDiv.innerHTML = `Titulo product: ${producto.name} - Descripción: ${producto.description}`;
+    document.getElementById("cat-list-container").appendChild(newDiv);
+});
+            });
       
-            producto.classList.toggle("filtro", !hayCoincidencia);
+            // Detecta cuando se presiona la tecla Esc
+            document.addEventListener('keydown', (event) => {
+              if (event.key === 'Escape') {
+                // Limpia el campo de búsqueda
+                document.getElementById("filtrocat").value = '';
+                // Recarga la página
+                location.reload();
+              }
+            });
+          })
+          .catch((error) => {
+            console.error('Error fetching data:', error);
           });
-        }
+      }
+      
+      // cargo los datos cuando la página se carga
+      document.addEventListener('DOMContentLoaded', () => {
+        buscarVariosUrl(urls);
       });
