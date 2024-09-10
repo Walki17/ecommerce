@@ -286,12 +286,6 @@ form .link {
   padding-bottom: 3rem;
 }
 
-
-ul {
-  list-style-type: none;
-}
-
-
 #subtituloautos {
   margin-left: 0%;
   margin-top: 1%;
@@ -323,6 +317,16 @@ ul {
     transform: translate(0%, 0%);
   }
 }
+
+
+@media screen and (max-width: 768px){}
+
+@media screen and (max-width: 426px){}
+
+/* 768 x 1024 px */
+@media (min-width: 768px) and (max-width: 1024px) { }
+
+
 
 .masInfo{
   display: flex;
@@ -492,6 +496,7 @@ transition: transform 0.3s ease-in-out;
 }
 
 
+
 /* Hasta aca es el estilo de products-info */
 
 
@@ -508,6 +513,17 @@ transition: transform 0.3s ease-in-out;
 
 @media (max-width: 767px) {}
 
+
+
+.card{
+  border-color: #ff9500;
+  border-width: 2px;
+  border-radius: 15px;
+}
+
+#filtrocat{
+  margin-right: 75%;
+}
 
 .card-product{
   border-color: #ff9500;
@@ -538,6 +554,7 @@ transition: transform 0.3s ease-in-out;
   border-style: outset;
   margin-left: 1%;
 }
+
 
 
 

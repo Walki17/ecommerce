@@ -150,3 +150,74 @@ document.getElementsByClassName("nav-item")[3].innerHTML=` <a class="nav-link">
              <path d="M6 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6m-5 6s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1zM11 3.5a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 0 1h-4a.5.5 0 0 1-.5-.5m.5 2.5a.5.5 0 0 0 0 1h4a.5.5 0 0 0 0-1zm2 3a.5.5 0 0 0 0 1h2a.5.5 0 0 0 0-1zm0 3a.5.5 0 0 0 0 1h2a.5.5 0 0 0 0-1z"/>
           </svg>  
      ${ultimoUsuario.usuario}</a>`
+
+
+
+
+     const moneda = new Intl.NumberFormat('es-ES');
+     const catid = localStorage.getItem("catID");
+     const urls = [];
+      for (let catid = 101; catid <= 109; catid++) {
+    urls.push(`https://japceibal.github.io/emercado-api/cats_products/${catid}.json`);
+}
+
+
+     function buscarVariosUrl(urls) {
+        const resp = Promise.all(urls.map((url) => fetch(url))) //funcion map para fetchear todo lo de la const urls
+          .then((resp) => {
+            return Promise.all(resp.map((response) => response.json())); //funcion map para que se haga json todas las respuestas
+          })
+          .then((datita) => {
+            const mapeo = datita.flatMap((data) => data.products); //flatmap pone la info en "un mismo plano"
+      
+            // filtro cada vez que cambia el valor del input
+            document.getElementById('filtrocat').addEventListener('input', () => {
+              const filtroCat = document.getElementById("filtrocat").value.toLowerCase();
+              const productosFiltrados = mapeo.filter((producto) =>
+                producto.name.toLowerCase().includes(filtroCat) || 
+                producto.description.toLowerCase().includes(filtroCat)
+              );
+      
+              // limpio el div
+              document.getElementById("cat-list-container").innerHTML = '';
+              // printeo productos
+              productosFiltrados.forEach((producto) => {
+                const newDiv = document.createElement('div');
+                newDiv.classList.add("col-md-3");
+                    newDiv.innerHTML = `
+                        <div class="card mb-4 shadow-sm">
+                            <img class="card-img-top" src="${producto.image}" alt="${producto.name}">
+                            <div class="card-body">
+                                <h5 class="card-title">${producto.name}</h5>
+                                <p class="card-text">${producto.description}</p>
+                                <p>${producto.currency} ${moneda.format(producto.cost)}</p>
+                                <p>Vendidos: ${producto.soldCount}</p>
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <button class="btn btn-sm btn-outline-secondary" onclick="setCatID(${producto.id})">Ver</button>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                    document.getElementById("cat-list-container").appendChild(newDiv);
+});
+            });
+      
+            // Detecta cuando se presiona la tecla Esc
+            document.addEventListener('keydown', (event) => {
+              if (event.key === 'Escape') {
+                // Limpia el campo de búsqueda
+                document.getElementById("filtrocat").value = '';
+                // Recarga la página
+                location.reload();
+              }
+            });
+          })
+          .catch((error) => {
+            console.error('Error fetching data:', error);
+          });
+      }
+      
+      // cargo los datos cuando la página se carga
+      document.addEventListener('DOMContentLoaded', () => {
+        buscarVariosUrl(urls);
+      });
