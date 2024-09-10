@@ -154,7 +154,7 @@ document.getElementsByClassName("nav-item")[3].innerHTML=` <a class="nav-link">
 
 
 
-     
+     const moneda = new Intl.NumberFormat('es-ES');
      const catid = localStorage.getItem("catID");
      const urls = [];
 for (let catid = 101; catid <= 109; catid++) {
@@ -183,8 +183,22 @@ for (let catid = 101; catid <= 109; catid++) {
               // printeo productos
               productosFiltrados.forEach((producto) => {
                 const newDiv = document.createElement('div');
-    newDiv.innerHTML = `Titulo product: ${producto.name} - Descripción: ${producto.description}`;
-    document.getElementById("cat-list-container").appendChild(newDiv);
+                newDiv.classList.add("col-md-3");
+                    newDiv.innerHTML = `
+                        <div class="card mb-3 shadow-sm">
+                            <img class="card-img-top" src="${producto.image}" alt="${producto.name}">
+                            <div class="card-body">
+                                <h5 class="card-title">${producto.name}</h5>
+                                <p class="card-text">${producto.description}</p>
+                                <p>${producto.currency} ${moneda.format(producto.cost)}</p>
+                                <p>Vendidos: ${producto.soldCount}</p>
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <button class="btn btn-sm btn-outline-secondary" onclick="setCatID(${producto.id})">Ver</button>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                    document.getElementById("cat-list-container").appendChild(newDiv);
 });
             });
       
