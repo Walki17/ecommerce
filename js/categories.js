@@ -157,18 +157,18 @@ document.getElementsByClassName("nav-item")[3].innerHTML=` <a class="nav-link">
      const moneda = new Intl.NumberFormat('es-ES');
      const catid = localStorage.getItem("catID");
      const urls = [];
-for (let catid = 101; catid <= 109; catid++) {
+      for (let catid = 101; catid <= 109; catid++) {
     urls.push(`https://japceibal.github.io/emercado-api/cats_products/${catid}.json`);
 }
 
 
      function buscarVariosUrl(urls) {
-        const resp = Promise.all(urls.map((url) => fetch(url)))
+        const resp = Promise.all(urls.map((url) => fetch(url))) //funcion map para fetchear todo lo de la const urls
           .then((resp) => {
-            return Promise.all(resp.map((response) => response.json()));
+            return Promise.all(resp.map((response) => response.json())); //funcion map para que se haga json todas las respuestas
           })
           .then((datita) => {
-            const mapeo = datita.flatMap((data) => data.products);
+            const mapeo = datita.flatMap((data) => data.products); //flatmap pone la info en "un mismo plano"
       
             // filtro cada vez que cambia el valor del input
             document.getElementById('filtrocat').addEventListener('input', () => {
@@ -185,7 +185,7 @@ for (let catid = 101; catid <= 109; catid++) {
                 const newDiv = document.createElement('div');
                 newDiv.classList.add("col-md-3");
                     newDiv.innerHTML = `
-                        <div class="card mb-3 shadow-sm">
+                        <div class="card mb-4 shadow-sm">
                             <img class="card-img-top" src="${producto.image}" alt="${producto.name}">
                             <div class="card-body">
                                 <h5 class="card-title">${producto.name}</h5>

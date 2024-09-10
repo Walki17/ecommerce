@@ -338,6 +338,6 @@ form .link {
   border-radius: 15px;
 }
 
-.filtro{
-  display: none;
+#filtrocat{
+  margin-right: 75%;
 }
