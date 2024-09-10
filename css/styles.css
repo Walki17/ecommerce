@@ -318,6 +318,188 @@ form .link {
   }
 }
 
+
+@media screen and (max-width: 768px){}
+
+@media screen and (max-width: 426px){}
+
+/* 768 x 1024 px */
+@media (min-width: 768px) and (max-width: 1024px) { }
+
+
+
+.masInfo{
+  display: flex;
+  margin-left: auto;
+  margin-top: -11%;
+}
+
+
+.button img{
+transition: transform 0.3s ease-in-out;
+}
+
+
+.masInfo{
+  width: 20px;
+  height: 20px;
+  background-color: rgba(255, 255, 255, 0);
+  border-radius: 20px;
+  border: bold;
+  position: relative;
+  top: 2%;
+  border: none;
+  
+}
+
+.masInfo #imagenMas1, .masInfo #imagenMas2, .masInfo #imagenMas3, .masInfo #imagenMas4, .masInfo #imagenMas5{
+  width: 20px;
+  height: 20px;
+  align-items: center;
+  border: white;
+  position: relative;
+  left: 41%;
+  top: -15%;
+}
+
+
+.autitos ul,
+.autitos ul li {
+  box-sizing: border-box;
+}
+
+.container-product {
+  background: white;
+  border-style: solid;
+  border-radius: 15px;
+  border-color: orange;
+  box-shadow: 0px 6px 5px rgb(49, 49, 49);
+  padding: 50px;
+  padding: 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra suave */
+  max-width: 1500px; /* Ajusta el ancho máximo según tus necesidades */
+  margin: 0 auto; /* Centra el contenedor horizontalmente   
+ */
+}
+
+/* De aca para abajo es el estilo de products-info */
+
+/* Contenedor principal del producto */
+.contenedor-product {
+  display: flex;
+  justify-content: space-between; /* Separar imágenes e información */
+  align-items: flex-start;
+  padding: 20px;
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* Imágenes del producto */
+.imagenes-product {
+  display: flex;
+  flex-direction: column; /* Alinearlas en columna */
+  gap: 15px;
+  width: 30%; /* Ocupa el 30% del contenedor */
+}
+
+.imagenes-product img {
+  width: 100%; /* Para que las imágenes ocupen todo el ancho disponible */
+  height: auto;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+/* Información del producto */
+.informacion {
+  width: 65%; /* Ocupa el 65% del contenedor */
+  padding-left: 20px;
+  text-align: left; /* Alinear el texto a la izquierda */
+}
+
+.informacion h2 {
+  font-size: 28px; 
+  margin-bottom: 10px;
+}
+
+.informacion p {
+  font-size: 16px;
+  margin-bottom: 15px;
+}
+
+.stock h5 {
+  margin: 20px 0;
+}
+
+/* Contenedor de cantidad con botones */
+.cantidad-contenedor {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.cantidad {
+  width: 40px;
+  text-align: center;
+}
+
+.disminuir, .aumentar {
+  cursor: pointer;
+  padding: 5px 10px;
+  background-color: #ddd;
+  border-radius: 5px;
+  text-align: center;
+}
+
+.disminuir:hover, .aumentar:hover {
+  background-color: #ccc;
+}
+
+/* Estilos de los botones */
+#comprar {
+  background-color: #FF8C00;
+  color: #FFD580;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+#agregar {
+  background-color: #FFD580;
+  color: #FF8C00;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  cursor: pointer;
+  font-weight: bold;
+  margin-left: 10px;
+}
+
+#comprar:hover, #agregar:hover {
+  background-color: #FFB347;
+}
+
+.descripcion {
+  margin-top: 20px;
+}
+
+.descripcion h5 {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.descripcion p {
+  line-height: 1.6;
+  color: #666;
+}
+
+
+
+/* Hasta aca es el estilo de products-info */
+
+
 @media screen and (max-width: 768px){}
 
 @media screen and (max-width: 426px){}
@@ -332,6 +514,7 @@ form .link {
 @media (max-width: 767px) {}
 
 
+
 .card{
   border-color: #ff9500;
   border-width: 2px;
@@ -341,3 +524,40 @@ form .link {
 #filtrocat{
   margin-right: 75%;
 }
+
+.card-product{
+  border-color: #ff9500;
+  border-width: 2px;
+  border-style: solid;
+  border-radius: 15px;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.card-img-product{
+  width: 100%; /* La imagen ocupará todo el ancho de su contenedor */
+  height: auto; /* La altura se ajusta automáticamente para mantener la proporción */
+  object-fit: cover; /* La imagen cubre todo el contenedor, recortando si es necesario */
+  border-radius: 10px; /* Opcional: Agrega bordes redondeados a la imagen */
+}
+
+
+.botonesParaFiltros {
+  display: flex;
+  margin: 0 30% 2%;
+  justify-content: space-between;
+}
+
+#btnfiltro{
+  background-color: #fff;
+  border-color: black;
+  border-style: outset;
+  margin-left: 1%;
+}
+
+
+
+
+
+
+
