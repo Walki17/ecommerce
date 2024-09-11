@@ -89,7 +89,7 @@ function filtrado() {
                     <div class="card-body">
                       <h5 class="card-title">${auto.name}</h5>
                       <p class="card-text">${auto.description}</p>
-                      <p class="card-text">${auto.cost}</p>
+                      <p class="card-text">${auto.currency} ${auto.cost}</p>
                       <p> Vendidos: ${auto.soldCount}</p>
                     </div>
                   </div>
@@ -140,7 +140,7 @@ function filtrado() {
                       <div class="card-body">
                         <h5 class="card-title">${auto.name}</h5>
                         <p class="card-text">${auto.description}</p>
-                        <p class="card-text">${auto.cost} ${auto.cost}</p>
+                        <p class="card-text">${auto.currency} ${auto.cost}</p>
                         <p> Vendidos: ${auto.soldCount}</p>
                       </div>
                     </div>
@@ -192,7 +192,7 @@ function filtrado() {
                       <div class="card-body">
                         <h5 class="card-title">${auto.name}</h5>
                         <p class="card-text">${auto.description}</p>
-                        <p class="card-text">${auto.cost} ${auto.cost}</p>
+                        <p class="card-text">${auto.currency} ${auto.cost}</p>
                         <p> Vendidos: ${auto.soldCount}</p>
                       </div>
                     </div>
@@ -207,67 +207,7 @@ function filtrado() {
     .catch(error => {
         console.error('Error:', error); 
     });
-}
-
-
-    });
-}
-  
-
-
-  function filtrado3() {
-    fetch(DATOS)
-    .then(response => response.json()) 
-    .then(data => {
-        const autos = data.products;
-        const divAutitos = document.getElementById("autitos");
-
-     
-        const precioMayoraMenor = autos.sort((a, b) => b.cost - a.cost);
-
-        divAutitos.innerHTML = ''; 
-
-        const numProducts = precioMayoraMenor.length;
-        const numRows = Math.ceil(numProducts / 4); 
-
-        // Loop para crear filas
-        for (let i = 0; i < numRows; i++) {
-            const row = document.createElement("div");
-            row.classList.add("row"); 
-
-         
-            for (let j = 0; j < 4 && i * 4 + j < numProducts; j++) {
-                const auto = precioMayoraMenor[i * 4 + j];
-
-                const card = document.createElement("div");
-                card.classList.add("col-md-3", "mb-4"); 
-
-                card.innerHTML = `
-                  <div id="test" class="col">
-                    <div class="card-product">
-                      <img src="${auto.image}" class="card-img-product" alt="Productos" style="width: 15rem;">
-                      <div class="card-body">
-                        <h5 class="card-title">${auto.name}</h5>
-                        <p class="card-text">${auto.description}</p>
-                        <p class="card-text">${auto.cost} ${auto.cost}</p>
-                        <p> Vendidos: ${auto.soldCount}</p>
-                      </div>
-                    </div>
-                  </div>`;
-                
-                row.appendChild(card);
-            }
-
-            divAutitos.appendChild(row); 
-        }
-    })
-    .catch(error => {
-        console.error('Error:', error); 
-    });
-}
-  
-
-
+}  
 
 function filtrado4() {
     fetch(DATOS)
@@ -301,7 +241,7 @@ function filtrado4() {
                         <div class="card-body">
                             <h5 class="card-title">${auto.name}</h5>
                             <p class="card-text">${auto.description}</p>
-                            <p class="card-text">${auto.cost} ${auto.currency}</p>
+                            <p class="card-text">${auto.currency} ${auto.cost}</p>
                             <p>Vendidos: ${auto.soldCount}</p>
                         </div>
                     </div>`;
