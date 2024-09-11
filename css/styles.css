@@ -516,9 +516,7 @@ transition: transform 0.3s ease-in-out;
 
 
 .card{
-  border-color: #ff9500;
   border-width: 2px;
-  border-radius: 15px;
 }
 
 #filtrocat{
@@ -527,11 +525,21 @@ transition: transform 0.3s ease-in-out;
 
 .card-product{
   border-color: #ff9500;
-  border-width: 2px;
   border-style: solid;
   border-radius: 15px;
+  background-color: white;
   display: flex;
-  flex-wrap: wrap;
+  flex-direction: column;
+  justify-content: space-between;  /* Distributes space evenly between elements */
+  min-height: 450px;  /* Adjust this based on your tallest card */
+  padding: 10px; /* Si queremos la imagen entera se borra esto */
+}
+
+.card-body{
+  flex-grow: 1;  /* Ensures the body grows to fill any remaining space */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;  /* Ensures even spacing inside the card */
 }
 
 .card-img-product{
@@ -555,9 +563,20 @@ transition: transform 0.3s ease-in-out;
   margin-left: 1%;
 }
 
-
-
-
-
-
-
+#categoryTitle{
+  margin-left: 0%;
+  margin-top: 1%;
+  position: relative;
+  right: 12%;
+  background-color:#ff9500; 
+  opacity: 45%;
+  color: #fff;
+  font-family: 'Font Voces', sans-serif;
+  font-weight: 400; 
+  font-size: 60px;
+  padding: 0.5rem 1rem;
+  border: white 2px;
+  box-shadow: 0px 4px 6px rgb(0, 0, 0);
+  text-align: center;
+  width: fit-content;
+}
