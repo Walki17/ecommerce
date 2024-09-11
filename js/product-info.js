@@ -62,6 +62,8 @@ const PRODUCT_URL = `https://japceibal.github.io/emercado-api/products/${product
           </div>
         </div>
 
+        
+
         <!-- Descripción del producto -->
         <div class="descripcion mt-4">
           <h5>Descripción</h5>
@@ -71,6 +73,34 @@ const PRODUCT_URL = `https://japceibal.github.io/emercado-api/products/${product
     </div>
   </div>
 `;
+
+/*
+
+document.addEventListener("DOMContentLoaded", function() {
+    // Seleccionar todos los botones y entradas
+    const btnDisminuir = document.querySelectorAll(".disminuir");
+    const btnAumentar = document.querySelectorAll(".aumentar");
+    const inputCantidad = document.querySelectorAll(".cantidad");
+
+    // Función para disminuir el valor
+    btnDisminuir.forEach(function(btn, index) {
+        btn.addEventListener("click", function() {
+            let valorActual = parseInt(inputCantidad[index].value);
+            if (valorActual > 1) {  // Evita que el valor sea menor a 1
+                inputCantidad[index].value = valorActual - 1;
+            }
+        });
+    });
+
+    // Función para aumentar el valor
+    btnAumentar.forEach(function(btn, index) {
+        btn.addEventListener("click", function() {
+            let valorActual = parseInt(inputCantidad[index].value);
+            inputCantidad[index].value = valorActual + 1;
+        });
+    });
+});
+ Posible funcion para que funcionen los botones de - y +, no he podido completarla*/
 
     
   })

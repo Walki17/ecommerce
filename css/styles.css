@@ -554,13 +554,30 @@ transition: transform 0.3s ease-in-out;
   display: flex;
   margin: 0 30% 2%;
   justify-content: space-between;
+  padding: 2%;
 }
 
 #btnfiltro{
-  background-color: #fff;
+  cursor: pointer;
+  background-color: #ff9500;
   border-color: black;
   border-style: outset;
+  border-radius: 10%;
   margin-left: 1%;
+}
+
+#btnfiltro1,#btnfiltro2,#btnfiltro3{
+  display:block;
+  cursor: pointer;
+  background-color: #f5f4f4;
+  border-color: #ff9500;
+  border-width: 1%;
+  border-style:inset;
+  border-radius: 10%;
+}
+
+.buttonFilter i{
+color: #ff9500;
 }
 
 #categoryTitle{
@@ -580,3 +597,21 @@ transition: transform 0.3s ease-in-out;
   text-align: center;
   width: fit-content;
 }
+
+ 
+#filtrocat{
+  display: flex;
+  margin-right: auto;
+  position: relative;
+  top: 2.3em;
+  }
+
+ /*si movemos la barra para el nivel de los filtros se rompe al cambiar de resolucion*/
+
+.searchbar i{
+  position: relative;
+  top: 2.3em;
+  margin-right: 1%;
+}
+  
+  
