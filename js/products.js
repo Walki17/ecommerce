@@ -24,14 +24,17 @@ fetch(DATOS)
 
         const card = document.createElement("div");
         card.classList.add("col-md-3", "mb-4");
+        
 
         const cardContent = `
           <div class="card-product" style="cursor: pointer;" onclick="selectProduct(${producto.id})">
             <img src="${producto.image}" class="card-img-product" alt="Producto">
+            <div class="card-body"> 
             <h5 class="card-title">${producto.name}</h5>
             <p class="card-text">${producto.description}</p>
-            <p>${producto.currency} ${formatter.format(producto.cost)}</p>
-            <p>Vendidos: ${producto.soldCount}</p>
+            <p class="price">${producto.currency} ${formatter.format(producto.cost)}</p>
+            <p class="sold">Vendidos: ${producto.soldCount}</p>
+            </div>
           </div>`;
 
         card.innerHTML = cardContent;
@@ -45,12 +48,27 @@ fetch(DATOS)
     console.error('Error:', error);
   });
 
+  //titulo empieza aca
+
+  fetch(DATOS)
+  .then(response => response.json())
+  .then(data => {
+    const catName = data.catName;
+    const categoryTitleElement = document.getElementById("categoryTitle");
+    categoryTitleElement.innerHTML = catName;
+  })
+  .catch(error => {
+    console.error('Error:', error);
+  });
+
+  //termina aca
+
 function selectProduct(productId) {
   localStorage.setItem("productID", productId);
   window.location.href = "product-info.html";
 }
 
-     
+
 function filtrado() {
   fetch(DATOS)
   .then(response => response.json()) 
