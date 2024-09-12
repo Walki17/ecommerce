@@ -196,13 +196,13 @@ function buscarVariosUrl(urls) {
             card.classList.add("col-md-3", "mb-4");
 
             card.innerHTML = `
-              <div class="card mb-4 shadow-sm">
-                <img class="card-img-top" src="${producto.image}" alt="${producto.name}">
+              <div class="card-product">
+                <img class="card-img-product" src="${producto.image}" alt="${producto.name}">
                 <div class="card-body">
                   <h5 class="card-title">${producto.name}</h5>
                   <p class="card-text">${producto.description}</p>
-                  <p>${producto.currency} ${moneda.format(producto.cost)}</p>
-                  <p>Vendidos: ${producto.soldCount}</p>
+                  <p class="price">${producto.currency} ${moneda.format(producto.cost)}</p>
+                  <p class="sold">Vendidos: ${producto.soldCount}</p>
                   <div class="d-flex justify-content-between align-items-center">
                     <button class="btn btn-sm btn-outline-secondary" onclick="setCatID(${producto.id})">Ver</button>
                   </div>

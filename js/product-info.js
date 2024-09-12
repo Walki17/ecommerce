@@ -71,12 +71,29 @@ const PRODUCT_URL = `https://japceibal.github.io/emercado-api/products/${product
     </div>
   </div>
 `;
+const cantidadInput = document.querySelector('.cantidad');
+    const botonAumentar = document.querySelector('.aumentar');
+    const botonDisminuir = document.querySelector('.disminuir');
 
-    
-  })
-  .catch(error => {
+    // Evento para aumentar la cantidad
+    botonAumentar.addEventListener('click', () => {
+        let cantidad = parseInt(cantidadInput.value);  // Convertir el valor a número
+        cantidad++;  // Aumentar la cantidad
+        cantidadInput.value = cantidad;  // Actualizar el campo de entrada
+    });
+
+    // Evento para disminuir la cantidad
+    botonDisminuir.addEventListener('click', () => {
+        let cantidad = parseInt(cantidadInput.value);  // Convertir el valor a número
+        if (cantidad > 1) {  // Evitar que la cantidad sea menor que 1
+            cantidad--;  // Disminuir la cantidad
+            cantidadInput.value = cantidad;  // Actualizar el campo de entrada
+        }
+    });
+
+})
+.catch(error => {
     console.error('Error al obtener la información del producto:', error);
-    // Mostrar un mensaje de error al usuario
     const productInfoElement = document.getElementById('productInfo');
     productInfoElement.innerHTML = 'Ha ocurrido un error al cargar la información del producto.';
-  })
+});
