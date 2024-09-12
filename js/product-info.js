@@ -62,8 +62,6 @@ const PRODUCT_URL = `https://japceibal.github.io/emercado-api/products/${product
           </div>
         </div>
 
-        
-
         <!-- Descripción del producto -->
         <div class="descripcion mt-4">
           <h5>Descripción</h5>
@@ -73,14 +71,9 @@ const PRODUCT_URL = `https://japceibal.github.io/emercado-api/products/${product
     </div>
   </div>
 `;
-const cantidadInput = document.querySelector('.cantidad');
+    const cantidadInput = document.querySelector('.cantidad');
     const botonAumentar = document.querySelector('.aumentar');
     const botonDisminuir = document.querySelector('.disminuir');
-
-
-    
-  })
-  .catch(error => {
 
     // Evento para aumentar la cantidad
     botonAumentar.addEventListener('click', () => {
