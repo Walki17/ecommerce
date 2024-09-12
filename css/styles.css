@@ -521,6 +521,9 @@ transition: transform 0.3s ease-in-out;
 
 #filtrocat{
   margin-right: 75%;
+  border-radius: 5px;
+  border-color: #c2c0be;
+  border-style: double;
 }
 
 .card-product{
@@ -614,4 +617,25 @@ color: #ff9500;
   margin-right: 1%;
 }
   
+
+#precio1, #precio2{
+  border-style: solid;
+  border-radius: 5px;
+  border-color: #c2c0be;
+}
+
+#btnfiltro{
+  border-radius: 5px;
+  border-color: #c2c0be;
+  border-style: solid;
+  border-width: 2px;
   
+}
+
+#btnfiltro2, #btnfiltro3, #btnfiltro4{
+  border-radius: 5px;
+  background-color: white;
+  border-style: solid;
+  border-color: #c2c0be;
+  border-width: 2px;
+}

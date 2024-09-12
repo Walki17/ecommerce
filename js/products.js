@@ -103,7 +103,7 @@ function filtrado() {
               card.innerHTML = `
                 <div class="col">
                   <div class="card-product">
-                    <img src="${auto.image}" class="card-img-product" alt="Productos" style="width: 15rem;">
+                    <img src="${auto.image}" class="card-img-product" alt="Productos" style="width: 17rem;">
                     <div class="card-body">
                       <h5 class="card-title">${auto.name}</h5>
                       <p class="card-text">${auto.description}</p>
@@ -154,7 +154,7 @@ function filtrado() {
                 card.innerHTML = `
                   <div class="col">
                     <div class="card-product">
-                      <img src="${auto.image}" class="card-img-product" alt="Productos" style="width: 15rem;">
+                      <img src="${auto.image}" class="card-img-product" alt="Productos" style="width: 17rem;">
                       <div class="card-body">
                         <h5 class="card-title">${auto.name}</h5>
                         <p class="card-text">${auto.description}</p>
@@ -206,7 +206,7 @@ function filtrado() {
                 card.innerHTML = `
                   <div id="test" class="col">
                     <div class="card-product">
-                      <img src="${auto.image}" class="card-img-product" alt="Productos" style="width: 15rem;">
+                      <img src="${auto.image}" class="card-img-product" alt="Productos" style="width: 17rem;">
                       <div class="card-body">
                         <h5 class="card-title">${auto.name}</h5>
                         <p class="card-text">${auto.description}</p>
@@ -255,7 +255,7 @@ function filtrado4() {
 
                 card.innerHTML = `
                     <div class="card-product">
-                        <img src="${auto.image}" class="card-img-product" alt="Productos" style="width: 15rem;">
+                        <img src="${auto.image}" class="card-img-product" alt="Productos" style="width: 17rem;">
                         <div class="card-body">
                             <h5 class="card-title">${auto.name}</h5>
                             <p class="card-text">${auto.description}</p>
