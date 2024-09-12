@@ -524,6 +524,7 @@ transition: transform 0.3s ease-in-out;
   border-radius: 5px;
   border-color: #c2c0be;
   border-style: double;
+  width: 260px;
 }
 
 .card-product{
