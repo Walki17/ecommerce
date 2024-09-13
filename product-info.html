@@ -5,11 +5,16 @@
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <title>eMercado - Todo lo que busques está aquí</title>
-
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css?family=Raleway:300,300i,400,400i,700,700i,900,900i" rel="stylesheet">
   <link href="css/font-awesome.min.css" rel="stylesheet">
   <link href="css/bootstrap.min.css" rel="stylesheet">
   <link href="css/styles.css" rel="stylesheet">
+  <style>
+    body{
+      background-image: url("img/fondo01.png");
+    }
+    </style>
 </head>
 
 <body>
@@ -36,12 +41,17 @@
       </div>
     </div>
   </nav>
-  <main>
-    <div class="container">
-      <div class="alert alert-danger text-center" role="alert">
-        <h4 class="alert-heading">Funcionalidad en desarrollo</h4>
-      </div>
-    </div>
+  <main> 
+
+    <nav class="path" style="--bs-breadcrumb-divider: url(&#34;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8'%3E%3Cpath d='M2.5 0L1 1.5 3.5 4 1 6.5 2.5 8l4-4-4-4z' fill='%236c757d'/%3E%3C/svg%3E&#34;);" aria-label="breadcrumb">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+        <li class="breadcrumb-item active" aria-current="page"><a href="categories.html">Categorias</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Producto</li>
+      </ol>
+    </nav>
+
+    <div id="productInfo"></div>
   </main>
   <footer class="text-muted">
     <div class="container">
@@ -59,9 +69,17 @@
       <div></div>
     </div>
   </div>
-  <script src="js/bootstrap.bundle.min.js"></script>
-  <script src="js/init.js"></script>
-  <script src="js/product-info.js"></script>
-</body>
+   
+ <!-- Carga de jQuery y Bootstrap desde CDN (si no quieres usar tu archivo local) -->
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
+
+<!-- Carga de scripts personalizados -->
+<script src="js/init.js" defer></script>
+<script src="js/products.js" defer></script>
+<script src="js/product-info.js" defer></script>
+
+
+  </body> 
 
 </html>
