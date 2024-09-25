@@ -640,7 +640,7 @@ color: #ff9500;
 
 .contenedorrating {
   display: grid;
-  grid-template-columns: 1fr 1fr; /* Dos columnas iguales */
+  grid-template-columns: 1fr 1fr 1fr;
   gap:1%;
   margin:1%;
   font-size: 2px;
