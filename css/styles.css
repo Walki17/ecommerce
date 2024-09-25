@@ -625,5 +625,121 @@ color: #ff9500;
   border-color: #c2c0be;
 }
 
+.rating{
+  border-color: #ff9500;
+  border-style: solid;
+  border-radius: 15px;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  margin-left: 0.5%;
+  margin-right: 0.5%;
+  margin-top: 0.5%;
+  padding: 3%;
+}
+
+.contenedorrating {
+  display: grid;
+  grid-template-columns: 1fr 1fr; /* Dos columnas iguales */
+  gap:1%;
+  margin:1%;
+  font-size: 2px;
+}
+
+.rating1{
+  padding: 1%;
+}
+
+.ratrating-container{
+  padding: 1%;
+  font-size:2px;
+}
+
+#clientes,#destacadas{
+  font-size: 10em;
+}
+
+#opinion{
+  font-size: 1em;
+  text-decoration: solid;
+  padding: 0.2%;
+}
+
+#btncalificar{
+  font-size: 1em;
+  border-radius: 20px;
+  width: 18%;
+  background-color: #cdcbcb;
+}
+
+/* Modal */
+.modal {
+  display: none; /* Oculto por defecto */
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal-content {
+  background-color: #fefefe;
+  margin: 15% auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 40%;
+  text-align: center;
+}
+
+.close {
+  color: #070707;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+  align-self: flex-end;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+/* Estrellas */
+.ratingestrellas {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.estrella {
+  font-size: 3em;
+  cursor: pointer;
+  color: #ddd;
+}
+
+.estrella.selected, .estrella:hover,
+.estrella:hover ~ .estrella {
+  color: gold;
+}
+
+
+#comentario{
+  margin: 5%;
+}
+
+#enviarBtn{
+  background-color: orange;
+  width: 20%;
+  font-size: 20px;
+  margin-left: 40%;
+  border-radius: 3px;
+}
+
+
+
 
 

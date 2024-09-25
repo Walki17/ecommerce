@@ -97,3 +97,59 @@ const PRODUCT_URL = `https://japceibal.github.io/emercado-api/products/${product
     const productInfoElement = document.getElementById('productInfo');
     productInfoElement.innerHTML = 'Ha ocurrido un error al cargar la información del producto.';
 });
+
+// Obtener elementos
+var modal = document.getElementById("calificarModal");
+var calificarBtn = document.getElementById("btncalificar");
+var span = document.getElementsByClassName("close")[0];
+var estrellas = document.querySelectorAll(".estrella");
+var comentario = document.getElementById("comentario");
+var enviarBtn = document.getElementById("enviarBtn");
+var ratingSeleccionado = 0;
+
+// Mostrar el modal al hacer clic en "Calificar"
+btncalificar.onclick = function() {
+  modal.style.display = "block";
+}
+
+// Cerrar el modal al hacer clic en la 'x'
+span.onclick = function() {
+  modal.style.display = "none";
+}
+
+// Cerrar el modal al hacer clic fuera del modal
+window.onclick = function(event) {
+  if (event.target == modal) {
+      modal.style.display = "none";
+  }
+}
+
+// Función para pintar las estrellas hasta la seleccionada
+function pintarEstrellas(rating) {
+  estrellas.forEach(function(estrella) {
+      if (estrella.getAttribute("data-value") <= rating) {
+          estrella.classList.add("selected"); // Pinta la estrella
+      } else {
+          estrella.classList.remove("selected"); // Despinta las estrellas no seleccionadas
+      }
+  });
+}
+
+// Seleccionar estrellas
+estrellas.forEach(function(estrella) {
+  estrella.addEventListener("click", function() {
+      ratingSeleccionado = this.getAttribute("data-value");
+      pintarEstrellas(ratingSeleccionado); // Pintar hasta la estrella seleccionada
+  });
+});
+
+// Enviar comentario y rating
+enviarBtn.onclick = function() {
+  var comentarioTexto = comentario.value;
+  if (ratingSeleccionado > 0 && comentarioTexto.trim() !== "") {
+      alert("Gracias por tu calificación de " + ratingSeleccionado + " estrellas y tu comentario: " + comentarioTexto);
+      modal.style.display = "none";
+  } else {
+      alert("Selecciona una calificación y escribe un comentario.");
+  }
+}
