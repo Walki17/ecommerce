@@ -97,3 +97,111 @@ const PRODUCT_URL = `https://japceibal.github.io/emercado-api/products/${product
     const productInfoElement = document.getElementById('productInfo');
     productInfoElement.innerHTML = 'Ha ocurrido un error al cargar la información del producto.';
 });
+
+
+// Obtener elementos
+var modal = document.getElementById("calificarModal");
+var calificarBtn = document.getElementById("btncalificar");
+var span = document.getElementsByClassName("close")[0];
+var estrellas = document.querySelectorAll(".estrella");
+var comentario = document.getElementById("comentario");
+var enviarBtn = document.getElementById("enviarBtn");
+var ratingSeleccionado = 0;
+
+// Mostrar el modal al hacer clic en "Calificar"
+btncalificar.onclick = function() {
+  modal.style.display = "block";
+}
+
+// Cerrar el modal al hacer clic en la 'x'
+span.onclick = function() {
+  modal.style.display = "none";
+}
+
+// Cerrar el modal al hacer clic fuera del modal
+window.onclick = function(event) {
+  if (event.target == modal) {
+      modal.style.display = "none";
+  }
+}
+
+// Función para pintar las estrellas desde la izquierda hasta la seleccionada
+function pintarEstrellas(rating) {
+  estrellas.forEach(function(estrella) {
+      const estrellaValue = parseInt(estrella.getAttribute("data-value"));
+      if (estrellaValue <= rating) {
+          estrella.classList.add("selected"); // Pinta la estrella
+      } else {
+          estrella.classList.remove("selected"); // Despinta las estrellas no seleccionadas
+      }
+  });
+}
+
+// Función para limpiar la selección de estrellas
+function resetearEstrellas() {
+  estrellas.forEach(function(estrella) {
+      estrella.classList.remove("selected"); // Despinta todas las estrellas
+  });
+}
+
+// Seleccionar estrellas al pasar el mouse (mouseover)
+estrellas.forEach(function(estrella) {
+  estrella.addEventListener("mouseover", function() {
+      const ratingHover = parseInt(this.getAttribute("data-value"));
+      pintarEstrellas(ratingHover); // Pintar desde la estrella seleccionada hacia la izquierda
+  });
+
+  // Restablecer las estrellas cuando se quita el mouse (mouseleave)
+  estrella.addEventListener("mouseleave", function() {
+      resetearEstrellas(); // Despintar todas las estrellas al salir
+      if (ratingSeleccionado) { // Si hay un rating seleccionado, volver a pintarlo
+          pintarEstrellas(ratingSeleccionado);
+      }
+  });
+
+  // Seleccionar estrellas al hacer clic (click)
+  estrella.addEventListener("click", function() {
+      ratingSeleccionado = parseInt(this.getAttribute("data-value"));
+      pintarEstrellas(ratingSeleccionado); // Pintar las estrellas seleccionadas
+  });
+});
+
+// Enviar comentario y rating
+enviarBtn.onclick = function() {
+  if (ratingSeleccionado > 0 ) {
+      alert("Gracias por tu calificación de " + ratingSeleccionado + " estrellas");
+      modal.style.display = "none";
+  } else {
+      alert("Selecciona una calificación y escribe un comentario.");
+  }
+}
+
+
+const COMMENTS = `https://japceibal.github.io/emercado-api/products_comments/${productID}.json`;
+
+
+fetch(COMMENTS)
+  .then(response => response.json())
+  .then(comentarios => {
+    const elementoProd = document.getElementById('destacadas');
+    console.log(comentarios); 
+    
+    function comentariosUsers(comentarios) {
+      comentarios.forEach(comentario => {
+        const comentarioDiv = document.createElement('div');
+        const parrafo = document.createElement('p');
+        parrafo.innerHTML = `${comentario.user} ${comentario.dateTime}<br>${comentario.score} <br> ${comentario.description}`;  
+        comentarioDiv.appendChild(parrafo);
+        
+        elementoProd.appendChild(comentarioDiv);  
+      });
+    }
+    
+  
+    if (Array.isArray(comentarios) && comentarios.length > 0) {
+      comentariosUsers(comentarios);
+    } 
+  })
+  .catch(error => {
+    console.error('Error:', error);
+  });
