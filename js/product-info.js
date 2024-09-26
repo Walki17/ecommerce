@@ -98,6 +98,7 @@ const PRODUCT_URL = `https://japceibal.github.io/emercado-api/products/${product
     productInfoElement.innerHTML = 'Ha ocurrido un error al cargar la información del producto.';
 });
 
+
 // Obtener elementos
 var modal = document.getElementById("calificarModal");
 var calificarBtn = document.getElementById("btncalificar");
@@ -174,3 +175,33 @@ enviarBtn.onclick = function() {
       alert("Selecciona una calificación y escribe un comentario.");
   }
 }
+
+
+const COMMENTS = `https://japceibal.github.io/emercado-api/products_comments/${productID}.json`;
+
+
+fetch(COMMENTS)
+  .then(response => response.json())
+  .then(comentarios => {
+    const elementoProd = document.getElementById('destacadas');
+    console.log(comentarios); 
+    
+    function comentariosUsers(comentarios) {
+      comentarios.forEach(comentario => {
+        const comentarioDiv = document.createElement('div');
+        const parrafo = document.createElement('p');
+        parrafo.innerHTML = `${comentario.user} ${comentario.dateTime}<br>${comentario.score} <br> ${comentario.description}`;  
+        comentarioDiv.appendChild(parrafo);
+        
+        elementoProd.appendChild(comentarioDiv);  
+      });
+    }
+    
+  
+    if (Array.isArray(comentarios) && comentarios.length > 0) {
+      comentariosUsers(comentarios);
+    } 
+  })
+  .catch(error => {
+    console.error('Error:', error);
+  });
