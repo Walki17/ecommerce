@@ -167,9 +167,8 @@ estrellas.forEach(function(estrella) {
 
 // Enviar comentario y rating
 enviarBtn.onclick = function() {
-  var comentarioTexto = comentario.value;
-  if (ratingSeleccionado > 0 && comentarioTexto.trim() !== "") {
-      alert("Gracias por tu calificación de " + ratingSeleccionado + " estrellas y tu comentario: " + comentarioTexto);
+  if (ratingSeleccionado > 0 ) {
+      alert("Gracias por tu calificación de " + ratingSeleccionado + " estrellas");
       modal.style.display = "none";
   } else {
       alert("Selecciona una calificación y escribe un comentario.");
