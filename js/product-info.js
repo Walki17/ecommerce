@@ -124,10 +124,11 @@ window.onclick = function(event) {
   }
 }
 
-// Función para pintar las estrellas hasta la seleccionada
+// Función para pintar las estrellas desde la izquierda hasta la seleccionada
 function pintarEstrellas(rating) {
   estrellas.forEach(function(estrella) {
-      if (estrella.getAttribute("data-value") <= rating) {
+      const estrellaValue = parseInt(estrella.getAttribute("data-value"));
+      if (estrellaValue <= rating) {
           estrella.classList.add("selected"); // Pinta la estrella
       } else {
           estrella.classList.remove("selected"); // Despinta las estrellas no seleccionadas
@@ -135,11 +136,32 @@ function pintarEstrellas(rating) {
   });
 }
 
-// Seleccionar estrellas
+// Función para limpiar la selección de estrellas
+function resetearEstrellas() {
+  estrellas.forEach(function(estrella) {
+      estrella.classList.remove("selected"); // Despinta todas las estrellas
+  });
+}
+
+// Seleccionar estrellas al pasar el mouse (mouseover)
 estrellas.forEach(function(estrella) {
+  estrella.addEventListener("mouseover", function() {
+      const ratingHover = parseInt(this.getAttribute("data-value"));
+      pintarEstrellas(ratingHover); // Pintar desde la estrella seleccionada hacia la izquierda
+  });
+
+  // Restablecer las estrellas cuando se quita el mouse (mouseleave)
+  estrella.addEventListener("mouseleave", function() {
+      resetearEstrellas(); // Despintar todas las estrellas al salir
+      if (ratingSeleccionado) { // Si hay un rating seleccionado, volver a pintarlo
+          pintarEstrellas(ratingSeleccionado);
+      }
+  });
+
+  // Seleccionar estrellas al hacer clic (click)
   estrella.addEventListener("click", function() {
-      ratingSeleccionado = this.getAttribute("data-value");
-      pintarEstrellas(ratingSeleccionado); // Pintar hasta la estrella seleccionada
+      ratingSeleccionado = parseInt(this.getAttribute("data-value"));
+      pintarEstrellas(ratingSeleccionado); // Pintar las estrellas seleccionadas
   });
 });
 
