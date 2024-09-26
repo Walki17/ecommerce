@@ -625,5 +625,43 @@ color: #ff9500;
   border-color: #c2c0be;
 }
 
+/*aca estaria la seccion de productos relacionados*/
 
+.tituloRelated{
+  text-align: right;
+}
+
+.product-card {
+  width: 100%;  /* Use full width inside the col-md-4 class */
+  padding: 15px; /* Adjust padding to space around product cards */
+  text-align: center;  /* Center product content */
+}
+
+.product-card img {
+  max-width: 100%;  /* Make sure the image scales correctly */
+  height: auto;
+  margin-bottom: 10px; /* Spacing between image and product title */
+}
+
+.product-card .product-body {
+  padding: 10px;
+}
+
+.carousel-item .row {
+  display: flex;
+  justify-content: center; /* Ensure products are centered if fewer than 3 */
+}
+
+.col-md-4 {
+  max-width: 30%;  /* Set fixed width for three items per row */
+  flex: 0 0 30%;   /* Flexbox property to ensure consistent width */
+  margin: 0 10px;  /* Add horizontal margins between products */
+}
+
+@media (max-width: 768px) {
+  .col-md-4 {
+    max-width: 100%; /* On smaller screens, show one product per row */
+    flex: 0 0 100%;
+  }
+}
 
