@@ -1,14 +1,24 @@
-let productID = localStorage.getItem("productID");
-console.log(productID)
+function obtenerParametroId() {
+  const urlParams = new URLSearchParams(window.location.search); // Obtener todos los parámetros de la URL
+  return urlParams.get('id'); // Retornar el valor del parámetro 'id'
+}
+
+let productID = obtenerParametroId(); 
+
+if (!productID) {
+  productID = localStorage.getItem("productID");
+}
+
+if (productID) {
+  localStorage.setItem("productID", productID);
+} else {
+  console.error("No se encontró un productID en la URL o en el localStorage.");
+}
+
 const PRODUCT_URL = `https://japceibal.github.io/emercado-api/products/${productID}.json`;
 
 fetch(PRODUCT_URL)
-  .then(response => {
-    if (!response.ok) {
-      throw new Error(`Network response was not ok: ${response.statusText}`);
-    }
-    return response.json();
-  })
+  .then(response => response.json())
   .then(product => {
     // Verifica si el objeto product tiene los datos esperados
     if (!product || !product.name || !product.description) {
@@ -138,6 +148,10 @@ if (relatedProductsElement) {
 
     const productInfoElement = document.getElementById('productInfo');
     productInfoElement.innerHTML = 'Ha ocurrido un error al cargar la información del producto.';
+
+
+
+    
 
 // Obtener elementos
 var modal = document.getElementById("calificarModal");
