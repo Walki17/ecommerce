@@ -659,6 +659,7 @@ color: #ff9500;
   font-size: 10em;
   text-align: justify;
   margin-left: 3em;
+  overflow-y: scroll;
 }
 
 #opinion{
