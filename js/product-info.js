@@ -196,11 +196,49 @@ fetch(COMMENTS)
         elementoProd.appendChild(comentarioDiv);  
       });
     }
-    
-  
+
+    // Función para generar estrellas basadas en el score
+    function generarEstrellas(score) {
+      const maxEstrellas = 5;
+      let estrellasHTML = '';
+
+      // Generar estrellas llenas
+      for (let i = 0; i < Math.floor(score); i++) {
+        estrellasHTML += '★'; // Estrella llena
+      }
+
+      // Rellenar con estrellas vacías
+      for (let i = Math.floor(score); i < maxEstrellas; i++) {
+        estrellasHTML += '☆'; // Estrella vacía
+      }
+
+      return estrellasHTML;
+    }
+
+    // Función para mostrar los comentarios de los usuarios
+    function comentariosUsers(comentarios) {
+      comentarios.forEach(comentario => {
+        const comentarioDiv = document.createElement('div');
+        const parrafo = document.createElement('p');
+
+        // Generamos las estrellas usando el score
+        const estrellas = generarEstrellas(comentario.score);
+
+        // Mostramos el comentario con el nombre del usuario, fecha, estrellas y descripción
+        parrafo.innerHTML = `
+          <strong>${comentario.user}</strong> ${comentario.dateTime}<br>
+          <span>${estrellas}</span><br>
+          ${comentario.description}
+        `;
+        
+        comentarioDiv.appendChild(parrafo);
+        elementoProd.appendChild(comentarioDiv);
+      });
+    }
+
     if (Array.isArray(comentarios) && comentarios.length > 0) {
       comentariosUsers(comentarios);
-    } 
+    }
   })
   .catch(error => {
     console.error('Error:', error);
