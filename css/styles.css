@@ -657,19 +657,23 @@ color: #ff9500;
 
 #destacadas{
   font-size: 10em;
+  text-align: justify;
+  margin-left: 3em;
 }
 
 #opinion{
   font-size: 1.5em;
   text-decoration: solid;
   padding: 0.2%;
+  margin-left: 15%
 }
 
 #btncalificar{
-  font-size: 1em;
+  font-size: 1.5em;
   border-radius: 20px;
   width: 18%;
   background-color: #cdcbcb;
+  margin-left: 20%
 }
 
 /* Modal */
@@ -726,7 +730,6 @@ color: #ff9500;
   color: gold;
 }
 
-
 #comentario{
   margin: 5%;
 }
@@ -738,7 +741,6 @@ color: #ff9500;
   margin-left: 40%;
   border-radius: 3px;
 }
-
 
 
 .tituloRelated{
