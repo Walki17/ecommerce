@@ -96,27 +96,37 @@ fetch(PRODUCT_URL)
     // **Productos relacionados**
     let relatedProducts = product.relatedProducts;
 
-const relatedProductsElement = document.getElementById('relatedProducts');
+const relatedProductsElement = document.getElementById('productosRelacionados');
 
 if (relatedProductsElement) {
-  relatedProductsElement.innerHTML = `
+  const relacionadoDiv = document.createElement('div');
+  const parrafito = document.createElement('p');
+  const relatedProductIds = relatedProducts.map(product => product.id);
+  localStorage.setItem('relatedProducts', JSON.stringify(relatedProductIds));
+
+  localStorage.getItem('relatedProducts');
+
+  parrafito.innerHTML = `
     <div class="container mt-5">
       <h3>Productos Relacionados</h3>
       <div class="row">
         ${relatedProducts.map(relatedProduct => `
           <div class="col-md-4">
             <div class="product-card">
-              <img src="${relatedProduct.image}" alt="${relatedProduct.name}" class="img-fluid">
-              <div class="product-body">
-                <h5 class="product-title">${relatedProduct.name}</h5>
-                <a href="product-info.html?id=${relatedProduct.id}"></a>
-              </div>
+              <a href="product-info.html?id=${relatedProduct.id}">
+                <img src="${relatedProduct.image}" alt="${relatedProduct.name}" class="img-fluid">
+                <div class="product-body">
+                  <h5 class="product-title">${relatedProduct.name}</h5>
+                </div>
+              </a>
             </div>
           </div>
         `).join('')}
       </div>
     </div>
   `;
+     relacionadoDiv.appendChild(parrafito);
+     relatedProductsElement.appendChild(relacionadoDiv);
 } else {
   console.error("No se encontró el contenedor de productos relacionados");
 }
@@ -128,8 +138,6 @@ if (relatedProductsElement) {
 
     const productInfoElement = document.getElementById('productInfo');
     productInfoElement.innerHTML = 'Ha ocurrido un error al cargar la información del producto.';
-});
-
 
 // Obtener elementos
 var modal = document.getElementById("calificarModal");

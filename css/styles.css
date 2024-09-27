@@ -642,10 +642,7 @@ color: #ff9500;
 }
 
 .contenedorrating {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  gap:1%;
-  margin:1%;
+  display: flex;
   font-size: 2px;
 }
 
@@ -658,12 +655,12 @@ color: #ff9500;
   font-size:2px;
 }
 
-#clientes,#destacadas{
+#destacadas{
   font-size: 10em;
 }
 
 #opinion{
-  font-size: 1em;
+  font-size: 1.5em;
   text-decoration: solid;
   padding: 0.2%;
 }
