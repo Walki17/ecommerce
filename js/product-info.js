@@ -292,7 +292,7 @@ fetch(COMMENTS)
 
 
   
-// Recuperar y mostrar los comentarios almacenados en localStorage al cargar la página
+
 window.onload = function() {
   const comentariosGuardados = JSON.parse(localStorage.getItem('comentarios')) || [];
   comentariosGuardados.forEach(comentario => {
@@ -309,12 +309,16 @@ enviarBtn.onclick = function() {
     const fechaActual = new Date().toLocaleString();
 
     // Crear el objeto del comentario
-    const nuevoComentario = {
-      user: "Usuario Simulado", // Usuario simulado, puedes cambiarlo por uno real si es necesario
-      dateTime: fechaActual,
-      score: ratingSeleccionado,
-      description: comentario.value.trim()
-    };
+    const usuarios = JSON.parse(localStorage.getItem("usuarios"));
+const ultimoUsuario = usuarios[usuarios.length - 1]; // El último usuario guardado
+
+// Crear el nuevo comentario utilizando el último usuario del localStorage
+const nuevoComentario = {
+    user: ultimoUsuario.usuario || "Usuario Simulado", // Usar el nombre del último usuario o un nombre simulado si no existe
+    dateTime: fechaActual, // Debes tener esta variable previamente definida
+    score: ratingSeleccionado, // Debes tener esta variable previamente definida
+    description: comentario.value.trim() // Asume que 'comentario' es una referencia a un input o textarea
+};
 
     // Agregar el nuevo comentario al DOM
     agregarComentarioAlDOM(nuevoComentario);
