@@ -117,24 +117,27 @@ if (relatedProductsElement) {
   localStorage.getItem('relatedProducts');
 
   parrafito.innerHTML = `
-    <div class="container mt-5">
-      <h3>Productos Relacionados</h3>
-      <div class="row">
-        ${relatedProducts.map(relatedProduct => `
-          <div class="col-md-4">
-            <div class="product-card">
-              <a href="product-info.html?id=${relatedProduct.id}">
-                <img src="${relatedProduct.image}" alt="${relatedProduct.name}" class="img-fluid">
-                <div class="product-body">
-                  <h5 class="product-title">${relatedProduct.name}</h5>
-                </div>
-              </a>
-            </div>
+  <div id="relProd">
+    <div class="row">
+      ${relatedProducts.map(relatedProduct => `
+        <div class="col-md-4">
+          <div class="product-card">
+            <a href="product-info.html?id=${relatedProduct.id}">
+              <img src="${relatedProduct.image}" alt="${relatedProduct.name}" class="img-fluid">
+              <div class="product-body">
+                <h5 class="product-title">${relatedProduct.name}</h5>
+              </div>
+            </a>
           </div>
-        `).join('')}
+        </div>
+      `).join('')}
+    <!-- Columna para el botón "Ver más" -->
+      <div class="col-md-4 button-container">
+        <a href="products.html" id="botonrelated">Ver más</a>
       </div>
     </div>
-  `;
+  </div>
+`;
      relacionadoDiv.appendChild(parrafito);
      relatedProductsElement.appendChild(relacionadoDiv);
 } else {
@@ -300,7 +303,6 @@ window.onload = function() {
   });
 };
 
-// Capturar el evento de enviar comentario y calificación
 enviarBtn.onclick = function() {
   if (ratingSeleccionado > 0 && comentario.value.trim()) {
     alert("Gracias por tu calificación de " + ratingSeleccionado + " estrellas");
@@ -308,19 +310,17 @@ enviarBtn.onclick = function() {
     // Obtener la fecha actual
     const fechaActual = new Date().toLocaleString();
 
-    // Crear el objeto del comentario
     const usuarios = JSON.parse(localStorage.getItem("usuarios"));
-const ultimoUsuario = usuarios[usuarios.length - 1]; // El último usuario guardado
+const ultimoUsuario = usuarios[usuarios.length - 1]; 
 
-// Crear el nuevo comentario utilizando el último usuario del localStorage
 const nuevoComentario = {
-    user: ultimoUsuario.usuario || "Usuario Simulado", // Usar el nombre del último usuario o un nombre simulado si no existe
-    dateTime: fechaActual, // Debes tener esta variable previamente definida
-    score: ratingSeleccionado, // Debes tener esta variable previamente definida
-    description: comentario.value.trim() // Asume que 'comentario' es una referencia a un input o textarea
+  user: ultimoUsuario.usuario || "Anónimo", 
+  dateTime: fechaActual, 
+  score: ratingSeleccionado, 
+  description: comentario.value.trim() // Asume que 'comentario' es una referencia a un input o textarea
 };
 
-    // Agregar el nuevo comentario al DOM
+
     agregarComentarioAlDOM(nuevoComentario);
 
     // Almacenar el nuevo comentario en localStorage
@@ -338,16 +338,13 @@ const nuevoComentario = {
   }
 };
 
-// Función para agregar un comentario al DOM
 function agregarComentarioAlDOM(comentario) {
   const elementoProd = document.getElementById('destacadas');
   const comentarioDiv = document.createElement('div');
   const parrafo = document.createElement('p');
 
-  // Generar estrellas basadas en el score
   const estrellas = generarEstrellas(comentario.score);
 
-  // Mostrar el comentario con el nombre del usuario, fecha, estrellas y descripción
   parrafo.innerHTML = `
     <strong>${comentario.user}</strong> ${comentario.dateTime}<br>
     <span>${estrellas}</span><br>
@@ -358,19 +355,16 @@ function agregarComentarioAlDOM(comentario) {
   elementoProd.appendChild(comentarioDiv);
 }
 
-// Función para generar estrellas basadas en la calificación
 function generarEstrellas(score) {
   const maxEstrellas = 5;
   let estrellasHTML = '';
 
-  // Generar estrellas llenas
   for (let i = 0; i < Math.floor(score); i++) {
-    estrellasHTML += '★'; // Estrella llena
+    estrellasHTML += '★';
   }
 
-  // Rellenar con estrellas vacías
   for (let i = Math.floor(score); i < maxEstrellas; i++) {
-    estrellasHTML += '☆'; // Estrella vacía
+    estrellasHTML += '☆';
   }
 
   return estrellasHTML;
