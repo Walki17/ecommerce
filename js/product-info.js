@@ -238,63 +238,136 @@ fetch(COMMENTS)
   .then(response => response.json())
   .then(comentarios => {
     const elementoProd = document.getElementById('destacadas');
-    console.log(comentarios); 
+  
     
     function comentariosUsers(comentarios) {
       comentarios.forEach(comentario => {
         const comentarioDiv = document.createElement('div');
         const parrafo = document.createElement('p');
-        parrafo.innerHTML = `${comentario.user} ${comentario.dateTime}<br>${comentario.score} <br> ${comentario.description}`;  
+        parrafo.classList.add("comentariosUser");
+
+        const estrellas = generarEstrellas(comentario.score);
+
+      // Función para generar estrellas basadas en el score
+    function generarEstrellas(score) {
+      const maxEstrellas = 5;
+        let estrellasHTML = '';
+
+  // Generar estrellas llenas
+    for (let i = 0; i < Math.floor(score); i++) {
+    estrellasHTML += '★'; // Estrella llena
+   }
+
+  // Rellenar con estrellas vacías
+   for (let i = Math.floor(score); i < maxEstrellas; i++) {
+    estrellasHTML += '☆'; // Estrella vacía
+   }
+
+    return estrellasHTML;
+  }
+
+  parrafo.innerHTML = `
+  <div class="user-info">
+    <strong>${comentario.user}</strong>
+    <span class="date">${comentario.dateTime}</span>
+  </div>
+  <span>${estrellas}</span><br>
+  ${comentario.description}
+`; 
         comentarioDiv.appendChild(parrafo);
-        
         elementoProd.appendChild(comentarioDiv);  
       });
     }
     
-     // Función para generar estrellas basadas en el score
-     function generarEstrellas(score) {
-      const maxEstrellas = 5;
-      let estrellasHTML = '';
-
-      // Generar estrellas llenas
-      for (let i = 0; i < Math.floor(score); i++) {
-        estrellasHTML += '★'; // Estrella llena
-      }
-
-      // Rellenar con estrellas vacías
-      for (let i = Math.floor(score); i < maxEstrellas; i++) {
-        estrellasHTML += '☆'; // Estrella vacía
-      }
-
-      return estrellasHTML;
-    }
-
-    // Función para mostrar los comentarios de los usuarios
-    function comentariosUsers(comentarios) {
-      comentarios.forEach(comentario => {
-        const comentarioDiv = document.createElement('div');
-        const parrafo = document.createElement('p');
-
-        // Generamos las estrellas usando el score
-        const estrellas = generarEstrellas(comentario.score);
-
-        // Mostramos el comentario con el nombre del usuario, fecha, estrellas y descripción
-        parrafo.innerHTML = `
-          <strong>${comentario.user}</strong> ${comentario.dateTime}<br>
-          <span>${estrellas}</span><br>
-          ${comentario.description}
-        `;
-        
-        comentarioDiv.appendChild(parrafo);
-        elementoProd.appendChild(comentarioDiv);
-      });
-    }
-
-  
+       
     if (Array.isArray(comentarios) && comentarios.length > 0) {
       comentariosUsers(comentarios);
     } 
-  })
+  
+})
   .catch(error => {
     console.error('Error:', error);
   });
+
+
+
+  
+// Recuperar y mostrar los comentarios almacenados en localStorage al cargar la página
+window.onload = function() {
+  const comentariosGuardados = JSON.parse(localStorage.getItem('comentarios')) || [];
+  comentariosGuardados.forEach(comentario => {
+    agregarComentarioAlDOM(comentario);
+  });
+};
+
+// Capturar el evento de enviar comentario y calificación
+enviarBtn.onclick = function() {
+  if (ratingSeleccionado > 0 && comentario.value.trim()) {
+    alert("Gracias por tu calificación de " + ratingSeleccionado + " estrellas");
+
+    // Obtener la fecha actual
+    const fechaActual = new Date().toLocaleString();
+
+    // Crear el objeto del comentario
+    const nuevoComentario = {
+      user: "Usuario Simulado", // Usuario simulado, puedes cambiarlo por uno real si es necesario
+      dateTime: fechaActual,
+      score: ratingSeleccionado,
+      description: comentario.value.trim()
+    };
+
+    // Agregar el nuevo comentario al DOM
+    agregarComentarioAlDOM(nuevoComentario);
+
+    // Almacenar el nuevo comentario en localStorage
+    const comentariosGuardados = JSON.parse(localStorage.getItem('comentarios')) || [];
+    comentariosGuardados.push(nuevoComentario);
+    localStorage.setItem('comentarios', JSON.stringify(comentariosGuardados));
+
+    // Limpiar la selección y cerrar el modal
+    modal.style.display = "none";
+    resetearEstrellas();
+    comentario.value = '';
+    ratingSeleccionado = 0;
+  } else {
+    alert("Selecciona una calificación y escribe un comentario.");
+  }
+};
+
+// Función para agregar un comentario al DOM
+function agregarComentarioAlDOM(comentario) {
+  const elementoProd = document.getElementById('destacadas');
+  const comentarioDiv = document.createElement('div');
+  const parrafo = document.createElement('p');
+
+  // Generar estrellas basadas en el score
+  const estrellas = generarEstrellas(comentario.score);
+
+  // Mostrar el comentario con el nombre del usuario, fecha, estrellas y descripción
+  parrafo.innerHTML = `
+    <strong>${comentario.user}</strong> ${comentario.dateTime}<br>
+    <span>${estrellas}</span><br>
+    ${comentario.description}
+  `;
+
+  comentarioDiv.appendChild(parrafo);
+  elementoProd.appendChild(comentarioDiv);
+}
+
+// Función para generar estrellas basadas en la calificación
+function generarEstrellas(score) {
+  const maxEstrellas = 5;
+  let estrellasHTML = '';
+
+  // Generar estrellas llenas
+  for (let i = 0; i < Math.floor(score); i++) {
+    estrellasHTML += '★'; // Estrella llena
+  }
+
+  // Rellenar con estrellas vacías
+  for (let i = Math.floor(score); i < maxEstrellas; i++) {
+    estrellasHTML += '☆'; // Estrella vacía
+  }
+
+  return estrellasHTML;
+}

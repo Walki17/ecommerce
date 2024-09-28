@@ -633,16 +633,15 @@ color: #ff9500;
   border-style: solid;
   border-radius: 15px;
   background-color: white;
-  display: flex;
-  flex-direction: column;
-  margin-left: 0.5%;
+  margin-left: 10.5%;
   margin-right: 0.5%;
   margin-top: 0.5%;
-  padding: 3%;
+  padding: 1%;
+  width: 79%;
+
 }
 
 .contenedorrating {
-  display: flex;
   font-size: 2px;
 }
 
@@ -653,28 +652,49 @@ color: #ff9500;
 .ratrating-container{
   padding: 1%;
   font-size:2px;
+  
 }
 
 #destacadas{
   font-size: 10em;
   text-align: justify;
-  margin-left: 3em;
-  overflow-y: scroll;
+  margin-left: 0em;
+
 }
 
 #opinion{
   font-size: 1.5em;
   text-decoration: solid;
   padding: 0.2%;
-  margin-left: 15%
+  margin-left: 38%
 }
 
-#btncalificar{
-  font-size: 1.5em;
-  border-radius: 20px;
-  width: 18%;
-  background-color: #cdcbcb;
-  margin-left: 20%
+#btncalificar {
+font-family: 'Font Voces', sans-serif;
+font-size: 1.5em;
+border-radius: 20px;
+width: 18%;
+background-color: #e69243;
+margin-left: 42%
+
+
+}
+#btncalificar:hover{
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.966),
+              0px 0px 30px rgb(226, 126, 32),
+              0px 0px 60px rgb(235, 143, 24);
+              
+
+}
+
+.user-info {
+  display: flex;
+  justify-content: space-between; 
+  align-items: center;           
+}
+
+.date {
+  margin-left: auto; 
 }
 
 /* Modal */
@@ -693,7 +713,7 @@ color: #ff9500;
   background-color: #fefefe;
   margin: 15% auto;
   padding: 20px;
-  border: 1px solid #888;
+  border: 1px solid #888888;
   width: 40%;
   text-align: center;
 }
@@ -781,4 +801,7 @@ color: #ff9500;
     flex: 0 0 100%;
   }
 }
+
+
+
 
