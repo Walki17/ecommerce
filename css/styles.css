@@ -626,7 +626,7 @@ color: #ff9500;
 }
 
 
-/*aca estaria la seccion de productos relacionados*/
+/*aca estaria la seccion de calificaciones, estrellas, etc*/
 
 .rating{
   border-color: #ff9500;
@@ -802,6 +802,50 @@ margin-left: 42%
   }
 }
 
+/*Boton de ver mas en related products*/
+.button-container {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
 
+#botonrelated {
+  display: flex;
+  justify-content: center; /* Centra el texto horizontalmente */
+  align-items: center; /* Centra el texto verticalmente */
+  text-align: center;
+  text-decoration: none;
+  color: black;
+  font-family: 'Font Voces', sans-serif;
+  font-size: 0.75em;
+  border-radius: 30px;
+  width: 180px; /* Ajusta el ancho del botón */
+  background-color: #e69243;
+  padding: 15px 20px; /* Reduce el padding para evitar que el texto se rompa en dos líneas */
+}
 
+#botonrelated:hover {
+  text-decoration: none;
+  color: black;
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.966),
+              0px 0px 30px rgb(226, 126, 32),
+              0px 0px 60px rgb(235, 143, 24);
+}
+
+  /*Acomodacion de related products */
+  .product-card a {
+    text-decoration: none;
+    color: black;
+}
+
+#productosrelacionados{
+  font-size: 1em;
+  text-align: justify;
+  margin-left: 0em;
+}
+
+#relProd {
+  margin-top: -5%;
+  margin-left: -0.5%;
+}
 
