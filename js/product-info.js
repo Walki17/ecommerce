@@ -236,13 +236,11 @@ enviarBtn.onclick = function() {
 
 const COMMENTS = `https://japceibal.github.io/emercado-api/products_comments/${productID}.json`;
 
-
 fetch(COMMENTS)
   .then(response => response.json())
   .then(comentarios => {
     const elementoProd = document.getElementById('destacadas');
-  
-    
+
     function comentariosUsers(comentarios) {
       comentarios.forEach(comentario => {
         const comentarioDiv = document.createElement('div');
@@ -250,118 +248,108 @@ fetch(COMMENTS)
         parrafo.classList.add("comentariosUser");
 
         const estrellas = generarEstrellas(comentario.score);
-
-      // Función para generar estrellas basadas en el score
-    function generarEstrellas(score) {
-      const maxEstrellas = 5;
-        let estrellasHTML = '';
-
-  // Generar estrellas llenas
-    for (let i = 0; i < Math.floor(score); i++) {
-    estrellasHTML += '★'; // Estrella llena
-   }
-
-  // Rellenar con estrellas vacías
-   for (let i = Math.floor(score); i < maxEstrellas; i++) {
-    estrellasHTML += '☆'; // Estrella vacía
-   }
-
-    return estrellasHTML;
-  }
-
-  parrafo.innerHTML = `
-  <div class="user-info">
-    <strong>${comentario.user}</strong>
-    <span class="date">${comentario.dateTime}</span>
-  </div>
-  <span>${estrellas}</span><br>
-  ${comentario.description}
-`; 
+        
+        parrafo.innerHTML = `
+          <div class="user-info">
+            <strong>${comentario.user}</strong>
+            <span class="date">${formatearFecha(comentario.dateTime)}</span>
+          </div>
+          <span>${estrellas}</span><br>
+          ${comentario.description}
+        `; 
         comentarioDiv.appendChild(parrafo);
         elementoProd.appendChild(comentarioDiv);  
       });
     }
     
-       
     if (Array.isArray(comentarios) && comentarios.length > 0) {
       comentariosUsers(comentarios);
     } 
-  
-})
+  })
   .catch(error => {
     console.error('Error:', error);
   });
 
+// Función para formatear la fecha
+function formatearFecha(fecha) {
+  const dateObj = new Date(fecha);
+  const dia = String(dateObj.getDate()).padStart(2, '0');
+  const mes = String(dateObj.getMonth() + 1).padStart(2, '0'); // Meses son 0-indexed
+  const anio = String(dateObj.getFullYear()); // Obtener solo los últimos 2 dígitos del año
+  const horas = String(dateObj.getHours()).padStart(2, '0');
+  const minutos = String(dateObj.getMinutes()).padStart(2, '0');
 
+  return `${dia}/${mes}/${anio} ${horas}:${minutos}`;
+}
 
 // Obtener los comentarios para el producto actual
-  window.onload = function() {
-      const comentariosGuardados = JSON.parse(localStorage.getItem(`comentarios_${productID}`)) || [];  
-      comentariosGuardados.forEach(comentario => {
-          agregarComentarioAlDOM(comentario);
-      });
-  };
-  
-  enviarBtn.onclick = function() {
-      if (ratingSeleccionado > 0 && comentario.value.trim()) {
-          alert("Gracias por tu calificación de " + ratingSeleccionado + " estrellas");
-  
-          // Obtener la fecha actual
-          const fechaActual = new Date().toLocaleString();
-          const usuarios = JSON.parse(localStorage.getItem("usuarios"));
-          const ultimoUsuario = usuarios[usuarios.length - 1]; 
-  
-          const nuevoComentario = {
-              user: ultimoUsuario.usuario || "Anónimo", 
-              dateTime: fechaActual, 
-              score: ratingSeleccionado, 
-              description: comentario.value.trim() // trim es para eliminar cualquier espacio en blanco inicial o final.
-          };
-  
-          agregarComentarioAlDOM(nuevoComentario);
-  
-          const comentariosGuardados = JSON.parse(localStorage.getItem(`comentarios_${productID}`)) || [];
-          comentariosGuardados.push(nuevoComentario);
-          localStorage.setItem(`comentarios_${productID}`, JSON.stringify(comentariosGuardados));
-  
-          modal.style.display = "none";
-          resetearEstrellas();
-          comentario.value = '';
-          ratingSeleccionado = 0;
-      } else {
-          alert("Selecciona una calificación y escribe un comentario.");
-      }
-  };
-  
-  function agregarComentarioAlDOM(comentario) {
-      const elementoProd = document.getElementById('destacadas');
-      const comentarioDiv = document.createElement('div');
-      const parrafo = document.createElement('p');
-  
-      const estrellas = generarEstrellas(comentario.score);
-  
-      parrafo.innerHTML = `
-          <strong>${comentario.user}</strong> ${comentario.dateTime}<br>
-          <span>${estrellas}</span><br>
-          ${comentario.description}
-      `;
-  
-      comentarioDiv.appendChild(parrafo);
-      elementoProd.appendChild(comentarioDiv);
+window.onload = function() {
+  const comentariosGuardados = JSON.parse(localStorage.getItem(`comentarios_${productID}`)) || [];  
+  comentariosGuardados.forEach(comentario => {
+    agregarComentarioAlDOM(comentario);
+  });
+};
+
+enviarBtn.onclick = function() {
+  if (ratingSeleccionado > 0 && comentario.value.trim()) {
+    alert("Gracias por tu calificación de " + ratingSeleccionado + " estrellas");
+
+    // Obtener la fecha actual en formato ISO
+    const fechaActual = new Date().toISOString(); // Almacena la fecha en formato ISO
+    const usuarios = JSON.parse(localStorage.getItem("usuarios"));
+    const ultimoUsuario = usuarios[usuarios.length - 1]; 
+
+    const nuevoComentario = {
+      user: ultimoUsuario.usuario || "Anónimo", 
+      dateTime: fechaActual, // Almacenar como fecha ISO
+      score: ratingSeleccionado, 
+      description: comentario.value.trim() // trim es para eliminar cualquier espacio en blanco inicial o final.
+    };
+
+    agregarComentarioAlDOM(nuevoComentario);
+
+    const comentariosGuardados = JSON.parse(localStorage.getItem(`comentarios_${productID}`)) || [];
+    comentariosGuardados.push(nuevoComentario);
+    localStorage.setItem(`comentarios_${productID}`, JSON.stringify(comentariosGuardados));
+
+    modal.style.display = "none";
+    resetearEstrellas();
+    comentario.value = '';
+    ratingSeleccionado = 0;
+  } else {
+    alert("Selecciona una calificación y escribe un comentario.");
   }
-  
-  function generarEstrellas(score) {
-      const maxEstrellas = 5;
-      let estrellasHTML = '';
-  
-      for (let i = 0; i < Math.floor(score); i++) {
-          estrellasHTML += '★';
-      }
-  
-      for (let i = Math.floor(score); i < maxEstrellas; i++) {
-          estrellasHTML += '☆';
-      }
-  
-      return estrellasHTML;
+};
+
+function agregarComentarioAlDOM(comentario) {
+  const elementoProd = document.getElementById('destacadas');
+  const comentarioDiv = document.createElement('div');
+  const parrafo = document.createElement('p');
+
+  const estrellas = generarEstrellas(comentario.score);
+
+  // Formatear la fecha aquí
+  parrafo.innerHTML = `
+      <strong>${comentario.user}</strong> ${formatearFecha(comentario.dateTime)}<br>
+      <span>${estrellas}</span><br>
+      ${comentario.description}
+  `;
+
+  comentarioDiv.appendChild(parrafo);
+  elementoProd.appendChild(comentarioDiv);
+}
+
+function generarEstrellas(score) {
+  const maxEstrellas = 5;
+  let estrellasHTML = '';
+
+  for (let i = 0; i < Math.floor(score); i++) {
+    estrellasHTML += '★';
   }
-  
+
+  for (let i = Math.floor(score); i < maxEstrellas; i++) {
+    estrellasHTML += '☆';
+  }
+
+  return estrellasHTML;
+}
