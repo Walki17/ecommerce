@@ -194,7 +194,7 @@ estrellas.forEach(function(estrella) {
 
 enviarBtn.onclick = function() {
   if (ratingSeleccionado > 0 && comentario.value.trim()) {
-    showToast("Gracias por tu calificación de " + ratingSeleccionado + " estrellas");
+    showToast("Gracias por tu calificación de " + ratingSeleccionado + " estrellas", "success");
 
     const fechaActual = new Date().toISOString();
     const usuarios = JSON.parse(localStorage.getItem("usuarios"));
@@ -230,10 +230,13 @@ function agregarComentarioAlDOM(comentario) {
   const estrellas = generarEstrellas(comentario.score);
 
   parrafo.innerHTML = `
-      <strong>${comentario.user}</strong> ${formatearFecha(comentario.dateTime)}<br>
-      <span>${estrellas}</span><br>
-      ${comentario.description}
-  `;
+          <div class="user-info">
+            <strong>${comentario.user}</strong>
+            <span class="date">${formatearFecha(comentario.dateTime)}</span>
+          </div>
+          <span>${estrellas}</span><br>
+          ${comentario.description}
+        `;
 
   comentarioDiv.appendChild(parrafo);
   elementoProd.appendChild(comentarioDiv);
@@ -314,7 +317,7 @@ function showToast(message, type) {
   const toast = document.createElement('div');
   toast.className = `toast toast-${type}`;
 
-  if (type === 'exitoso') {
+  if (type === 'success') {
     toast.innerHTML = `
       <div class="toast-icon">
         <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
