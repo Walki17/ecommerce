@@ -1,9 +1,9 @@
 function obtenerParametroId() {
-  const urlParams = new URLSearchParams(window.location.search); // Obtener todos los parámetros de la URL
-  return urlParams.get('id'); // Retornar el valor del parámetro 'id'
+  const urlParams = new URLSearchParams(window.location.search);
+  return urlParams.get('id');
 }
 
-let productID = obtenerParametroId(); 
+let productID = obtenerParametroId();
 
 if (!productID) {
   productID = localStorage.getItem("productID");
@@ -12,7 +12,7 @@ if (!productID) {
 if (productID) {
   localStorage.setItem("productID", productID);
 } else {
-  console.error("No se encontró un productID en la URL o en el localStorage.");
+  showToast("No se encontró un productID en la URL o en el localStorage.", "error");
 }
 
 const PRODUCT_URL = `https://japceibal.github.io/emercado-api/products/${productID}.json`;
@@ -20,17 +20,14 @@ const PRODUCT_URL = `https://japceibal.github.io/emercado-api/products/${product
 fetch(PRODUCT_URL)
   .then(response => response.json())
   .then(product => {
-    // Verifica si el objeto product tiene los datos esperados
     if (!product || !product.name || !product.description) {
       throw new Error('La respuesta de la API no tiene el formato esperado');
     }
 
-    // Mostrar la información del producto en el DOM
     const productInfoElement = document.getElementById('productInfo');
     productInfoElement.innerHTML = `
       <div class="container-product mt-5">
         <div class="row">
-          <!-- Columna para el carrusel de imágenes del producto -->
           <div class="col-md-6">
             <div id="productCarousel" class="carousel slide" data-ride="carousel">
               <div class="carousel-inner">
@@ -40,7 +37,6 @@ fetch(PRODUCT_URL)
                   </div>
                 `).join('')}
               </div>
-              <!-- Controles del carrusel (Anterior / Siguiente) -->
               <a class="carousel-control-prev" href="#productCarousel" role="button" data-slide="prev">
                 <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                 <span class="sr-only">Previous</span>
@@ -51,14 +47,11 @@ fetch(PRODUCT_URL)
               </a>
             </div>
           </div>
-
-          <!-- Columna para la información del producto -->
           <div class="col-md-6">
             <div class="informacion">
               <p>Nuevo | ${product.soldCount} Vendidos</p>
               <h2>${product.name}</h2>
               <h2>${product.currency} ${new Intl.NumberFormat('es-ES').format(product.cost)}</h2>
-
               <div class="stock">
                 <h5>Stock disponible</h5>
                 <div class="cantidad-contenedor">
@@ -71,8 +64,6 @@ fetch(PRODUCT_URL)
                 <button id="agregar" class="btn btn-light mt-3"><strong>Agregar al carrito</strong></button>
               </div>
             </div>
-
-            <!-- Descripción del producto -->
             <div class="descripcion mt-4">
               <h5>Descripción</h5>
               <p>${product.description}</p>
@@ -82,81 +73,67 @@ fetch(PRODUCT_URL)
       </div>
     `;
 
-    // **Eventos de cantidad**
     const cantidadInput = document.querySelector('.cantidad');
     const botonAumentar = document.querySelector('.aumentar');
     const botonDisminuir = document.querySelector('.disminuir');
 
-    // Evento para aumentar la cantidad
     botonAumentar.addEventListener('click', () => {
-        let cantidad = parseInt(cantidadInput.value);
-        cantidad++;
-        cantidadInput.value = cantidad;
+      let cantidad = parseInt(cantidadInput.value);
+      cantidad++;
+      cantidadInput.value = cantidad;
     });
 
-    // Evento para disminuir la cantidad
     botonDisminuir.addEventListener('click', () => {
-        let cantidad = parseInt(cantidadInput.value);
-        if (cantidad > 1) {
-            cantidad--;
-            cantidadInput.value = cantidad;
-        }
+      let cantidad = parseInt(cantidadInput.value);
+      if (cantidad > 1) {
+        cantidad--;
+        cantidadInput.value = cantidad;
+      }
     });
 
-    // **Productos relacionados**
     let relatedProducts = product.relatedProducts;
+    const relatedProductsElement = document.getElementById('prodRelacionados');
 
-const relatedProductsElement = document.getElementById('prodRelacionados');
+    if (relatedProductsElement) {
+      const relacionadoDiv = document.createElement('div');
+      const parrafito = document.createElement('p');
+      const relatedProductIds = relatedProducts.map(product => product.id);
+      localStorage.setItem('relatedProducts', JSON.stringify(relatedProductIds));
 
-if (relatedProductsElement) {
-  const relacionadoDiv = document.createElement('div');
-  const parrafito = document.createElement('p');
-  const relatedProductIds = relatedProducts.map(product => product.id);
-  localStorage.setItem('relatedProducts', JSON.stringify(relatedProductIds));
-
-  localStorage.getItem('relatedProducts');
-
-  parrafito.innerHTML = `
-  <div id="relProd">
-    <div class="row">
-      ${relatedProducts.map(relatedProduct => `
-        <div class="col-md-4">
-          <div class="product-card">
-            <a href="product-info.html?id=${relatedProduct.id}">
-              <img src="${relatedProduct.image}" alt="${relatedProduct.name}" class="img-fluid">
-              <div class="product-body">
-                <h5 class="product-title">${relatedProduct.name}</h5>
+      parrafito.innerHTML = `
+      <div id="relProd">
+        <div class="row">
+          ${relatedProducts.map(relatedProduct => `
+            <div class="col-md-4">
+              <div class="product-card">
+                <a href="product-info.html?id=${relatedProduct.id}">
+                  <img src="${relatedProduct.image}" alt="${relatedProduct.name}" class="img-fluid">
+                  <div class="product-body">
+                    <h5 class="product-title">${relatedProduct.name}</h5>
+                  </div>
+                </a>
               </div>
-            </a>
+            </div>
+          `).join('')}
+          <div class="col-md-4 button-container">
+            <a href="products.html" id="botonrelated">Ver más</a>
           </div>
         </div>
-      `).join('')}
-    <!-- Columna para el botón "Ver más" -->
-      <div class="col-md-4 button-container">
-        <a href="products.html" id="botonrelated">Ver más</a>
       </div>
-    </div>
-  </div>
-`;
-     relacionadoDiv.appendChild(parrafito);
-     relatedProductsElement.appendChild(relacionadoDiv);
-} else {
-  console.error("No se encontró el contenedor de productos relacionados");
-}
+      `;
+      relacionadoDiv.appendChild(parrafito);
+      relatedProductsElement.appendChild(relacionadoDiv);
+    } else {
+      showToast("No se encontró el contenedor de productos relacionados", "error");
+    }
   })
   .catch(error => {
-    console.error('Error al obtener la información del producto:', error);
-
+    showToast('Error al obtener la información del producto: ' + error.message, "error");
   });
 
-    const productInfoElement = document.getElementById('productInfo');
-    productInfoElement.innerHTML = 'Ha ocurrido un error al cargar la información del producto.';
+const productInfoElement = document.getElementById('productInfo');
+productInfoElement.innerHTML = 'Ha ocurrido un error al cargar la información del producto.';
 
-
-
-    
-
-// Obtener elementos
 var modal = document.getElementById("calificarModal");
 var calificarBtn = document.getElementById("btncalificar");
 var span = document.getElementsByClassName("close")[0];
@@ -165,145 +142,69 @@ var comentario = document.getElementById("comentario");
 var enviarBtn = document.getElementById("enviarBtn");
 var ratingSeleccionado = 0;
 
-// Mostrar el modal al hacer clic en "Calificar"
 btncalificar.onclick = function() {
   modal.style.display = "block";
 }
 
-// Cerrar el modal al hacer clic en la 'x'
 span.onclick = function() {
   modal.style.display = "none";
 }
 
-// Cerrar el modal al hacer clic fuera del modal
 window.onclick = function(event) {
   if (event.target == modal) {
-      modal.style.display = "none";
+    modal.style.display = "none";
   }
 }
 
-// Función para pintar las estrellas desde la izquierda hasta la seleccionada
 function pintarEstrellas(rating) {
   estrellas.forEach(function(estrella) {
-      const estrellaValue = parseInt(estrella.getAttribute("data-value"));
-      if (estrellaValue <= rating) {
-          estrella.classList.add("selected"); // Pinta la estrella
-      } else {
-          estrella.classList.remove("selected"); // Despinta las estrellas no seleccionadas
-      }
+    const estrellaValue = parseInt(estrella.getAttribute("data-value"));
+    if (estrellaValue <= rating) {
+      estrella.classList.add("selected");
+    } else {
+      estrella.classList.remove("selected");
+    }
   });
 }
 
-// Función para limpiar la selección de estrellas
 function resetearEstrellas() {
   estrellas.forEach(function(estrella) {
-      estrella.classList.remove("selected"); // Despinta todas las estrellas
+    estrella.classList.remove("selected");
   });
 }
 
-// Seleccionar estrellas al pasar el mouse (mouseover)
 estrellas.forEach(function(estrella) {
   estrella.addEventListener("mouseover", function() {
-      const ratingHover = parseInt(this.getAttribute("data-value"));
-      pintarEstrellas(ratingHover); // Pintar desde la estrella seleccionada hacia la izquierda
+    const ratingHover = parseInt(this.getAttribute("data-value"));
+    pintarEstrellas(ratingHover);
   });
 
-  // Restablecer las estrellas cuando se quita el mouse (mouseleave)
   estrella.addEventListener("mouseleave", function() {
-      resetearEstrellas(); // Despintar todas las estrellas al salir
-      if (ratingSeleccionado) { // Si hay un rating seleccionado, volver a pintarlo
-          pintarEstrellas(ratingSeleccionado);
-      }
+    resetearEstrellas();
+    if (ratingSeleccionado) {
+      pintarEstrellas(ratingSeleccionado);
+    }
   });
 
-  // Seleccionar estrellas al hacer clic (click)
   estrella.addEventListener("click", function() {
-      ratingSeleccionado = parseInt(this.getAttribute("data-value"));
-      pintarEstrellas(ratingSeleccionado); // Pintar las estrellas seleccionadas
+    ratingSeleccionado = parseInt(this.getAttribute("data-value"));
+    pintarEstrellas(ratingSeleccionado);
   });
 });
 
-// Enviar comentario y rating
-enviarBtn.onclick = function() {
-  if (ratingSeleccionado > 0 ) {
-      alert("Gracias por tu calificación de " + ratingSeleccionado + " estrellas");
-      modal.style.display = "none";
-  } else {
-      alert("Selecciona una calificación y escribe un comentario.");
-  }
-}
-
-
-const COMMENTS = `https://japceibal.github.io/emercado-api/products_comments/${productID}.json`;
-
-fetch(COMMENTS)
-  .then(response => response.json())
-  .then(comentarios => {
-    const elementoProd = document.getElementById('destacadas');
-
-    function comentariosUsers(comentarios) {
-      comentarios.forEach(comentario => {
-        const comentarioDiv = document.createElement('div');
-        const parrafo = document.createElement('p');
-        parrafo.classList.add("comentariosUser");
-
-        const estrellas = generarEstrellas(comentario.score);
-        
-        parrafo.innerHTML = `
-          <div class="user-info">
-            <strong>${comentario.user}</strong>
-            <span class="date">${formatearFecha(comentario.dateTime)}</span>
-          </div>
-          <span>${estrellas}</span><br>
-          ${comentario.description}
-        `; 
-        comentarioDiv.appendChild(parrafo);
-        elementoProd.appendChild(comentarioDiv);  
-      });
-    }
-    
-    if (Array.isArray(comentarios) && comentarios.length > 0) {
-      comentariosUsers(comentarios);
-    } 
-  })
-  .catch(error => {
-    console.error('Error:', error);
-  });
-
-// Función para formatear la fecha
-function formatearFecha(fecha) {
-  const dateObj = new Date(fecha);
-  const dia = String(dateObj.getDate()).padStart(2, '0');
-  const mes = String(dateObj.getMonth() + 1).padStart(2, '0'); // Meses son 0-indexed
-  const anio = String(dateObj.getFullYear()); // Obtener solo los últimos 2 dígitos del año
-  const horas = String(dateObj.getHours()).padStart(2, '0');
-  const minutos = String(dateObj.getMinutes()).padStart(2, '0');
-
-  return `${dia}/${mes}/${anio} ${horas}:${minutos}`;
-}
-
-// Obtener los comentarios para el producto actual
-window.onload = function() {
-  const comentariosGuardados = JSON.parse(localStorage.getItem(`comentarios_${productID}`)) || [];  
-  comentariosGuardados.forEach(comentario => {
-    agregarComentarioAlDOM(comentario);
-  });
-};
-
 enviarBtn.onclick = function() {
   if (ratingSeleccionado > 0 && comentario.value.trim()) {
-    alert("Gracias por tu calificación de " + ratingSeleccionado + " estrellas");
+    showToast("Gracias por tu calificación de " + ratingSeleccionado + " estrellas");
 
-    // Obtener la fecha actual en formato ISO
-    const fechaActual = new Date().toISOString(); // Almacena la fecha en formato ISO
+    const fechaActual = new Date().toISOString();
     const usuarios = JSON.parse(localStorage.getItem("usuarios"));
-    const ultimoUsuario = usuarios[usuarios.length - 1]; 
+    const ultimoUsuario = usuarios[usuarios.length - 1];
 
     const nuevoComentario = {
-      user: ultimoUsuario.usuario || "Anónimo", 
-      dateTime: fechaActual, // Almacenar como fecha ISO
-      score: ratingSeleccionado, 
-      description: comentario.value.trim() // trim es para eliminar cualquier espacio en blanco inicial o final.
+      user: ultimoUsuario.usuario || "Anónimo",
+      dateTime: fechaActual,
+      score: ratingSeleccionado,
+      description: comentario.value.trim()
     };
 
     agregarComentarioAlDOM(nuevoComentario);
@@ -317,7 +218,7 @@ enviarBtn.onclick = function() {
     comentario.value = '';
     ratingSeleccionado = 0;
   } else {
-    alert("Selecciona una calificación y escribe un comentario.");
+    showToast("Selecciona una calificación y escribe un comentario.", "error");
   }
 };
 
@@ -328,7 +229,6 @@ function agregarComentarioAlDOM(comentario) {
 
   const estrellas = generarEstrellas(comentario.score);
 
-  // Formatear la fecha aquí
   parrafo.innerHTML = `
       <strong>${comentario.user}</strong> ${formatearFecha(comentario.dateTime)}<br>
       <span>${estrellas}</span><br>
@@ -352,4 +252,102 @@ function generarEstrellas(score) {
   }
 
   return estrellasHTML;
+}
+
+function formatearFecha(fecha) {
+  const dateObj = new Date(fecha);
+  const dia = String(dateObj.getDate()).padStart(2, '0');
+  const mes = String(dateObj.getMonth() + 1).padStart(2, '0');
+  const anio = String(dateObj.getFullYear());
+  const horas = String(dateObj.getHours()).padStart(2, '0');
+  const minutos = String(dateObj.getMinutes()).padStart(2, '0');
+
+  return `${dia}/${mes}/${anio} ${horas}:${minutos}`;
+}
+
+window.onload = function() {
+  const comentariosGuardados = JSON.parse(localStorage.getItem(`comentarios_${productID}`)) || [];
+  comentariosGuardados.forEach(comentario => {
+    agregarComentarioAlDOM(comentario);
+  });
+};
+
+const COMMENTS = `https://japceibal.github.io/emercado-api/products_comments/${productID}.json`;
+
+fetch(COMMENTS)
+  .then(response => response.json())
+  .then(comentarios => {
+    const elementoProd = document.getElementById('destacadas');
+
+    function comentariosUsers(comentarios) {
+      comentarios.forEach(comentario => {
+        const comentarioDiv = document.createElement('div');
+        const parrafo = document.createElement('p');
+        parrafo.classList.add("comentariosUser");
+
+        const estrellas = generarEstrellas(comentario.score);
+
+        parrafo.innerHTML = `
+          <div class="user-info">
+            <strong>${comentario.user}</strong>
+            <span class="date">${formatearFecha(comentario.dateTime)}</span>
+          </div>
+          <span>${estrellas}</span><br>
+          ${comentario.description}
+        `;
+        comentarioDiv.appendChild(parrafo);
+        elementoProd.appendChild(comentarioDiv);
+      });
+    }
+
+    if (Array.isArray(comentarios) && comentarios.length > 0) {
+      comentariosUsers(comentarios);
+    }
+  })
+  .catch(error => {
+    showToast('Error: ' + error.message, "error");
+  });
+
+// Función para mostrar toasts
+function showToast(message, type) {
+  const toastContainer = document.getElementById('toastContainer');
+  const toast = document.createElement('div');
+  toast.className = `toast toast-${type}`;
+
+  if (type === 'exitoso') {
+    toast.innerHTML = `
+      <div class="toast-icon">
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M5 13l4 4L19 7" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <div class="toast-content">
+        <p class="toast-message">${message}</p>
+      </div>
+    `;
+  } else if (type === 'error') {
+    toast.innerHTML = `
+      <div class="toast-icon">
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-1-13h2v6h-2zm0 8h2v2h-2z" fill="white"/>
+        </svg>
+      </div>
+      <div class="toast-content">
+        <p class="toast-message">${message}</p>
+      </div>
+    `;
+  }
+
+  toastContainer.appendChild(toast);
+
+  setTimeout(() => {
+    toast.classList.add('show');
+  }, 100);
+
+  setTimeout(() => {
+    toast.classList.remove('show');
+    setTimeout(() => {
+      toastContainer.removeChild(toast);
+    }, 500);
+  }, 3000);
 }
