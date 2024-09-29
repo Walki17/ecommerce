@@ -51,8 +51,56 @@
       </ol>
     </nav>
 
-    <div id="productInfo"></div>
+
+    <div id="productInfo"> </div>
+
+    
+    <div id="relatedProducts">   </div>
+
+
+      <div class="rating">
+        <div class="contenedorrating">
+
+         <div class="rating1" id="destacadas"><h2>Opiniones destacadas</h2></div>
+          
+        </div>
+
+       <br>
+        <div class="rating-container">
+         <h3 id="opinion"><b>Escribir opinion de este producto</b></h3>
+         <button id="btncalificar" type="submit">Calificar</button>
+         <h2 class="rating1">Productos Relacionados</h2>
+        </div>
+        <br><br>
+
+        <div><h2 id="prodRelacionados"></h2></div>
+      </div>
+
+      <!-- Modal_ Es una ventana emergente que está oculta inicialmente (display: none). Se muestra cuando el usuario hace clic en el botón "Calificar". --> 
+    <div id="calificarModal" class="modal">
+      <div class="modal-content">
+          <span class="close">&times;</span>
+          
+          <!-- Selección de estrellas -->
+          <div class="ratingestrellas">
+              <span class="estrella" data-value="1">★</span>
+              <span class="estrella" data-value="2">★</span>
+              <span class="estrella" data-value="3">★</span>
+              <span class="estrella" data-value="4">★</span>
+              <span class="estrella" data-value="5">★</span>
+          </div>
+
+          <!-- Campo de comentarios -->
+          <textarea id="comentario" rows="8" cols="70" placeholder="Escriba su comentario..."></textarea>
+          
+          <!-- Botón enviar -->
+          <button id="enviarBtn"><b>Enviar</b></button>
+      </div>
+   </div>
+   <div id="toastContainer" class="toast-container"></div>
+   <div id="productosRelacionados"></div>
   </main>
+  
   <footer class="text-muted">
     <div class="container">
       <p class="float-end">
@@ -73,6 +121,7 @@
  <!-- Carga de jQuery y Bootstrap desde CDN (si no quieres usar tu archivo local) -->
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
+<!-- <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet"></script> -->
 
 <!-- Carga de scripts personalizados -->
 <script src="js/init.js" defer></script>
