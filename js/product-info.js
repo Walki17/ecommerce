@@ -290,7 +290,7 @@ fetch(COMMENTS)
 
         const estrellas = generarEstrellas(comentario.score);
 
-        parrafo.innerHTML = `
+         parrafo.innerHTML = `
           <div class="user-info">
             <strong>${comentario.user}</strong>
             <span class="date">${formatearFecha(comentario.dateTime)}</span>
