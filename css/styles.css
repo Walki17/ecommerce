@@ -919,3 +919,35 @@ margin-left: 42%
 .toast-message {
   margin: 0;
 }
+
+
+/*Modo dia - noche*/
+/* Estilo por defecto (Modo Día) */
+body.day-mode {
+  background-color: #ffffff;
+  color: #4e4d4d;
+}
+
+button {
+  margin-top: 1%;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+/* Estilo para el Modo Noche */
+body.night-mode {
+  background-color: #141f2b;
+  color: #000000;
+}
+
+button.night-mode {
+  background-color: #ecf0f1;
+  color: #2c3e50;
+}
+
+button.day-mode {
+  background-color: #2c3e50;
+  color: #ecf0f1;
+}
+
+/*fin modo dia/noche*/
