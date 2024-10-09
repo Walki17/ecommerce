@@ -921,3 +921,32 @@ margin-left: 42%
 }
 
 
+/* modo dia y noche
+/* Estilo por defecto (Modo Día) */
+body, div, .breadcrumb, .modal-content, .rating-container, .footer {
+  background-color: #ffffff;
+  color: #080707;
+}
+
+button {
+  margin-top: 1%;
+  font-size: 16px;
+  cursor: pointer;
+  background-color: #2c3e50;
+  color: #ecf0f1;
+}
+
+/* Estilo para el Modo Noche */
+body.night-mode, div.night-mode, .breadcrumb.night-mode, .modal-content.night-mode, .rating-container.night-mode, .footer.night-mode {
+  background-color: #1a1a1a;
+  color: white;
+}
+
+button.night-mode {
+  background-color: #ecf0f1;
+  color: #2c3e50;
+}
+
+.breadcrumb-item a {
+  color: inherit;
+}
