@@ -420,7 +420,7 @@ transition: transform 0.3s ease-in-out;
   padding-left: 20px;
   text-align: left; /* Alinear el texto a la izquierda */
   background-color: white;
-  color: #070707;
+  color: #000000;
 }
 
 .informacion h2 {
@@ -939,6 +939,13 @@ margin-left: 42%
 margin-left: 1em;
 }
 
+div#productInfo{
+  background-color: #ffffff; 
+  border-radius: 15px;
+  margin-right: 1%;
+  margin-left: 1%;
+}
+
 #relatedProducts,#productInfo{
   background-color: white;
 }
@@ -958,7 +965,7 @@ margin-left: 1em;
 
 
 /* Estilo para el Modo Noche */
-body.night-mode, div.night-mode, .breadcrumb.night-mode, .modal-content.night-mode, .rating-container.night-mode,.container.night-mode, .footer.night-mode,#relatedProducts,#productInfo,.nav-link,.navbar-nav{
+body.night-mode, div.night-mode, .breadcrumb.night-mode, .modal-content.night-mode, .rating-container.night-mode,.container.night-mode, .footer.night-mode,#relatedProducts,#productInfo,.nav-link,.navbar-nav,div#productInfo{
   background-color: #000000;
   color: white;
 }

@@ -396,7 +396,6 @@ function showToast(message, type) {
   }, 3000);
 }
 
-
 document.addEventListener('DOMContentLoaded', function() {
   // Seleccionamos el botón del modo noche
   const toggleButton = document.getElementById('toggle-button');
@@ -429,7 +428,7 @@ document.addEventListener('DOMContentLoaded', function() {
     if (productInfo) productInfo.classList.add('night-mode');
     if (relatedProducts) relatedProducts.classList.add('night-mode');
     
-    document.querySelectorAll('div, .navbar, .breadcrumb, .modal-content, .rating-container, .footer, button').forEach(el => el.classList.add('night-mode'));
+    document.querySelectorAll('div, .navbar, .breadcrumb, .modal-content,.rating-container, .footer, button,.container-product mt-5').forEach(el => el.classList.add('night-mode'));
 
     // Guardar el estado en localStorage
     localStorage.setItem('nightMode', 'enabled');
@@ -455,7 +454,3 @@ document.addEventListener('DOMContentLoaded', function() {
     toggleButton.textContent = 'Modo Noche';
   }
 });
-
-
-
-
