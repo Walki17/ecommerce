@@ -419,6 +419,8 @@ transition: transform 0.3s ease-in-out;
   width: 65%; /* Ocupa el 65% del contenedor */
   padding-left: 20px;
   text-align: left; /* Alinear el texto a la izquierda */
+  background-color: white;
+  color: #070707;
 }
 
 .informacion h2 {
@@ -937,6 +939,10 @@ margin-left: 42%
 margin-left: 1em;
 }
 
+#relatedProducts,#productInfo{
+  background-color: white;
+}
+
 /* Estilo para el botón de modo noche */
 #toggle-button {
   padding: 0.2rem,0.2rem;
@@ -951,9 +957,8 @@ margin-left: 1em;
 }
 
 
-
 /* Estilo para el Modo Noche */
-body.night-mode, div.night-mode, .breadcrumb.night-mode, .modal-content.night-mode, .rating-container.night-mode,.container.night-mode, .footer.night-mode,.nav-link,.navbar-nav{
+body.night-mode, div.night-mode, .breadcrumb.night-mode, .modal-content.night-mode, .rating-container.night-mode,.container.night-mode, .footer.night-mode,#relatedProducts,#productInfo,.nav-link,.navbar-nav{
   background-color: #000000;
   color: white;
 }

@@ -421,6 +421,14 @@ document.addEventListener('DOMContentLoaded', function() {
   function enableNightMode() {
     // Aplicar la clase 'night-mode' al cuerpo y a todos los elementos
     document.body.classList.add('night-mode');
+
+    // Asegurarse de que los elementos existan antes de aplicar clases
+    const productInfo = document.getElementById('productInfo');
+    const relatedProducts = document.getElementById('relatedProducts');
+    
+    if (productInfo) productInfo.classList.add('night-mode');
+    if (relatedProducts) relatedProducts.classList.add('night-mode');
+    
     document.querySelectorAll('div, .navbar, .breadcrumb, .modal-content, .rating-container, .footer, button').forEach(el => el.classList.add('night-mode'));
 
     // Guardar el estado en localStorage
@@ -432,13 +440,22 @@ document.addEventListener('DOMContentLoaded', function() {
   function disableNightMode() {
     // Quitar la clase 'night-mode' del cuerpo y de todos los elementos
     document.body.classList.remove('night-mode');
-    document.querySelectorAll('div,.navbar, .breadcrumb, .modal-content, .rating-container, .footer, button').forEach(el => el.classList.remove('night-mode'));
+
+    // Asegurarse de que los elementos existan antes de quitar clases
+    const productInfo = document.getElementById('productInfo');
+    const relatedProducts = document.getElementById('relatedProducts');
+
+    if (productInfo) productInfo.classList.remove('night-mode');
+    if (relatedProducts) relatedProducts.classList.remove('night-mode');
+
+    document.querySelectorAll('div, .navbar, .breadcrumb, .modal-content, .rating-container, .footer, button').forEach(el => el.classList.remove('night-mode'));
 
     // Guardar el estado en localStorage
     localStorage.setItem('nightMode', 'disabled');
     toggleButton.textContent = 'Modo Noche';
   }
 });
+
 
 
 
