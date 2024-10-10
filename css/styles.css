@@ -928,6 +928,7 @@ margin-left: 42%
 
 
 
+
 /*modo dia/noche*/
 
 
@@ -969,7 +970,5 @@ body.night-mode, div.night-mode, .breadcrumb.night-mode, .modal-content.night-mo
   background-color: #000000;
   color: white;
 }
-
-
 
 
