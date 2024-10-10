@@ -382,3 +382,64 @@ function showToast(message, type) {
     }, 500);
   }, 3000);
 }
+
+
+document.addEventListener('DOMContentLoaded', function() {
+  // Seleccionamos el botón del modo noche
+  const toggleButton = document.getElementById('toggle-button');
+  
+  // Comprobar el modo guardado en localStorage al cargar la página
+  const savedMode = localStorage.getItem('nightMode');
+  if (savedMode === 'enabled') {
+    enableNightMode();
+    toggleButton.textContent = 'Modo Día';
+  }
+
+  // Evento 'click' para cambiar entre los modos
+  toggleButton.addEventListener('click', function() {
+    if (document.body.classList.contains('night-mode')) {
+      disableNightMode();
+    } else {
+      enableNightMode();
+    }
+  });
+
+  // Función para activar el modo nocturno
+  function enableNightMode() {
+    // Aplicar la clase 'night-mode' al cuerpo y a todos los elementos
+    document.body.classList.add('night-mode');
+
+    // Asegurarse de que los elementos existan antes de aplicar clases
+    const productInfo = document.getElementById('productInfo');
+    const relatedProducts = document.getElementById('relatedProducts');
+    
+    if (productInfo) productInfo.classList.add('night-mode');
+    if (relatedProducts) relatedProducts.classList.add('night-mode');
+    
+    document.querySelectorAll('div, .navbar, .breadcrumb, .modal-content,.rating-container, .footer, button,.container-product mt-5').forEach(el => el.classList.add('night-mode'));
+
+    // Guardar el estado en localStorage
+    localStorage.setItem('nightMode', 'enabled');
+    toggleButton.textContent = 'Modo Día';
+  }
+
+  // Función para desactivar el modo nocturno
+  function disableNightMode() {
+    // Quitar la clase 'night-mode' del cuerpo y de todos los elementos
+    document.body.classList.remove('night-mode');
+
+    // Asegurarse de que los elementos existan antes de quitar clases
+    const productInfo = document.getElementById('productInfo');
+    const relatedProducts = document.getElementById('relatedProducts');
+
+    if (productInfo) productInfo.classList.remove('night-mode');
+    if (relatedProducts) relatedProducts.classList.remove('night-mode');
+
+    document.querySelectorAll('div, .navbar, .breadcrumb, .modal-content, .rating-container, .footer, button').forEach(el => el.classList.remove('night-mode'));
+
+    // Guardar el estado en localStorage
+    localStorage.setItem('nightMode', 'disabled');
+    toggleButton.textContent = 'Modo Noche';
+  }
+});
+
