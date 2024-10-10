@@ -455,6 +455,7 @@ transition: transform 0.3s ease-in-out;
   background-color: #ddd;
   border-radius: 5px;
   text-align: center;
+  color: #000000;
 }
 
 .disminuir:hover, .aumentar:hover {
@@ -941,11 +942,13 @@ margin-left: 1em;
 }
 
 div#productInfo{
-  background-color: #ffffff; 
+  background:none;
   border-radius: 15px;
   margin-right: 1%;
   margin-left: 1%;
 }
+
+
 
 #relatedProducts,#productInfo{
   background-color: white;
