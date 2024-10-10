@@ -967,3 +967,7 @@ body.night-mode, div.night-mode, .breadcrumb.night-mode, .modal-content.night-mo
 }
 
 
+#productInfo{
+  background-color: transparent;
+}
+
