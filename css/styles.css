@@ -15,6 +15,10 @@ nav a {
   text-decoration: none;
 }
 
+.nav-link {
+color: #000000;
+}
+
 .bd-placeholder-img {
   font-size: 1.125rem;
   text-anchor: middle;
@@ -59,7 +63,7 @@ nav a {
 }
 
 .jumbotron .container {
-  max-width: 40rem;
+  max-width: 60rem;
   background-color: rgba(255, 255, 255, 0.5);
   border-radius: 10px;
   text-shadow: 1px 1px 2px grey;
@@ -636,7 +640,7 @@ color: #ff9500;
   margin-left: 10.5%;
   margin-right: 0.5%;
   margin-top: 0.5%;
-  padding: 1%;
+  padding: 2%;
   width: 79%;
 
 }
@@ -921,32 +925,39 @@ margin-left: 42%
 }
 
 
-/* modo dia y noche
-/* Estilo por defecto (Modo Día) */
-body, div, .breadcrumb, .modal-content, .rating-container, .footer {
-  background-color: #ffffff;
-  color: #080707;
+
+/*modo dia/noche*/
+
+
+.bg-dark {
+  background-color: #000000 !important; /* Hacer el fondo completamente negro */
 }
 
-button {
-  margin-top: 1%;
-  font-size: 16px;
-  cursor: pointer;
-  background-color: #2c3e50;
-  color: #ecf0f1;
+.path{
+margin-left: 1em;
 }
+
+/* Estilo para el botón de modo noche */
+#toggle-button {
+  padding: 0.2rem,0.2rem;
+  margin-left: 2%;
+  font-size: 16px;
+  cursor:pointer;
+  background-color: #f4f7f6;
+  color: #070707;
+  border-style:outset;
+  border-color: rgba(251, 167, 10, 0.907);
+  border-radius: 3em;
+}
+
+
 
 /* Estilo para el Modo Noche */
-body.night-mode, div.night-mode, .breadcrumb.night-mode, .modal-content.night-mode, .rating-container.night-mode, .footer.night-mode {
-  background-color: #1a1a1a;
+body.night-mode, div.night-mode, .breadcrumb.night-mode, .modal-content.night-mode, .rating-container.night-mode,.container.night-mode, .footer.night-mode,.nav-link,.navbar-nav{
+  background-color: #000000;
   color: white;
 }
 
-button.night-mode {
-  background-color: #ecf0f1;
-  color: #2c3e50;
-}
 
-.breadcrumb-item a {
-  color: inherit;
-}
+
+
