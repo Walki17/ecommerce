@@ -961,7 +961,7 @@ margin-left: 1em;
 
 
 /* Estilo para el Modo Noche */
-body.night-mode, div.night-mode, .breadcrumb.night-mode, .modal-content.night-mode, .rating-container.night-mode,.container.night-mode, .footer.night-mode,#relatedProducts,#productInfo,.nav-link,.navbar-nav,div#productInfo{
+body.night-mode, div.night-mode, .breadcrumb.night-mode, .modal-content.night-mode, .rating-container.night-mode,.container.night-mode, .footer.night-mode,#relatedProducts,#productInfo,.nav-link,.navbar-nav{
   background-color: #000000;
   color: white;
 }
