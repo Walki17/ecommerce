@@ -416,7 +416,7 @@ document.addEventListener('DOMContentLoaded', function() {
     if (productInfo) productInfo.classList.add('night-mode');
     if (relatedProducts) relatedProducts.classList.add('night-mode');
     
-    document.querySelectorAll('div, .navbar, .breadcrumb, .modal-content,.rating-container, .footer, button,.container-product mt-5').forEach(el => el.classList.add('night-mode'));
+    document.querySelectorAll('div, .breadcrumb, .modal-content,.rating-container, .footer, button,.container-product mt-5').forEach(el => el.classList.add('night-mode'));
 
     // Guardar el estado en localStorage
     localStorage.setItem('nightMode', 'enabled');
@@ -435,7 +435,7 @@ document.addEventListener('DOMContentLoaded', function() {
     if (productInfo) productInfo.classList.remove('night-mode');
     if (relatedProducts) relatedProducts.classList.remove('night-mode');
 
-    document.querySelectorAll('div, .navbar, .breadcrumb, .modal-content, .rating-container, .footer, button').forEach(el => el.classList.remove('night-mode'));
+    document.querySelectorAll('div, .breadcrumb, .modal-content, .rating-container, .footer, button').forEach(el => el.classList.remove('night-mode'));
 
     // Guardar el estado en localStorage
     localStorage.setItem('nightMode', 'disabled');

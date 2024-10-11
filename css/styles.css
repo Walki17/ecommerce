@@ -24,7 +24,7 @@ nav a {
 }
 
 .nav-link {
-color: #000000;
+color: #ffffff;
 }
 
 .bd-placeholder-img {
@@ -81,6 +81,7 @@ color: #000000;
   font-size: 38px;
 }
 
+
 .containerfooter p,a{
   display: block;
   text-align: center;
@@ -91,7 +92,7 @@ text-align: center;
 }
 
 footer.text-muted{
- padding: 1%;
+  padding: 1%;
  background-color: white;
 }
 
@@ -659,7 +660,6 @@ color: #ff9500;
   margin-top: 0.5%;
   padding: 2%;
   width: 79%;
-
 }
 
 .contenedorrating {
@@ -667,6 +667,7 @@ color: #ff9500;
 }
 
 .rating1{
+  font-size: 1.5em;
   padding: 1%;
 }
 
@@ -684,28 +685,31 @@ color: #ff9500;
 }
 
 #opinion{
-  font-size: 1.5em;
+  display: flex;
+  font-size: 1.2em;
+  text-align: center;
   text-decoration: solid;
-  padding: 0.2%;
-  margin-left: 38%
+  padding: 0.3%;
 }
 
 #btncalificar {
+display: flex;
+text-align: center;
 font-family: 'Font Voces', sans-serif;
 font-size: 1.5em;
 border-radius: 20px;
-width: 18%;
 background-color: #e69243;
-margin-left: 42%
-
-
+margin-left: 42%;
+margin-bottom: 1%;
+padding-left: 2%;
+padding-right: 2%;
 }
+
+
 #btncalificar:hover{
   box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.966),
               0px 0px 30px rgb(226, 126, 32),
               0px 0px 60px rgb(235, 143, 24);
-              
-
 }
 
 .user-info {
@@ -840,9 +844,9 @@ margin-left: 42%
   font-family: 'Font Voces', sans-serif;
   font-size: 0.75em;
   border-radius: 30px;
-  width: 180px; /* Ajusta el ancho del botón */
   background-color: #e69243;
-  padding: 15px 20px; /* Reduce el padding para evitar que el texto se rompa en dos líneas */
+  margin-right: 10%;
+  padding: 5%; /* Reduce el padding para evitar que el texto se rompa en dos líneas */
 }
 
 #botonrelated:hover {
@@ -941,23 +945,32 @@ margin-left: 42%
   margin: 0;
 }
 
-
+.bg-dark {
+  background-color: #212529 !important; /* Hacer el fondo completamente negro */
+}
 
 
 /*modo dia/noche*/
-
-
-.bg-dark {
-  background-color: #000000 !important; /* Hacer el fondo completamente negro */
-}
 
 .path{
 margin-left: 1em;
 }
 
 
-#relatedProducts,#productInfo{
+#relatedProducts{
   background-color: white;
+}
+
+div#productInfo{
+  display: flex;
+  margin-left: 8%;
+  padding: 2%;
+  width: 85%;
+}
+
+div.container{
+  display: flex;
+  width: 100%;
 }
 
 /* Estilo para el botón de modo noche */
@@ -975,7 +988,7 @@ margin-left: 1em;
 
 
 /* Estilo para el Modo Noche */
-body.night-mode, div.night-mode, .breadcrumb.night-mode, .modal-content.night-mode, .rating-container.night-mode,.container.night-mode, .footer.night-mode,#relatedProducts,.nav-link,.navbar-nav{
+body.night-mode, div.night-mode, .breadcrumb.night-mode, .modal-content.night-mode, .rating-container.night-mode,.container.night-mode, .footer.night-mode,#relatedProducts{
   background-color: #000000;
   color: white;
 }
