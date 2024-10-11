@@ -966,6 +966,7 @@ div#productInfo{
   margin-left: 8%;
   padding: 2%;
   width: 85%;
+ background-color: transparent;
 }
 
 div.container{
@@ -975,9 +976,10 @@ div.container{
 
 /* Estilo para el botón de modo noche */
 #toggle-button {
+  display: flex;
   padding: 0.2rem,0.2rem;
   margin-left: 2%;
-  font-size: 16px;
+  font-size: 1em;
   cursor:pointer;
   background-color: #f4f7f6;
   color: #070707;
@@ -994,7 +996,5 @@ body.night-mode, div.night-mode, .breadcrumb.night-mode, .modal-content.night-mo
 }
 
 
-#productInfo{
-  background-color: transparent;
-}
+
 
