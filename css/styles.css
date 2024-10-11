@@ -11,6 +11,14 @@
   font-weight: bold;
 }
 
+#sitio{
+  text-align: center;
+}
+
+.containerfooter{
+  text-align: center;
+}
+
 nav a {
   text-decoration: none;
 }
@@ -73,13 +81,18 @@ color: #000000;
   font-size: 38px;
 }
 
-footer {
-  padding-top: 3rem;
-  padding-bottom: 3rem;
+.containerfooter p,a{
+  display: block;
+  text-align: center;
 }
 
-footer p {
-  margin-bottom: .25rem;
+.float-end{
+text-align: center;
+}
+
+footer.text-muted{
+ padding: 1%;
+ background-color: white;
 }
 
 .site-header a {
@@ -535,6 +548,7 @@ transition: transform 0.3s ease-in-out;
 }
 
 .card-product{
+  display: flex;
   border-color: #ff9500;
   border-style: solid;
   border-radius: 15px;
@@ -542,8 +556,8 @@ transition: transform 0.3s ease-in-out;
   display: flex;
   flex-direction: column;
   justify-content: space-between;  /* Distributes space evenly between elements */
-  min-height: 450px;  /* Adjust this based on your tallest card */
-  padding: 10px; /* Si queremos la imagen entera se borra esto */
+  min-height: 100%;  /* Adjust this based on your tallest card */
+  padding: 5%; /* Si queremos la imagen entera se borra esto */
 }
 
 .card-body{
@@ -578,7 +592,7 @@ transition: transform 0.3s ease-in-out;
 }
 
 #btnfiltro2,#btnfiltro3,#btnfiltro4{
-  display:block;
+  display:flex;
   cursor: pointer;
   background-color: #f5f4f4;
   border-color: #ff9500;
