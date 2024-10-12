@@ -31,41 +31,58 @@ document.getElementById('emailPerfil').value = ultimoEmail.email;
 
 
 document.getElementById('btnGuardarCambios').addEventListener('click', function() {
-    // Extraer valores de los campos de entrada
-    const nombre = document.getElementById('nombre').value;
-    const segundoNombre = document.getElementById('segundoNombre').value;
-    const apellido = document.getElementById('apellido').value;
-    const segundoApellido = document.getElementById('segundoApellido').value;
-    const emailPerfil = document.getElementById('emailPerfil').value;
-    const numeroContacto = document.getElementById('numeroContacto').value;
+  // Extraer valores de los campos de entrada
+  const nombre = document.getElementById('nombre').value;
+  const segundoNombre = document.getElementById('segundoNombre').value;
+  const apellido = document.getElementById('apellido').value;
+  const segundoApellido = document.getElementById('segundoApellido').value;
+  const emailPerfil = document.getElementById('emailPerfil').value;
+  const contacto = document.getElementById('contacto').value;
+
+  // Crear un objeto con la nueva información del usuario
+  const nuevoUser = {
+    nombre: nombre,
+    segundoNombre: segundoNombre,
+    apellido: apellido,
+    segundoApellido: segundoApellido,
+    email: emailPerfil,  // Usar emailPerfil en vez de 'email'
+    contacto: contacto
+  };
+
+  // Obtener el array de usuarios del localStorage, si no existe, crear un array vacío
+  const losUsuarios = JSON.parse(localStorage.getItem('informacionUsuarios')) || [];
+
+  // Verificar si el usuario con el mismo email ya existe en el array
+  const usuarioExistente = losUsuarios.findIndex(usuario => usuario.email === emailPerfil); // usar losUsuarios y emailPerfil
+
+  if (usuarioExistente !== -1) {
+    // Si el usuario ya existe, actualizar su información
+    losUsuarios[usuarioExistente] = nuevoUser;
+  } else {
+    // Si el usuario no existe, agregar el nuevo usuario al array
+    losUsuarios.push(nuevoUser);
+  }
   
-    // Crear un objeto con la nueva información del usuario
-    const nuevoUser = {
-      nombre: nombre,
-      segundoNombre: segundoNombre,
-      apellido: apellido,
-      segundoApellido: segundoApellido,
-      email: emailPerfil,  // Usar emailPerfil en vez de 'email'
-      numeroContacto: numeroContacto
-    };
+  // Guardar el array actualizado en localStorage
+  localStorage.setItem('informacionUsuarios', JSON.stringify(losUsuarios));
+
+  // Mostrar mensaje de confirmación (opcional)
+  console.log('Información guardada o actualizada:', losUsuarios);  
+});
+
+document.addEventListener('DOMContentLoaded', function() {
+  // Cargar datos desde localStorage al cargar la página
+  const losUsuarios = JSON.parse(localStorage.getItem('informacionUsuarios')) || [];
   
-    // Obtener el array de usuarios del localStorage, si no existe, crear un array vacío
-    const losUsuarios = JSON.parse(localStorage.getItem('informacionUsuarios')) || [];
-  
-    // Verificar si el usuario con el mismo email ya existe en el array
-    const usuarioExistente = losUsuarios.findIndex(usuario => usuario.email === emailPerfil); // usar losUsuarios y emailPerfil
-  
-    if (usuarioExistente !== -1) {
-      // Si el usuario ya existe, actualizar su información
-      losUsuarios[usuarioExistente] = nuevoUser;
-    } else {
-      // Si el usuario no existe, agregar el nuevo usuario al array
-      losUsuarios.push(nuevoUser);
-    }
-  
-    // Guardar el array actualizado en localStorage
-    localStorage.setItem('informacionUsuarios', JSON.stringify(losUsuarios));
-  
-    // Mostrar mensaje de confirmación (opcional)
-    console.log('Información guardada o actualizada:', losUsuarios);
-  });
+  // Supongamos que quieres cargar los datos del primer usuario (puedes cambiar esta lógica si es necesario)
+  if (losUsuarios.length > 0) {
+      const usuarioActual = losUsuarios[losUsuarios.length -1]; // O puedes buscar el usuario actual usando alguna lógica específica
+      
+      document.getElementById('nombre').value = usuarioActual.nombre || '';
+      document.getElementById('segundoNombre').value = usuarioActual.segundoNombre || '';
+      document.getElementById('apellido').value = usuarioActual.apellido || '';
+      document.getElementById('segundoApellido').value = usuarioActual.segundoApellido || '';
+      document.getElementById('emailPerfil').value = usuarioActual.email || '';
+      document.getElementById('contacto').value = usuarioActual.contacto || '';
+  }
+});
