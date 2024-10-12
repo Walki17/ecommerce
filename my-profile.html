@@ -68,7 +68,7 @@
                   <div class="row mb-3">
                       <div class="col">
                           <label for="nombre" class="form-label">Nombre</label>
-                          <input type="text" class="form-control" id="nombre" placeholder="Nombre">
+                          <input type="text" class="form-control" id="nombre" placeholder="Nombre" required>
                       </div>
                       <div class="col">
                           <label for="segundoNombre" class="form-label">Segundo Nombre</label>
@@ -79,7 +79,7 @@
                   <div class="row mb-3">
                       <div class="col">
                           <label for="apellido" class="form-label">Apellido</label>
-                          <input type="text" class="form-control" id="apellido" placeholder="Apellido">
+                          <input type="text" class="form-control" id="apellido" placeholder="Apellido" required>
                       </div>
                       <div class="col">
                           <label for="segundoApellido" class="form-label">Segundo Apellido</label>
@@ -89,7 +89,7 @@
   
                   <div class="mb-3">
                       <label for="email" class="form-label">Email</label>
-                      <input type="email" class="form-control" id="email" placeholder="correo@ejemplo.com">
+                      <input type="email" class="form-control" id="emailPerfil" placeholder="correo@ejemplo.com">
                   </div>
   
                   <div class="mb-3">
@@ -99,7 +99,7 @@
   
                   <!-- Botones -->
                   <div class="d-flex justify-content-end">
-                      <button type="submit" class="btn btn-success me-2">Guardar cambios</button>
+                      <button type="submit" id="btnGuardarCambios" class="btn btn-success me-2">Guardar cambios</button>
                       <button type="button" class="btn btn-secondary">Cancelar</button>
                   </div>
               </form>
