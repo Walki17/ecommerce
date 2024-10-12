@@ -9,23 +9,6 @@
   <link href="css/bootstrap.min.css" rel="stylesheet">
   <link href="css/styles.css" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
-
-  <style>
-    .bd-placeholder-img {
-      font-size: 1.125rem;
-      text-anchor: middle;
-      -webkit-user-select: none;
-      -moz-user-select: none;
-      -ms-user-select: none;
-      user-select: none;
-    }
-
-    @media (min-width: 768px) {
-      .bd-placeholder-img-lg {
-        font-size: 3.5rem;
-      }
-    }
-  </style>
 </head>
 
 <body>
@@ -52,22 +35,24 @@
       </div>
     </div>
   </nav>
-  <main>
+  <main style="min-height: 78vh;">
     <div class="container mt-5">
-      <div class="row">
-          <!-- Imagen de perfil y botón -->
-          <div class="col-md-4 text-center">
-              <img src="img/4HNC37GE2JJJJLKGLNSWBJXKB4.jpg" alt="Imagen de perfil" id="profile-pic" class="rounded-circle mb-3" style="width: 150px; height: 150px;">
-              <input type="file" id="file-input" accept="image/*" style="display: none;">
-              <button id="change-pic" class="btn btn-primary">Modificar imagen</button>
-          </div>
+      <div class="d-flex align-items-start">
+        <!-- Imagen de perfil y botón -->
+        <div class="text-center me-4">
+          <img src="img/4HNC37GE2JJJJLKGLNSWBJXKB4.jpg" alt="Imagen de perfil" id="profile-pic" class="rounded-circle mb-3" style="width: 200px; height: 200px;">
+          <input type="file" id="file-input" accept="image/*" style="display: none;">
+          <button id="change-pic" class="btn btn-primary d-block mt-3">Modificar imagen</button>
+        </div>
   
-          <!-- Formulario -->
-        <div class="col-md-8">
+        <!-- Formulario -->
+        <div class="flex-grow-1">
           <form>
-            <div class="mb-3">
-              <label for="usuario" class="form-label">Usuario</label>
-              <input type="text" class="form-control" id="usuario" placeholder="Usuario" required>
+            <div class="mb-3 row">
+              <label for="usuario" class="form-label col-form-label col-2">Usuario</label>
+              <div class="col-10">
+                <input type="text" class="form-control" id="usuario" placeholder="Usuario" style="width: 25%;">
+              </div>
             </div>
             <div class="row mb-3">
               <div class="col">
@@ -75,42 +60,43 @@
                 <input type="text" class="form-control" id="nombre" placeholder="Nombre" required>
               </div>
               <div class="col">
-
-                          <label for="segundoNombre" class="form-label">Segundo Nombre</label>
-                          <input type="text" class="form-control" id="segundoNombre" placeholder="Segundo Nombre">
-                      </div>
-                  </div>
+                <label for="segundoNombre" class="form-label">Segundo Nombre</label>
+                <input type="text" class="form-control" id="segundoNombre" placeholder="Segundo Nombre">
+              </div>
+            </div>
   
-                  <div class="row mb-3">
-                      <div class="col">
-                          <label for="apellido" class="form-label">Apellido</label>
-                          <input type="text" class="form-control" id="apellido" placeholder="Apellido" required>
-                      </div>
-                      <div class="col">
-                          <label for="segundoApellido" class="form-label">Segundo Apellido</label>
-                          <input type="text" class="form-control" id="segundoApellido" placeholder="Segundo Apellido">
-                      </div>
-                  </div>
+            <div class="row mb-3">
+              <div class="col">
+                <label for="apellido" class="form-label">Apellido</label>
+                <input type="text" class="form-control" id="apellido" placeholder="Apellido" required>
+              </div>
+              <div class="col">
+                <label for="segundoApellido" class="form-label">Segundo Apellido</label>
+                <input type="text" class="form-control" id="segundoApellido" placeholder="Segundo Apellido">
+              </div>
+            </div>
   
-                  <div class="mb-3">
-                      <label for="email" class="form-label">Email</label>
-                      <input type="email" class="form-control" id="emailPerfil" placeholder="correo@ejemplo.com">
-                  </div>
+            <div class="d-flex mb-3">
+              <div class="me-3 flex-fill">
+                <label for="email" class="form-label">Email</label>
+                <input type="email" class="form-control" id="emailPerfil" placeholder="correo@ejemplo.com" readonly>
+              </div>
   
-                  <div class="mb-3">
-                      <label for="contacto" class="form-label">Número de Contacto</label>
-                      <input type="text" class="form-control" id="contacto" placeholder="Número de Contacto">
-                  </div>
+              <div class="flex-fill">
+                <label for="contacto" class="form-label">Número de Contacto</label>
+                <input type="text" class="form-control" id="contacto" placeholder="Número de Contacto">
+              </div>
+            </div>
   
-                  <!-- Botones -->
-                  <div class="d-flex justify-content-end">
-                      <button type="submit" id="btnGuardarCambios" class="btn btn-success me-2">Guardar cambios</button>
-                      <button type="button" class="btn btn-secondary">Cancelar</button>
-                  </div>
-              </form>
-          </div>
+            <!-- Botones -->
+            <div class="d-flex justify-content-end">
+              <button type="submit" id="btnGuardarCambios" class="btn btn-success me-2">Guardar cambios</button>
+              <button type="button" class="btn btn-secondary">Cancelar</button>
+            </div>
+          </form>
+        </div>
       </div>
-  </div>
+    </div>
   </main>
   <footer class="text-muted">
     <div class="container">
