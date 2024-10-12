@@ -229,7 +229,7 @@ document.getElementsByClassName("nav-item")[3].innerHTML=`
         });
 
     const nuevoComentario = {
-      user: ultimoUsuario.usuario || "Anónimo",
+      user: ultimoUsuario.email || "Anónimo",
       dateTime: fechaActual,
       score: ratingSeleccionado,
       description: comentario.value.trim()
