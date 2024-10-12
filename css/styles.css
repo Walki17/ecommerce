@@ -969,10 +969,6 @@ div#productInfo{
  background-color: transparent;
 }
 
-div.container{
-  display: flex;
-  width: 100%;
-}
 
 /* Estilo para el botón de modo noche */
 #toggle-button {
