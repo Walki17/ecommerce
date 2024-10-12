@@ -28,6 +28,7 @@ document.addEventListener('DOMContentLoaded', function() {
   document.getElementById('emailPerfil').value = ultimoEmail;
 
   document.getElementById('btnGuardarCambios').addEventListener('click', function() {
+      const usuario = document.getElementById('usuario').value;
       const nombre = document.getElementById('nombre').value;
       const segundoNombre = document.getElementById('segundoNombre').value;
       const apellido = document.getElementById('apellido').value;
@@ -36,6 +37,7 @@ document.addEventListener('DOMContentLoaded', function() {
       const contacto = document.getElementById('contacto').value;
 
       const nuevoUser = {
+          usuario: usuario,
           nombre: nombre,
           segundoNombre: segundoNombre,
           apellido: apellido,
@@ -66,6 +68,7 @@ document.addEventListener('DOMContentLoaded', function() {
       const usuarioActual = losUsuarios.find(usuario => usuario.email === ultimoEmail);
 
       if (usuarioActual) {
+          document.getElementById('usuario').value = usuarioActual.usuario || '';
           document.getElementById('nombre').value = usuarioActual.nombre || '';
           document.getElementById('segundoNombre').value = usuarioActual.segundoNombre || '';
           document.getElementById('apellido').value = usuarioActual.apellido || '';
