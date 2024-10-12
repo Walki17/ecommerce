@@ -22,8 +22,8 @@ document.addEventListener('DOMContentLoaded', function() {
   });
 
   const usuarios = JSON.parse(localStorage.getItem("usuarios"));
-const ultimoUsuario = usuarios[usuarios.length - 1];
-document.getElementsByClassName("nav-item")[3].innerHTML=`
+    const ultimoUsuario = usuarios[usuarios.length - 1];
+    document.getElementsByClassName("nav-item")[3].innerHTML=`
         <div class="dropdown" >
   <button class="btn dropdown-toggle d-flex justify-content-between align-items-center" type="button" data-bs-toggle="dropdown" aria-expanded="false" style="background-color: #212529; color: white;">
     <a class="nav-link">
