@@ -1,88 +1,77 @@
 document.addEventListener('DOMContentLoaded', function() {
-    const savedPic = localStorage.getItem('profilePic');
-    if (savedPic) {
-        document.getElementById('profile-pic').src = savedPic;
-    }
-
-
-document.getElementById('change-pic').addEventListener('click', function() {
-    document.getElementById('file-input').click();
-});
-
-document.getElementById('file-input').addEventListener('change', function(event) {
-    const file = event.target.files[0];
-    if (file) {
-        const reader = new FileReader();
-        reader.onload = function(e) {
-            const imageData = e.target.result;
-            document.getElementById('profile-pic').src = imageData;
-
-            localStorage.setItem('profilePic', imageData);
-        };
-        reader.readAsDataURL(file);
-    }
-});
-});
-
-
-const todosLosUsuarios = JSON.parse(localStorage.getItem('usuarios'));
-const ultimoEmail = todosLosUsuarios[todosLosUsuarios.length - 1];
-document.getElementById('emailPerfil').value = ultimoEmail.email;
-
-
-document.getElementById('btnGuardarCambios').addEventListener('click', function() {
-  // Extraer valores de los campos de entrada
-  const nombre = document.getElementById('nombre').value;
-  const segundoNombre = document.getElementById('segundoNombre').value;
-  const apellido = document.getElementById('apellido').value;
-  const segundoApellido = document.getElementById('segundoApellido').value;
-  const emailPerfil = document.getElementById('emailPerfil').value;
-  const contacto = document.getElementById('contacto').value;
-
-  // Crear un objeto con la nueva información del usuario
-  const nuevoUser = {
-    nombre: nombre,
-    segundoNombre: segundoNombre,
-    apellido: apellido,
-    segundoApellido: segundoApellido,
-    email: emailPerfil,  // Usar emailPerfil en vez de 'email'
-    contacto: contacto
-  };
-
-  // Obtener el array de usuarios del localStorage, si no existe, crear un array vacío
-  const losUsuarios = JSON.parse(localStorage.getItem('informacionUsuarios')) || [];
-
-  // Verificar si el usuario con el mismo email ya existe en el array
-  const usuarioExistente = losUsuarios.findIndex(usuario => usuario.email === emailPerfil); // usar losUsuarios y emailPerfil
-
-  if (usuarioExistente !== -1) {
-    // Si el usuario ya existe, actualizar su información
-    losUsuarios[usuarioExistente] = nuevoUser;
-  } else {
-    // Si el usuario no existe, agregar el nuevo usuario al array
-    losUsuarios.push(nuevoUser);
+  const savedPic = localStorage.getItem('profilePic');
+  if (savedPic) {
+      document.getElementById('profile-pic').src = savedPic;
   }
-  
-  // Guardar el array actualizado en localStorage
-  localStorage.setItem('informacionUsuarios', JSON.stringify(losUsuarios));
 
-  // Mostrar mensaje de confirmación (opcional)
-  console.log('Información guardada o actualizada:', losUsuarios);  
-});
+  document.getElementById('change-pic').addEventListener('click', function() {
+      document.getElementById('file-input').click();
+  });
 
-document.addEventListener('DOMContentLoaded', function() {
-  // Cargar datos desde localStorage al cargar la página
+  document.getElementById('file-input').addEventListener('change', function(event) {
+      const file = event.target.files[0];
+      if (file) {
+          const reader = new FileReader();
+          reader.onload = function(e) {
+              const imageData = e.target.result;
+              document.getElementById('profile-pic').src = imageData;
+              localStorage.setItem('profilePic', imageData);
+          };
+          reader.readAsDataURL(file);
+      }
+  });
+
+  // Obtener todos los usuarios almacenados
+  const todosLosUsuarios = JSON.parse(localStorage.getItem('usuarios')) || [];
+  const ultimoEmail = todosLosUsuarios[todosLosUsuarios.length - 1]?.email; // Tomar el último email guardado en el login
+
+  document.getElementById('emailPerfil').value = ultimoEmail;
+
+  document.getElementById('btnGuardarCambios').addEventListener('click', function() {
+      const nombre = document.getElementById('nombre').value;
+      const segundoNombre = document.getElementById('segundoNombre').value;
+      const apellido = document.getElementById('apellido').value;
+      const segundoApellido = document.getElementById('segundoApellido').value;
+      const emailPerfil = document.getElementById('emailPerfil').value;
+      const contacto = document.getElementById('contacto').value;
+
+      const nuevoUser = {
+          nombre: nombre,
+          segundoNombre: segundoNombre,
+          apellido: apellido,
+          segundoApellido: segundoApellido,
+          email: emailPerfil,
+          contacto: contacto
+      };
+
+      const losUsuarios = JSON.parse(localStorage.getItem('informacionUsuarios')) || [];
+      const usuarioExistente = losUsuarios.findIndex(usuario => usuario.email === emailPerfil);
+// Si el usuario ya existe, actualizar su información si no existe lo agrega en el array
+      if (usuarioExistente !== -1) {
+          losUsuarios[usuarioExistente] = nuevoUser;
+      } else {
+          losUsuarios.push(nuevoUser);
+      }
+
+      localStorage.setItem('informacionUsuarios', JSON.stringify(losUsuarios));
+
+      console.log('Información guardada o actualizada:', losUsuarios);
+  });
+
+  // Cargar los datos asociados al email del usuario logueado
   const losUsuarios = JSON.parse(localStorage.getItem('informacionUsuarios')) || [];
-  
-  // Supongamos que quieres cargar los datos del primer usuario (puedes cambiar esta lógica si es necesario)
-  if (losUsuarios.length > 0) {
-      const usuarioActual = losUsuarios[losUsuarios.length -1]; // O puedes buscar el usuario actual usando alguna lógica específica
-      
-      document.getElementById('nombre').value = usuarioActual.nombre || '';
-      document.getElementById('segundoNombre').value = usuarioActual.segundoNombre || '';
-      document.getElementById('apellido').value = usuarioActual.apellido || '';
-      document.getElementById('segundoApellido').value = usuarioActual.segundoApellido || '';
-      document.getElementById('emailPerfil').value = usuarioActual.email || '';
-      document.getElementById('contacto').value = usuarioActual.contacto || '';
+
+  if (losUsuarios.length > 0 && ultimoEmail) {
+      // Buscar el usuario con el email del login
+      const usuarioActual = losUsuarios.find(usuario => usuario.email === ultimoEmail);
+
+      if (usuarioActual) {
+          document.getElementById('nombre').value = usuarioActual.nombre || '';
+          document.getElementById('segundoNombre').value = usuarioActual.segundoNombre || '';
+          document.getElementById('apellido').value = usuarioActual.apellido || '';
+          document.getElementById('segundoApellido').value = usuarioActual.segundoApellido || '';
+          document.getElementById('emailPerfil').value = usuarioActual.email || '';
+          document.getElementById('contacto').value = usuarioActual.contacto || '';
+      }
   }
 });
