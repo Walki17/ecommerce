@@ -17,6 +17,7 @@
 
 .containerfooter{
   text-align: center;
+  padding: 1%;
 }
 
 nav a {
@@ -93,7 +94,7 @@ text-align: center;
 
 footer.text-muted{
   padding: 1%;
- background-color: white;
+ background-color: rgb(255, 255, 255);
 }
 
 .site-header a {
@@ -963,9 +964,6 @@ margin-left: 1em;
 
 div#productInfo{
   display: flex;
-  margin-left: 8%;
-  padding: 2%;
-  width: 85%;
  background-color: transparent;
 }
 
@@ -986,7 +984,7 @@ div#productInfo{
 
 
 /* Estilo para el Modo Noche */
-body.night-mode, div.night-mode, .breadcrumb.night-mode, .modal-content.night-mode, .rating-container.night-mode,.container.night-mode, .footer.night-mode,#relatedProducts{
+body.night-mode, div.night-mode, .breadcrumb.night-mode, .modal-content.night-mode, .rating-container.night-mode,.container.night-mode, .footer.night-mode,.navbar,#relatedProducts{
   background-color: #000000;
   color: white;
 }
