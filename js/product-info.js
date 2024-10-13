@@ -386,23 +386,7 @@ function showToast(message, type) {
 
 document.addEventListener('DOMContentLoaded', function() {
   // Seleccionamos el botón del modo noche
-  const toggleButton = document.getElementById('toggle-button');
   
-  // Comprobar el modo guardado en localStorage al cargar la página
-  const savedMode = localStorage.getItem('nightMode');
-  if (savedMode === 'enabled') {
-    enableNightMode();
-    toggleButton.textContent = 'Modo Día';
-  }
-
-  // Evento 'click' para cambiar entre los modos
-  toggleButton.addEventListener('click', function() {
-    if (document.body.classList.contains('night-mode')) {
-      disableNightMode();
-    } else {
-      enableNightMode();
-    }
-  });
 
   // Función para activar el modo nocturno
   function enableNightMode() {
@@ -441,5 +425,23 @@ document.addEventListener('DOMContentLoaded', function() {
     localStorage.setItem('nightMode', 'disabled');
     toggleButton.textContent = 'Modo Noche';
   }
+
+  const toggleButton = document.getElementById('toggle-button');
+  
+  // Comprobar el modo guardado en localStorage al cargar la página
+  const savedMode = localStorage.getItem('nightMode');
+  if (savedMode === 'enabled') {
+    enableNightMode();
+    toggleButton.textContent = 'Modo Día';
+  }
+
+  // Evento 'click' para cambiar entre los modos
+  toggleButton.addEventListener('click', function() {
+    if (document.body.classList.contains('night-mode')) {
+      disableNightMode();
+    } else {
+      enableNightMode();
+    }
+  });
 });
 

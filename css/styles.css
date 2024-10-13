@@ -13,11 +13,14 @@
 
 nav a {
   text-decoration: none;
+
+  
 }
 
-.nav-link {
-color: #000000;
+.nav-link{
+  color: white;
 }
+
 
 .bd-placeholder-img {
   font-size: 1.125rem;
@@ -868,9 +871,7 @@ margin-left: 42%
 /*modo dia/noche*/
 
 
-.bg-dark {
-  background-color: #000000 !important; /* Hacer el fondo completamente negro */
-}
+
 
 .path{
 margin-left: 1em;
@@ -890,8 +891,9 @@ div#productInfo{
 
 
 div#productInfo{
- background-color: transparent;
+  background-color: transparent;
 }
+
 
 
 
@@ -910,11 +912,10 @@ div#productInfo{
 
 
 /* Estilo para el Modo Noche */
-body.night-mode, div.night-mode, .breadcrumb.night-mode, .modal-content.night-mode, .rating-container.night-mode,.container.night-mode, .footer.night-mode,#relatedProducts,#productInfo,.nav-link,.navbar-nav,div#productInfo{
+body.night-mode, div.night-mode, .breadcrumb.night-mode, .modal-content.night-mode, .rating-container.night-mode,.container.night-mode, .footer.night-mode,#relatedProducts,#productInfo{
   background-color: #000000;
   color: white;
 }
-
 
 
 /* Responsive */
