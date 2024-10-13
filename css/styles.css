@@ -12,14 +12,13 @@
 }
 
 nav a {
-  text-decoration: none;
-
-  
+  text-decoration: none;  
 }
 
 .nav-link{
   color: white;
 }
+
 
 
 .bd-placeholder-img {
@@ -79,6 +78,7 @@ nav a {
 footer {
   padding-top: 3rem;
   padding-bottom: 3rem;
+  background-color: white;
 }
 
 footer p {
@@ -287,10 +287,7 @@ form .link {
 }
 
 .text-muted{
-  padding: 200px;
-  background-color: white;
-  padding-top: 3rem;
-  padding-bottom: 3rem;
+  background-color:  #212529;
 }
 
 
@@ -869,7 +866,9 @@ margin-left: 42%
 
 
 /*modo dia/noche*/
-
+.bg-dark {
+  background-color: #212529 !important;
+}
 
 
 
@@ -896,7 +895,6 @@ div#productInfo{
 
 
 
-
 /* Estilo para el botón de modo noche */
 #toggle-button {
   padding: 0.2rem,0.2rem;
@@ -912,7 +910,7 @@ div#productInfo{
 
 
 /* Estilo para el Modo Noche */
-body.night-mode, div.night-mode, .breadcrumb.night-mode, .modal-content.night-mode, .rating-container.night-mode,.container.night-mode, .footer.night-mode,#relatedProducts,#productInfo{
+body.night-mode, div.night-mode, .breadcrumb.night-mode, .modal-content.night-mode, .rating-container.night-mode,.container.night-mode, .footer.night-mode,#relatedProducts,#productInfo,.text-muted.night-mode,container .container.night-mode{
   background-color: #000000;
   color: white;
 }
@@ -961,12 +959,6 @@ button {
   font-size: 14px;
 }
 
-.text-muted{
-  grid-template-columns: repeat(1, 1fr);
-  padding: 3rem 2rem;
-  font-size: 11px;
-}
-}
 
 
 /* 768 x 1024 px */
