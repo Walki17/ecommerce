@@ -109,6 +109,7 @@ document.addEventListener('DOMContentLoaded', function() {
           document.getElementById('segundoApellido').value = usuarioActual.segundoApellido || '';
           document.getElementById('emailPerfil').value = usuarioActual.email || '';
           document.getElementById('contacto').value = usuarioActual.contacto || '';
+
       }
   }
 });
