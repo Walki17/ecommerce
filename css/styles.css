@@ -286,9 +286,8 @@ form .link {
 }
 
 .text-muted{
-  background-color:  #b3babd;
+  background-color:  #ffffff;
 }
-
 
 
 @keyframes shakeBack {
@@ -865,11 +864,6 @@ margin-left: 42%
 
 
 /*modo dia/noche*/
-.bg-dark {
-  background-color: #212529 !important;
-}
-
-
 
 .path{
 margin-left: 1em;
@@ -913,11 +907,19 @@ div#productInfo{
 
 
 /* Estilo para el Modo Noche */
-body.night-mode, div.night-mode, .breadcrumb.night-mode, .modal-content.night-mode, .rating-container.night-mode,.container.night-mode, .footer.night-mode,#relatedProducts,#productInfo,.text-muted.night-mode,.bg-dark{
+body.night-mode, div.night-mode, .breadcrumb.night-mode, .modal-content.night-mode, .rating-container.night-mode,.container.night-mode, .footer.night-mode,#relatedProducts,#productInfo,.text-muted.night-mode{
   background-color: #000000;
   color: white;
 }
 
+.night-mode .bg-dark {
+  background-color: #000000 !important; 
+  color: #fff !important; 
+}
+
+.night-mode .dropdown{
+  background-color: #000000 !important; 
+  color: #fff !important; 
 
 /* Responsive */
 
