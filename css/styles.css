@@ -228,10 +228,10 @@ body{
 }
 
 
-form{
+.login{
   display: flex;
-  flex-direction: column;
   text-align: center;
+  flex-direction: column;
   padding: 20px 20px;
 }
 
@@ -917,6 +917,41 @@ body.night-mode, div.night-mode, .breadcrumb.night-mode, .modal-content.night-mo
   color: #fff !important; 
 }
 
+/*Perfil*/
+
+#change-pic{
+ background-color: orange;
+ border-color: #666;
+ padding: 2%;
+}
+
+#profile-pic {
+  max-width: 200px;
+  width: 150%; 
+  height: auto;
+}
+
+
+.d-flex{
+  margin-top: 8%;
+}
+
+.row{
+margin-top: 1.5%;
+margin-bottom: 1.5%;
+margin: auto 0%;
+}
+
+form{
+  margin-left: 15%;
+}
+
+.custom-input {
+  width: 40%; 
+}
+
+
+
 /* Responsive */
 
 
@@ -969,7 +1004,4 @@ button {
 }
 }
 
-
 /* 320 x 568 px */
-
-@media (max-width: 767px) {}
