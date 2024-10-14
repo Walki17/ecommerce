@@ -438,25 +438,6 @@ form .link {
 }
 
 
-
-/* Hasta aca es el estilo de products-info */
-
-
-@media screen and (max-width: 768px){}
-
-@media screen and (max-width: 426px){}
-
-/* 768 x 1024 px */
-@media (min-width: 768px) and (max-width: 1024px) { }
-
-
-
-/* 320 x 568 px */
-
-@media (max-width: 767px) {}
-
-
-
 .card{
   border-width: 2px;
 }
@@ -915,7 +896,33 @@ body.night-mode, div.night-mode, .breadcrumb.night-mode, .modal-content.night-mo
   color: white;
 }
 
+#btnGuardarCambios{
+  background-color: #FF8C00;
+  color: #FFD580;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  cursor: pointer;
+  font-weight: bold;
 
+}
+
+#btnGuardarCambios:hover, #change-pic:hover{
+  background-color: #FFB347;
+}
+
+#change-pic{
+  background-color: #FFD580;
+  color: #FF8C00;
+  border: none;
+  border-radius: 5px;
+  padding: 6px 10px;
+  cursor: pointer;
+  font-weight: bold;
+  margin-left: 10px;
+}
+
+ 
 
 /* Responsive */
 
