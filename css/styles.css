@@ -907,7 +907,7 @@ div#productInfo{
 
 
 /* Estilo para el Modo Noche */
-body.night-mode, div.night-mode, .breadcrumb.night-mode, .modal-content.night-mode, .rating-container.night-mode,.container.night-mode, .footer.night-mode,#relatedProducts,#productInfo,.text-muted.night-mode{
+body.night-mode, div.night-mode, .breadcrumb.night-mode, .modal-content.night-mode, .rating-container.night-mode,.container.night-mode,.dropdown-toggle, .footer.night-mode,#relatedProducts,#productInfo,.text-muted.night-mode{
   background-color: #000000;
   color: white;
 }
@@ -916,10 +916,6 @@ body.night-mode, div.night-mode, .breadcrumb.night-mode, .modal-content.night-mo
   background-color: #000000 !important; 
   color: #fff !important; 
 }
-
-.night-mode .dropdown{
-  background-color: #000000 !important; 
-  color: #fff !important; 
 
 /* Responsive */
 
