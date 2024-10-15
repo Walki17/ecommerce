@@ -50,23 +50,29 @@
   <main class="pb-5 container">
     
     <h1 id="categoryTitle"></h1>
-
-     
-    <!-- <h1 id="subtituloautos">Autos</h1> -->
-    
-    
+    <div class="botonesParaFiltros">
     <input id="precio1" type="text" placeholder="Min.">
     <input id="precio2" type="text" placeholder="Max.">
-    <button id="btnfiltro" class=" buttonFilter " onclick="filtrado()"> Filtrar</button>
+    <button id="btnfiltro" class="buttonFilter" onclick="filtrado()">Filtrar</button>
     <br><br>
-  <div class="botonesParaFiltros">
-    <button id="btnfiltro2" class=" buttonFilter" onclick="filtrado2()"> $<i class="fas fa-sort-amount-up"></i> Ascendente</button>
+    <button id="btnfiltro2" class="buttonFilter" onclick="filtrado2()">
+        <span class="icono-texto">
+            $ <i class="fas fa-sort-amount-up"></i> <span>Ascendente</span>
+        </span>
+    </button>
     <br><br>
-
-    <button id="btnfiltro3" class=" buttonFilter" onclick="filtrado3()"> $<i class="fas fa-sort-amount-down mr-1"></i> Descendente</button>
+    <button id="btnfiltro3" class="buttonFilter" onclick="filtrado3()">
+        <span class="icono-texto">
+            $ <i class="fas fa-sort-amount-down"></i> <span>Descendente</span>
+        </span>
+    </button>
     <br><br>
-    <button id="btnfiltro4" class=" buttonFilter" onclick="filtrado4()"> <i class="fas fa-sort-amount-down mr-1"></i> Relevancia</button>  
-  </div>
+    <button id="btnfiltro4" class="buttonFilter" onclick="filtrado4()">
+        <span class="icono-texto">
+            $ <i class="fas fa-sort-amount-down"></i> <span>Relevancia</span>
+        </span>
+    </button>
+</div>
 
 
   <div id="autitos">
