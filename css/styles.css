@@ -1002,7 +1002,7 @@ button {
   }
 
   .stock{
-    width: 300px;
+    width: 270px;
     height: 150px;
   }
   
@@ -1066,6 +1066,15 @@ button {
 
   .col-md-4.button-container {
     margin-left: -30%;
+    width: 270px;
+  }
+
+  div.col-md-4{
+    margin: -3%;
+  }
+
+  div.cantidad-contenedor{
+    width: 200px;
   }
 
   .dropdown .nav-link{
@@ -1093,8 +1102,9 @@ button {
     width: 150px;
   }
 
-  div .stock{
- margin-right: 180%;
+  div.stock{
+ margin-right: 100%;
+ width: 350px;
   }
 
   .stock{
@@ -1115,6 +1125,13 @@ button {
     align-items: center;
   }
 
+  div.col-md-4{
+    margin: -3%;
+  }
+
+  div.cantidad-contenedor{
+    width: 300px;
+  }
 
 }
 
