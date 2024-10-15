@@ -907,11 +907,11 @@ body.night-mode, div.night-mode, .breadcrumb.night-mode, .modal-content.night-mo
 
 }
 
-#btnGuardarCambios:hover, #change-pic:hover{
+#btnGuardarCambios:hover, #change-pic:hover, #btnfiltro:hover {
   background-color: #FFB347;
 }
 
-#change-pic{
+#change-pic, #btnfiltro{
   background-color: #FFD580;
   color: #FF8C00;
   border: none;
@@ -921,8 +921,45 @@ body.night-mode, div.night-mode, .breadcrumb.night-mode, .modal-content.night-mo
   font-weight: bold;
   margin-left: 10px;
 }
+.botonesParaFiltros {
+  display: flex;
+  justify-content: flex-end;
+  align-items: end;
+  gap: 10px;
+  margin-left: 98%;
+  align-items: flex-end;
+  
+}
 
- 
+#precio1, #precio2{
+  width: 100px;
+  height: 35px;
+}
+
+.buttonFilter {
+  display: inline-flex;
+  align-items: center;
+  padding: 10px;
+  cursor: pointer;
+  height: 35px;
+}
+
+.icono-texto {
+  display: flex;
+  align-items: center;
+  margin-top: -10px;
+}
+
+.icono-texto i {
+  margin-right: 5px;
+  margin-top: 5px;
+}
+
+.icono-texto span {
+  margin-left: 5px;
+  margin-top: 5px;
+}
+
 
 /* Responsive */
 
@@ -937,7 +974,6 @@ body.night-mode, div.night-mode, .breadcrumb.night-mode, .modal-content.night-mo
   padding: 10px;
  }
 }
-
 
 
 
@@ -975,14 +1011,35 @@ button {
 }
 
 
-/* 768 x 1024 px */
+/* 768px x 1024 px */
 @media (min-width: 768px) and (max-width: 1024px){
 .card-product {
   width: 50%;
 }
+  #ratingID {
+    width: 1000px;
+    margin-left: 1%;
+  }
+
+  #agregar button{
+    margin-left: 45%;
+    margin-bottom: 15%;
+  }
+
+  .stock{
+    width: 450px;
+    height: 166px;
+  }
+
+  #opinion{
+    margin-left: 31.5%;
+  }
+
 }
 
-
-/* 320 x 568 px */
-
-@media (max-width: 767px) {}
+/* 768px x 1366px */
+@media (min-width: 768px) and (max-width:1366px){
+  
+  
+  
+}
