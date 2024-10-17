@@ -1238,7 +1238,7 @@ button {
 
   .album{
     max-width: 630px;
-    margin-left: 55px;
+    margin-left: 65px;
   }
 
   .text-muted{
@@ -1257,6 +1257,7 @@ button {
 
   .album{
     max-width: 300px;
+    margin-left: 12px;
   }
 
   .text-muted{ 
