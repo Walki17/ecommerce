@@ -56,7 +56,7 @@ nav a {
 }
 
 .jumbotron-heading {
-  font-weight: 300;
+  font-weight: 300px;
 }
 
 .jumbotron .container {
@@ -1126,4 +1126,42 @@ button {
     margin-left: 1%;
   }
   
+}
+
+/* responsive index */
+@media (min-width: 768px) and (max-width:1366px){
+  .jumbotron{
+    background-image: url('/img/cover_back.png');
+    background-size: contain; 
+    height: 25vh;
+  }
+
+  .album{
+    max-width: 630px;
+    margin-left: 55px;
+  }
+
+  .text-muted{
+    padding: 65px;
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+  }
+}
+
+@media (min-width: 320px) and (max-width: 767px){
+  .jumbotron{
+    height: 11vh;
+    background-image: url('/img/cover_back.png');
+    background-size: contain;
+  }
+
+  .album{
+    max-width: 300px;
+  }
+
+  .text-muted{ 
+    padding: 1px;
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+  }
 }
