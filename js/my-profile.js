@@ -1,17 +1,25 @@
-const disminuirBtn = document.querySelector('.disminuir');
-const aumentarBtn = document.querySelector('.aumentar');
-const cantidadInput = document.querySelector('.cantidad');
+document.addEventListener('DOMContentLoaded', function() {
+    const savedPic = localStorage.getItem('profilePic');
+    if (savedPic) {
+        document.getElementById('profile-pic').src = savedPic;
+    }
 
-disminuirBtn.addEventListener('click', () => {
-  let cantidad = parseInt(cantidadInput.value);
-  if (cantidad > 1) {
-    cantidad--;
-    cantidadInput.value = cantidad;
-  }
+
+document.getElementById('change-pic').addEventListener('click', function() {
+    document.getElementById('file-input').click();
 });
 
-aumentarBtn.addEventListener('click', () => {
-  let cantidad = parseInt(cantidadInput.value);
-  cantidad++;
-  cantidadInput.value = cantidad;
+document.getElementById('file-input').addEventListener('change', function(event) {
+    const file = event.target.files[0];
+    if (file) {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+            const imageData = e.target.result;
+            document.getElementById('profile-pic').src = imageData;
+
+            localStorage.setItem('profilePic', imageData);
+        };
+        reader.readAsDataURL(file);
+    }
+});
 });
