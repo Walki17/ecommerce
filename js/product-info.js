@@ -199,15 +199,15 @@ enviarBtn.onclick = function() {
     const fechaActual = new Date().toISOString();
 
     const usuarios = JSON.parse(localStorage.getItem("usuarios"));
-const ultimoUsuario = usuarios[usuarios.length - 1];
-document.getElementsByClassName("nav-item")[3].innerHTML=`
+    const ultimoUsuario = usuarios[usuarios.length - 1];
+    document.getElementsByClassName("nav-item")[3].innerHTML=`
         <div class="dropdown" >
   <button class="btn dropdown-toggle d-flex justify-content-between align-items-center" type="button" data-bs-toggle="dropdown" aria-expanded="false" style="background-color: #212529; color: white;">
     <a class="nav-link">
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-lines-fill" viewBox="0 0 16 16">
               <path d="M6 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6m-5 6s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1zM11 3.5a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 0 1h-4a.5.5 0 0 1-.5-.5m.5 2.5a.5.5 0 0 0 0 1h4a.5.5 0 0 0 0-1zm2 3a.5.5 0 0 0 0 1h2a.5.5 0 0 0 0-1zm0 3a.5.5 0 0 0 0 1h2a.5.5 0 0 0 0-1z"/>
             </svg>  
-        ${ultimoUsuario.usuario}</a>
+        ${ultimoUsuario.email}</a>
   </button>
   <ul class="dropdown-menu">
     <li><a class="dropdown-item" href="my-profile.html"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"  class="bi bi-person-fill" viewBox="0 0 16 16">
@@ -229,7 +229,7 @@ document.getElementsByClassName("nav-item")[3].innerHTML=`
         });
 
     const nuevoComentario = {
-      user: ultimoUsuario.usuario || "Anónimo",
+      user: ultimoUsuario.email || "Anónimo",
       dateTime: fechaActual,
       score: ratingSeleccionado,
       description: comentario.value.trim()
@@ -382,3 +382,66 @@ function showToast(message, type) {
     }, 500);
   }, 3000);
 }
+
+
+document.addEventListener('DOMContentLoaded', function() {
+  // Seleccionamos el botón del modo noche
+  
+
+  // Función para activar el modo nocturno
+  function enableNightMode() {
+    // Aplicar la clase 'night-mode' al cuerpo y a todos los elementos
+    document.body.classList.add('night-mode');
+
+    // Asegurarse de que los elementos existan antes de aplicar clases
+    const productInfo = document.getElementById('productInfo');
+    const relatedProducts = document.getElementById('relatedProducts');
+    
+    if (productInfo) productInfo.classList.add('night-mode');
+    if (relatedProducts) relatedProducts.classList.add('night-mode');
+    
+    document.querySelectorAll('div, .breadcrumb, .modal-content,.rating-container, .footer, button,.container-product mt-5,.dropdown,.container,.text-muted,.bg-dark').forEach(el => el.classList.add('night-mode'));
+
+    // Guardar el estado en localStorage
+    localStorage.setItem('nightMode', 'enabled');
+    toggleButton.textContent = 'Modo Día';
+  }
+
+  // Función para desactivar el modo nocturno
+  function disableNightMode() {
+    // Quitar la clase 'night-mode' del cuerpo y de todos los elementos
+    document.body.classList.remove('night-mode');
+
+    // Asegurarse de que los elementos existan antes de quitar clases
+    const productInfo = document.getElementById('productInfo');
+    const relatedProducts = document.getElementById('relatedProducts');
+
+    if (productInfo) productInfo.classList.remove('night-mode');
+    if (relatedProducts) relatedProducts.classList.remove('night-mode');
+
+    document.querySelectorAll('div, .breadcrumb, .modal-content, .rating-container, .footer, button,.container-product mt-5,.dropdown,.container,.text-muted,.bg-dark').forEach(el => el.classList.remove('night-mode'));
+
+    // Guardar el estado en localStorage
+    localStorage.setItem('nightMode', 'disabled');
+    toggleButton.textContent = 'Modo Noche';
+  }
+
+  const toggleButton = document.getElementById('toggle-button');
+  
+  // Comprobar el modo guardado en localStorage al cargar la página
+  const savedMode = localStorage.getItem('nightMode');
+  if (savedMode === 'enabled') {
+    enableNightMode();
+    toggleButton.textContent = 'Modo Día';
+  }
+
+  // Evento 'click' para cambiar entre los modos
+  toggleButton.addEventListener('click', function() {
+    if (document.body.classList.contains('night-mode')) {
+      disableNightMode();
+    } else {
+      enableNightMode();
+    }
+  });
+});
+
