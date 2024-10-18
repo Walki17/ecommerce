@@ -1152,12 +1152,6 @@ button {
   .product-card{
     width: 40%;
   }
-/* ARREGLAR ESTE */
-  #relProd{
-    display: flex;
-    align-items: center;
-  }
-
   div.col-md-4{
     margin: -3%;
   }
