@@ -56,7 +56,7 @@ nav a {
 }
 
 .jumbotron-heading {
-  font-weight: 300px;
+  font-weight: 300;
 }
 
 .jumbotron .container {
@@ -280,7 +280,7 @@ form .link {
   text-align: center;
 }
 
-.text-muted{
+.text-muted1{
   padding: 200px;
   background-color: white;
   padding-top: 3rem;
@@ -439,13 +439,6 @@ form .link {
   border-width: 2px;
 }
 
-#filtrocat{
-  margin-right: 75%;
-  border-radius: 5px;
-  border-color: #c2c0be;
-  border-style: double;
-  width: 260px;
-}
 
 .card-product{
   border-color: #ff9500;
@@ -526,9 +519,19 @@ color: #ff9500;
 #filtrocat{
   display: flex;
   margin-right: auto;
+  margin-left:5%;
+  width: 50%;
   position: relative;
   top: 2.3em;
+  border-radius: 5px;
+  border-color: #c2c0be;
+  border-style: double;
   }
+
+
+
+
+
 
  /*si movemos la barra para el nivel de los filtros se rompe al cambiar de resolucion*/
 
@@ -988,11 +991,7 @@ button {
   font-size: 14px;
 }
 
-.text-muted{
-  grid-template-columns: repeat(1, 1fr);
-  padding: 3rem 2rem;
-  font-size: 11px;
-}
+
 }
 
 /* 320px x 568*/
@@ -1152,6 +1151,12 @@ button {
   .product-card{
     width: 40%;
   }
+/* ARREGLAR ESTE */
+  #relProd{
+    display: flex;
+    align-items: center;
+  }
+
   div.col-md-4{
     margin: -3%;
   }
@@ -1222,46 +1227,55 @@ button {
   
 }
 
-/* responsive index */
-@media (min-width: 768px) and (max-width: 1279px){
-  .jumbotron{
-    background-image: url('/img/cover_back.png');
-    background-size: contain; 
-    height: 23vh;
-  }
+/* Categories responsive  */
 
-  .album{
-    margin-left: 55px;
-  }
+@media (min-width: 320px) and (max-width:568px){
 
-  .col-md-4{
-    flex: none;
-  }
+  #filtrocat{
+    display: flex;
+    margin-right: auto;
+    margin-left:5%;
+    width: 50%;
+    position: relative;
+    top: -1em;
+    border-radius: 5px;
+    border-color: #c2c0be;
+    border-style: double;
+    }
+    
+  #rangeFilterCountMin, #rangeFilterCountMax{
+    width: 50px;
+    height: 35px;
+    
+  } 
 
-  .text-muted{
-    padding: 50px;
+  .btn-group{
+    display: block;
   }
+  
+  #sortAsc, #sortDesc {
+    font-size:2em
+  }
+  
+}
+
+@media (min-width: 768px) and (max-width: 1024px){
+  #filtrocat{
+    display: flex;
+    margin-right: auto;
+    margin-left:5%;
+    width: 50%;
+    position: relative;
+    top: -1em;
+    border-radius: 5px;
+    border-color: #c2c0be;
+    border-style: double;
+    }
+
+   
+
 }
 
 
-@media (min-width: 320px) and (max-width: 767px){
-  .jumbotron{
-    height: 18vh;
-    background-image: url('/img/cover_back.png');
-    background-size: contain;
-  }
 
-  .album{
-    max-width: 290px;
-    margin-left: 20px;
-  }
 
-  .col-md-4{
-    padding-bottom: 1rem;
- }
-
-  .text-muted{ 
-    padding: 1px;
-    padding-top: 3rem;
-    padding-bottom: 3rem;
-  }
