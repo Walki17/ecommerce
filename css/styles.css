@@ -12,8 +12,15 @@
 }
 
 nav a {
-  text-decoration: none;
+  text-decoration: none;  
 }
+
+
+.nav-link{
+  color: rgb(255, 255, 255);
+}
+
+
 
 
 .bd-placeholder-img {
@@ -71,14 +78,14 @@ nav a {
 }
 
 footer {
-  padding-top: 3rem;
-  padding-bottom: 3rem;
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+  background-color: white;
 }
 
-footer p {
-  margin-bottom: .25rem;
+.navbarnavbar-expand{
+background-color: #0087F7;
 }
-
 .site-header a {
   color: white;
   transition: ease-in-out color .15s;
@@ -223,10 +230,10 @@ body{
 }
 
 
-form{
+.login{
   display: flex;
-  flex-direction: column;
   text-align: center;
+  flex-direction: column;
   padding: 20px 20px;
 }
 
@@ -280,13 +287,17 @@ form .link {
   text-align: center;
 }
 
+
 .text-muted1{
   padding: 200px;
   background-color: white;
   padding-top: 3rem;
   padding-bottom: 3rem;
-}
+  
+.text-muted{
+  background-color:  #ffffff;
 
+}
 
 
 @keyframes shakeBack {
@@ -447,16 +458,16 @@ form .link {
   background-color: white;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;  /* Distributes space evenly between elements */
-  min-height: 450px;  /* Adjust this based on your tallest card */
+  justify-content: space-between;  
+  min-height: 450px;  
   padding: 10px; /* Si queremos la imagen entera se borra esto */
 }
 
 .card-body{
-  flex-grow: 1;  /* Ensures the body grows to fill any remaining space */
+  flex-grow: 1;  
   display: flex;
   flex-direction: column;
-  justify-content: space-between;  /* Ensures even spacing inside the card */
+  justify-content: space-between;  
 }
 
 .card-img-product{
@@ -692,15 +703,15 @@ margin-left: 42%
 }
 
 .product-card {
-  width: 100%;  /* Use full width inside the col-md-4 class */
-  padding: 15px; /* Adjust padding to space around product cards */
-  text-align: center;  /* Center product content */
+  width: 100%; 
+  padding: 15px; 
+  text-align: center; 
 }
 
 .product-card img {
-  max-width: 100%;  /* Make sure the image scales correctly */
+  max-width: 100%;  
   height: auto;
-  margin-bottom: 10px; /* Spacing between image and product title */
+  margin-bottom: 10px; 
 }
 
 .product-card .product-body {
@@ -709,18 +720,18 @@ margin-left: 42%
 
 .carousel-item .row {
   display: flex;
-  justify-content: center; /* Ensure products are centered if fewer than 3 */
+  justify-content: center; 
 }
 
 .col-md-4 {
-  max-width: 30%;  /* Set fixed width for three items per row */
-  flex: 0 0 30%;   /* Flexbox property to ensure consistent width */
-  margin: 0 10px;  /* Add horizontal margins between products */
+  max-width: 30%;  
+  flex: 0 0 30%;   
+  margin: 0 10px;  
 }
 
 @media (max-width: 768px) {
   .col-md-4 {
-    max-width: 100%; /* On smaller screens, show one product per row */
+    max-width: 100%; 
     flex: 0 0 100%;
   }
 }
@@ -734,17 +745,17 @@ margin-left: 42%
 
 #botonrelated {
   display: flex;
-  justify-content: center; /* Centra el texto horizontalmente */
-  align-items: center; /* Centra el texto verticalmente */
+  justify-content: center; 
+  align-items: center;
   text-align: center;
   text-decoration: none;
   color: black;
   font-family: 'Font Voces', sans-serif;
   font-size: 0.75em;
   border-radius: 30px;
-  width: 180px; /* Ajusta el ancho del botón */
+  width: 180px; 
   background-color: #e69243;
-  padding: 15px 20px; /* Reduce el padding para evitar que el texto se rompa en dos líneas */
+  padding: 15px 20px; 
 }
 
 #botonrelated:hover {
@@ -864,6 +875,18 @@ div#productInfo{
 }
 
 
+
+div#productInfo{
+  background-color: transparent;
+}
+
+.nav-link:hover {
+  color: rgba(255, 255, 255, .55);
+}
+
+
+
+
 /* Estilo para el botón de modo noche */
 #toggle-button {
   padding: 0.2rem,0.2rem;
@@ -879,10 +902,15 @@ div#productInfo{
 
 
 /* Estilo para el Modo Noche */
+
 body.night-mode, div.night-mode, .breadcrumb.night-mode, .modal-content.night-mode, .rating-container.night-mode,.container.night-mode, .footer.night-mode,#relatedProducts{
+
+body.night-mode, div.night-mode, .breadcrumb.night-mode, .modal-content.night-mode, .rating-container.night-mode,.container.night-mode,.dropdown-toggle, .footer.night-mode,#relatedProducts,#productInfo,.text-muted.night-mode{
+
   background-color: #000000;
   color: white;
 }
+
 
 #btnGuardarCambios{
   background-color: #FF8C00;
@@ -948,6 +976,46 @@ body.night-mode, div.night-mode, .breadcrumb.night-mode, .modal-content.night-mo
   margin-top: 5px;
 }
 
+.night-mode .bg-dark {
+  background-color: #000000 !important; 
+  color: #fff !important; 
+}
+
+/*Perfil*/
+
+#change-pic{
+ background-color: orange;
+ border-color: #666;
+ padding: 2%;
+}
+
+#profile-pic {
+  max-width: 200px;
+  width: 150%; 
+  height: auto;
+}
+
+
+.d-flex{
+  margin-top: 8%;
+}
+
+.row{
+margin-top: 1.5%;
+margin-bottom: 1.5%;
+margin: auto 0%;
+}
+
+form{
+  margin-left: 15%;
+}
+
+.custom-input {
+  width: 70%; 
+}
+
+
+
 
 /* Responsive */
 
@@ -990,6 +1058,7 @@ form label{
 button {
   font-size: 14px;
 }
+
 
 
 }
@@ -1046,6 +1115,7 @@ button {
   font-size: large;
   margin-left: 3%;
 }
+
 
   #btncalificar, #botonrelated {
     font-size: medium;
@@ -1259,6 +1329,7 @@ button {
   
 }
 
+
 @media (min-width: 768px) and (max-width: 1024px){
   #filtrocat{
     display: flex;
@@ -1276,6 +1347,5 @@ button {
 
 }
 
-
-
+/* 320 x 568 px */
 
