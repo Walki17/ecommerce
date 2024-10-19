@@ -16,12 +16,10 @@ nav a {
 }
 
 
+
 .nav-link{
   color: rgb(255, 255, 255);
 }
-
-
-
 
 .bd-placeholder-img {
   font-size: 1.125rem;
@@ -63,7 +61,7 @@ nav a {
 }
 
 .jumbotron-heading {
-  font-weight: 300;
+  font-weight: 300px;
 }
 
 .jumbotron .container {
@@ -298,6 +296,7 @@ form .link {
   padding-bottom: 3rem;
 
 }
+
 
 
 @keyframes shakeBack {
@@ -877,6 +876,7 @@ div#productInfo{
 
 
 
+
 div#productInfo{
   background-color: transparent;
 }
@@ -884,9 +884,6 @@ div#productInfo{
 .nav-link:hover {
   color: rgba(255, 255, 255, .55);
 }
-
-
-
 
 /* Estilo para el botón de modo noche */
 #toggle-button {
@@ -904,6 +901,7 @@ div#productInfo{
 
 /* Estilo para el Modo Noche */
 
+
 body.night-mode, div.night-mode, .breadcrumb.night-mode, .modal-content.night-mode, .rating-container.night-mode,.container.night-mode,.dropdown-toggle, .footer.night-mode,#relatedProducts,#productInfo,.text-muted.night-mode{
 
 body.night-mode, div.night-mode, .breadcrumb.night-mode, .modal-content.night-mode, .rating-container.night-mode,.container.night-mode, .footer.night-mode,#relatedProducts{
@@ -912,6 +910,7 @@ body.night-mode, div.night-mode, .breadcrumb.night-mode, .modal-content.night-mo
   color: white;
 }
 
+// ver cambios desde aca
 
 .night-mode .bg-dark {
   background-color: #000000 !important; 
@@ -951,7 +950,9 @@ form{
   width: 70%; 
 }
 
-
+//hasta aca
+  
+  
 #btnGuardarCambios{
   background-color: #FF8C00;
   color: #FFD580;
@@ -1017,7 +1018,6 @@ form{
 }
 
 
-
 /* Responsive */
 
 
@@ -1061,6 +1061,11 @@ button {
 }
 
 
+.text-muted{
+  grid-template-columns: repeat(1, 1fr);
+  padding: 3rem 2rem;
+  font-size: 11px;
+}
 
 }
 
@@ -1116,7 +1121,6 @@ button {
   font-size: large;
   margin-left: 3%;
 }
-
 
   #btncalificar, #botonrelated {
     font-size: medium;
@@ -1222,11 +1226,6 @@ button {
   .product-card{
     width: 40%;
   }
-/* ARREGLAR ESTE */
-  #relProd{
-    display: flex;
-    align-items: center;
-  }
 
   div.col-md-4{
     margin: -3%;
@@ -1298,6 +1297,7 @@ button {
   
 }
 
+
 /* Categories responsive  */
 
 @media (min-width: 320px) and (max-width:568px){
@@ -1347,4 +1347,49 @@ button {
 
 }
 
+
+
+/* responsive index */
+@media (min-width: 768px) and (max-width: 1279px){
+  .jumbotron{
+    background-image: url('/img/cover_back.png');
+    background-size: contain; 
+    height: 23vh;
+  }
+
+  .album{
+    margin-left: 55px;
+  }
+
+  .col-md-4{
+    flex: none;
+  }
+
+  .text-muted{
+    padding: 50px;
+  }
+}
+
+
+@media (min-width: 320px) and (max-width: 767px){
+  .jumbotron{
+    height: 18vh;
+    background-image: url('/img/cover_back.png');
+    background-size: contain;
+  }
+
+  .album{
+    max-width: 290px;
+    margin-left: 20px;
+  }
+
+  .col-md-4{
+    padding-bottom: 1rem;
+ }
+
+  .text-muted{ 
+    padding: 1px;
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+  }
 
