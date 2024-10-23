@@ -993,13 +993,9 @@ body.night-mode, div.night-mode, .breadcrumb.night-mode, .modal-content.night-mo
 }
 
 form label input {
-  margin-bottom: 4px;
-  font-size: 14px;
+  font-size: 2px;
 }
 
-form label{
-  margin: 8px;
-}
 
 button {
   font-size: 14px;
@@ -1276,3 +1272,59 @@ button {
     padding-top: 3rem;
     padding-bottom: 3rem;
   }
+
+
+  /*responsive del perfil*/ 
+
+  /* Estilos generales */
+form {
+  max-width: 600px; /* Ancho máximo del formulario */
+  margin: auto; /* Centrar el formulario en su contenedor */
+}
+
+/* Media Queries */
+@media (max-width: 768px) {
+  .d-flex {
+      flex-direction: column; /* Cambia la dirección a columna en pantallas pequeñas */
+      align-items: center; /* Centra los elementos dentro del contenedor */
+  }
+
+  .form-label {
+      text-align: center; /* Centra las etiquetas en pantallas pequeñas */
+  }
+
+  .mb-2 {
+      width: 100%; /* Asegúrate de que el margen inferior tenga el ancho completo */
+  }
+
+  #profile-pic {
+      width: 150px; /* Tamaño reducido para la imagen de perfil */
+      height: 150px;
+      margin-bottom: 20px; /* Espacio debajo de la imagen */
+  }
+
+  .me-3 {
+      margin-right: 0; /* Elimina el margen derecho en pantallas pequeñas */
+  }
+
+  .flex-fill {
+      width: 100%; /* Asegura que los campos ocupen todo el ancho */
+  }
+
+  .col-10, .col-2 {
+      flex: 1 1 100%; /* Las columnas ocupan el 100% en pantallas pequeñas */
+  }
+}
+
+@media (max-width: 320px) {
+  /* Ajustes para teléfonos pequeños */
+  #profile-pic {
+      width: 120px; /* Tamaño aún más reducido para la imagen */
+      height: 120px;
+      align-items: center;
+  }
+
+  .btn {
+      width: 100%; /* Botones ocupan el ancho completo */
+  }
+}
