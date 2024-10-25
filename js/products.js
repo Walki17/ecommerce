@@ -69,6 +69,7 @@ function selectProduct(productId) {
 }
 
 
+
 function filtrado() {
   fetch(DATOS)
   .then(response => response.json()) 

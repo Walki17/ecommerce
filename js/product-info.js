@@ -444,5 +444,44 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 
+//testeo Raisa - agregar producto al localStorage al comprar
+
+function addToCart(productID) {
+
+  let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+  cart.push(productID);
+
+  localStorage.setItem("cart", JSON.stringify(cart));
+
+  showToast("Producto adicionado al carrito!");
+}
+
+fetch(PRODUCT_URL)
+    .then(response => response.json())
+    .then(product => {
 
 
+        const agregarButton = document.getElementById("comprar");
+        
+
+        agregarButton.addEventListener('click', () => {
+            const cantidad = parseInt(document.getElementById("campoContador").value);
+
+            const subtotal = product.cost * cantidad;
+
+            const productDetails = {
+                id: product.id,
+                name: product.name,
+                cost: product.cost,
+                currency: product.currency,
+                quantity: cantidad,
+                image: product.images[0], 
+                subtotal: subtotal 
+            };
+            addToCart(productDetails);
+        });
+    })
+    .catch(error => {
+        showToast('Error al obtener la información del producto: ' + error.message, "error");
+    });
