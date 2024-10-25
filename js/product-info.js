@@ -60,7 +60,7 @@ fetch(PRODUCT_URL)
                   <input type="number" id="campoContador" value="1" min="1" class="cantidad form-control d-inline w-25 mx-2">
                   <span class="aumentar">+</span>
                 </div>
-                <a href="cart.html" class="button" id="comprar" class="btn btn-warning mt-3"><strong>Comprar ahora</strong></a>
+                <a href="cart.html"  id="comprar" class="btn btn-warning mt-3"><strong>Comprar ahora</strong></a>
                 <button id="agregar" class="btn btn-light mt-3"><strong>Agregar al carrito</strong></button>
               </div>
             </div>
