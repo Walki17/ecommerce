@@ -50,8 +50,8 @@ fetch(PRODUCT_URL)
           <div class="col-md-6">
             <div class="informacion">
               <p>Nuevo | ${product.soldCount} Vendidos</p>
-              <h2>${product.name}</h2>
-              <h2>${product.currency} ${new Intl.NumberFormat('es-ES').format(product.cost)}</h2>
+              <h2 id="producto1">${product.name}</h2>
+              <h2 id="precio-producto">${product.currency} ${new Intl.NumberFormat('es-ES').format(product.cost)}</h2>
               <div class="stock">
                 <h5>Stock disponible</h5>
                 <div class="cantidad-contenedor">
@@ -60,7 +60,7 @@ fetch(PRODUCT_URL)
                   <input type="number" id="campoContador" value="1" min="1" class="cantidad form-control d-inline w-25 mx-2">
                   <span class="aumentar">+</span>
                 </div>
-                <button id="comprar" class="btn btn-warning mt-3"><strong>Comprar ahora</strong></button>
+                <a href="cart.html" class="button" id="comprar" class="btn btn-warning mt-3"><strong>Comprar ahora</strong></a>
                 <button id="agregar" class="btn btn-light mt-3"><strong>Agregar al carrito</strong></button>
               </div>
             </div>
@@ -442,4 +442,7 @@ document.addEventListener('DOMContentLoaded', function() {
     toggleButton.textContent = 'Modo Noche';
   }
 });
+
+
+
 

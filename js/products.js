@@ -304,4 +304,3 @@ const usuarios = JSON.parse(localStorage.getItem("usuarios"));
           localStorage.removeItem('usuarios');
           window.location = "login.html"
         });
-
