@@ -41,12 +41,24 @@
         </div>
         <div class="col-md-4" id="cart-summary">
           <div class="summary-card">
-          <h5>Resumen</h5><hr/>
-          <p>Subtotal: <span class="float-end" id="subtotal">USD 0</span></p>
-          <p><strong>Total:</strong> <span class="float-end"><strong><span id="total">USD 0</strong></span></p>
-          <button id="checkout-button" class="btn btn-warning btn-block">Pagar</button>
+              <h5>Resumen</h5>
+              <hr/>
+              <div id="subtotales-container">
+                  <p>Subtotal:</p>
+                  <div id="subtotal"></div>
+              </div>
+              <hr/>
+              <div class="mb-3">
+                  <label for="currencySelect" class="form-label">Seleccione moneda de pago:</label>
+                  <select class="form-select-sm" id="currencySelect">
+                      <option value="USD">USD</option>
+                      <option value="UYU">UYU</option>
+                  </select>
+              </div>
+              <p><strong>Total a pagar:</strong> <span class="float-end"><strong><span id="total">USD 0</span></strong></span></p>
+              <button id="checkout-button" class="btn btn-warning btn-block">Pagar</button>
+          </div>
       </div>
-  </div>
     <div id="empty-cart-message" class="alert alert-warning text-center" style="display: none;">
         No hay ningún producto en el carrito.
     </div>

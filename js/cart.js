@@ -1,3 +1,6 @@
+let cartData = [];
+let CarritoVacio;
+
 const usuarios = JSON.parse(localStorage.getItem("usuarios"));
 const ultimoUsuario = usuarios[usuarios.length - 1];
 document.getElementsByClassName("nav-item")[3].innerHTML = `
@@ -39,111 +42,188 @@ document.getElementById('btnCerrarSesion').addEventListener('click', function() 
     window.location = "login.html";
 });
 
-document.addEventListener("DOMContentLoaded", () => {
+function MostrarCarrito(items) {
     const cartContainer = document.getElementById("cart-items");
-    const CarritoVacio = document.getElementById("empty-cart-message");
-    const SubtotalProd = document.getElementById("subtotal");
-    const TotalProd = document.getElementById("total");
-
-    let cartData = JSON.parse(localStorage.getItem("cart")) || [];
-
-    if (cartData.length === 0) {
-        CarritoVacio.style.display = "block";
-        document.getElementById("cart-summary").style.display = "none";
-    } else {
-        CarritoVacio.style.display = "none";
-        document.getElementById("cart-summary").style.display = "block";
-        MostrarCarrito(cartData);
-        ActualizarCarrito(cartData);
+    
+    if (items.length === 0) {
+        cartContainer.innerHTML = '';
+        return;
     }
 
-    function MostrarCarrito(items) {
-        cartContainer.innerHTML = "";
-        items.forEach(item => {
-            const itemElement = document.createElement("div");
-            itemElement.classList.add("card", "mb-3", "TarjetaCarrito");
-
-           itemElement.innerHTML = `
-    <div class="container mt-4">
-   <div class="row">
-    <div class="col-md-8">
-     <div class="custom-container">
-      <div class="row align-items-center">
-       <div class="col-md-6">
-        <i class="fas fa-shopping-cart"></i> 
-                        Mi carrito (${item.quantity} Item${item.quantity > 1 ? 's' : ''})
-                    </div>
-                    <div class="col-md-2"><strong>Cantidad</strong></div>
-                    <div class="col-md-2"><strong>Moneda</strong></div>
-                    <div class="col-md-2"><strong>Costo</strong></div>
-                </div>
-                <hr/>
-                <div class="row align-items-center">
-                    <div class="col-md-6">
-                        <p>${item.name}</p>
-                        <img alt="${item.name}" class="img-fluid" height="150" src="${item.image}" width="200"/>
-                    </div>
-                    <div class="col-md-2">
-                        <div class="input-group">
-                            <button class="btn btn-outline-secondary" type="button">+</button>
-                            <input class="form-control text-center" type="text" value="${item.quantity}" readonly/>
-                            <button class="btn btn-outline-secondary" type="button">-</button>
+    cartContainer.innerHTML = `
+        <div class="card mb-3 TarjetaCarrito">
+            <div class="container mt-4">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="custom-container">
+                            <div class="row align-items-center">
+                                <div class="col-md-6">
+                                    <i class="fas fa-shopping-cart"></i> 
+                                    Mi carrito (${items.length} Item${items.length > 1 ? 's' : ''})
+                                </div>
+                                <div class="col-md-2"><strong>Cantidad</strong></div>
+                                <div class="col-md-2"><strong>Moneda</strong></div>
+                                <div class="col-md-2"><strong>Costo</strong></div>
+                            </div>
+                            <hr/>
+                            <div id="items-container">
+                            </div>
                         </div>
-                    </div>
-                    <div class="col-md-2">
-                        <p>${item.currency}</p>
-                    </div>
-                    <div class="col-md-2">
-                        <p>${item.cost}</p>
-                    </div>
-                </div>
-                <div class="row mt-3">
-                    <div class="col-md-6">
-                        <button class="btn btn-warning delete-btn" data-id="${item.id}">
-                            <i class="fas fa-trash-alt"></i> Remover
-                        </button>
-                        <button class="btn btn-warning">
-                            <i class="fas fa-heart"></i> Guardar
-                        </button>
                     </div>
                 </div>
             </div>
+        </div>`;
+
+    const itemsContainer = document.getElementById("items-container");
+    
+    items.forEach((item, index) => {
+        const itemElement = document.createElement("div");
+        itemElement.classList.add("row", "align-items-center", "mb-3");
+        itemElement.setAttribute('data-index', index);
+            
+        itemElement.innerHTML = `
+        <div class="col-md-6">
+            <p>${item.name}</p>
+            <img alt="${item.name}" class="img-fluid" height="150" src="${item.image}" width="200"/>
         </div>
-    </div>
-</div>
-`;
+        <div class="col-md-2">
+            <div class="input-group">
+                <button class="btn btn-outline-secondary btn-sm" type="button">+</button>
+                <input class="form-control form-control-sm text-center" type="text" value="${item.quantity}" readonly/>
+                <button class="btn btn-outline-secondary btn-sm" type="button">-</button>
+            </div>
+        </div>
+        <div class="col-md-2">
+            <p>${item.currency}</p>
+        </div>
+        <div class="col-md-2">
+            <p>${new Intl.NumberFormat('de-DE').format(item.cost)}</p>
+        </div>
+        <div class="col-12 mt-2">
+            <button class="btn btn-warning delete-btn" onclick="EliminarDelCarrito(${index})">
+                <i class="fas fa-trash-alt"></i> Remover
+            </button>
+            <button class="btn btn-warning">
+                <i class="fas fa-heart"></i> Guardar
+            </button>
+        </div>
+        <hr class="mt-3"/>
+    `;
 
-cartContainer.appendChild(itemElement);
-
-        });
-
-        document.querySelectorAll(".delete-btn").forEach(button => {
-            button.addEventListener("click", EliminarDelCarrito);
-        });
-    }
-
-    function ActualizarCarrito(items) {
-        const subtotal = items.reduce((sum, item) => sum + item.cost * item.quantity, 0);
-        SubtotalProd.textContent = `${items[0].currency} ${subtotal.toFixed(2)}`;
-        TotalProd.textContent = `${items[0].currency} ${subtotal.toFixed(2)}`;
-    }
-
-    function EliminarDelCarrito(event) {
-        const itemId = event.target.getAttribute("data-id");
-        console.log("Deleting item with ID:", itemId);
-
-        cartData = cartData.filter(item => String(item.id) !== String(itemId));
-
-        localStorage.setItem("cart", JSON.stringify(cartData));
-
-        MostrarCarrito(cartData);
-        ActualizarCarrito(cartData);
-
-        if (cartData.length === 0) {
-            CarritoVacio.style.display = "block";
-            document.getElementById("cart-summary").style.display = "none";
-        }
-    }
-
-    MostrarCarrito(cartData);
+    itemsContainer.insertBefore(itemElement, itemsContainer.firstChild);
 });
+}
+
+function ActualizarCarrito(items) {
+const SubtotalProd = document.getElementById("subtotal");
+const TotalProd = document.getElementById("total");
+
+if (items.length === 0) {
+    SubtotalProd.textContent = "USD 0";
+    TotalProd.textContent = "USD 0";
+    return;
+}
+
+const subtotal = items.reduce((sum, item) => sum + item.cost * item.quantity, 0);
+SubtotalProd.textContent = `${monedaSeleccionada} ${new Intl.NumberFormat('es-ES', {
+    minimumFractionDigits: 2,
+    maximumFractionDigits: 2
+}).format(subtotal)}`;
+TotalProd.textContent = `${monedaSeleccionada} ${new Intl.NumberFormat('es-ES', {
+    minimumFractionDigits: 2,
+    maximumFractionDigits: 2
+}).format(subtotal)}`;
+}
+
+function EliminarDelCarrito(index) {
+cartData.splice(index, 1);
+localStorage.setItem("cart", JSON.stringify(cartData));
+
+if (cartData.length === 0) {
+    CarritoVacio.style.display = "block";
+    document.getElementById("cart-summary").style.display = "none";
+    ActualizarCarrito([]);
+    MostrarCarrito([]); // Esto limpiará la tarjeta
+} else {
+    MostrarCarrito(cartData);
+    ActualizarCarrito(cartData);
+}
+}
+
+// Evento DOMContentLoaded
+document.addEventListener("DOMContentLoaded", () => {
+const cartContainer = document.getElementById("cart-items");
+CarritoVacio = document.getElementById("empty-cart-message");
+const SubtotalProd = document.getElementById("subtotal");
+const TotalProd = document.getElementById("total");
+
+cartData = JSON.parse(localStorage.getItem("cart")) || [];
+
+if (cartData.length === 0) {
+    CarritoVacio.style.display = "block";
+    document.getElementById("cart-summary").style.display = "none";
+} else {
+    CarritoVacio.style.display = "none";
+    document.getElementById("cart-summary").style.display = "block";
+    MostrarCarrito(cartData);
+    ActualizarCarrito(cartData);
+}
+});
+
+function convertirUSDaUYU(monto) {
+    const tipoCambio = 40;
+    return monto * tipoCambio;
+}
+
+function convertirUYUaUSD(monto) {
+    const tipoCambio = 40;
+    return monto / tipoCambio;
+}
+
+function ActualizarCarrito(items) {
+    const SubtotalProd = document.getElementById("subtotal");
+    const TotalProd = document.getElementById("total");
+    const currencySelect = document.getElementById("currencySelect");
+
+    if (items.length === 0) {
+        SubtotalProd.textContent = "USD 0";
+        TotalProd.textContent = "USD 0";
+        return;
+    }
+
+    function calcularTotales(monedaSeleccionada) {
+        let subtotal = 0;
+
+        items.forEach(item => {
+            const cantidad = item.quantity;
+            const costo = item.cost;
+
+            if (item.currency === monedaSeleccionada) {
+                // Si la moneda del item coincide con la seleccionada
+                subtotal += costo * cantidad;
+            } else if (item.currency === 'USD' && monedaSeleccionada === 'UYU') {
+                // Convertir de USD a UYU
+                subtotal += convertirUSDaUYU(costo * cantidad);
+            } else if (item.currency === 'UYU' && monedaSeleccionada === 'USD') {
+                // Convertir de UYU a USD
+                subtotal += convertirUYUaUSD(costo * cantidad);
+            }
+        });
+
+        return subtotal;
+    }
+
+    function actualizarPrecios() {
+        const monedaSeleccionada = currencySelect.value;
+        const subtotal = calcularTotales(monedaSeleccionada);
+        
+        SubtotalProd.textContent = `${monedaSeleccionada} ${new Intl.NumberFormat('es-ES').format(subtotal.toFixed(2))}`;
+        TotalProd.textContent = `${monedaSeleccionada} ${new Intl.NumberFormat('es-ES').format(subtotal.toFixed(2))}`;
+    }
+
+    // Actualizar precios inicialmente
+    actualizarPrecios();
+
+    // Agregar evento para cuando cambie la moneda seleccionada
+    currencySelect.addEventListener('change', actualizarPrecios);
+}
