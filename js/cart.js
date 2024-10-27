@@ -1,6 +1,3 @@
-let cartData = [];
-let CarritoVacio;
-
 const usuarios = JSON.parse(localStorage.getItem("usuarios"));
 const ultimoUsuario = usuarios[usuarios.length - 1];
 document.getElementsByClassName("nav-item")[3].innerHTML = `
@@ -42,6 +39,8 @@ document.getElementById('btnCerrarSesion').addEventListener('click', function() 
     window.location = "login.html";
 });
 
+let cartData = [];
+let CarritoVacio;
 function MostrarCarrito(items) {
     const cartContainer = document.getElementById("cart-items");
     
@@ -88,16 +87,16 @@ function MostrarCarrito(items) {
         </div>
         <div class="col-md-2">
             <div class="input-group">
-                <button class="btn btn-outline-secondary btn-sm" type="button">+</button>
-                <input class="form-control form-control-sm text-center" type="text" value="${item.quantity}" readonly/>
-                <button class="btn btn-outline-secondary btn-sm" type="button">-</button>
+                <button class="btn btn-outline-secondary btn-sm increase-btn" type="button">+</button>
+                <input class="form-control form-control-sm text-center quantity-input" type="text" value="${item.quantity}" readonly/>
+                <button class="btn btn-outline-secondary btn-sm decrease-btn" type="button">-</button>
             </div>
         </div>
         <div class="col-md-2">
             <p>${item.currency}</p>
         </div>
         <div class="col-md-2">
-            <p>${new Intl.NumberFormat('de-DE').format(item.cost)}</p>
+             <p class="item-cost">${new Intl.NumberFormat('de-DE').format(Number(item.cost) * Number(item.quantity))}</p>
         </div>
         <div class="col-12 mt-2">
             <button class="btn btn-warning delete-btn" onclick="EliminarDelCarrito(${index})">
@@ -108,54 +107,60 @@ function MostrarCarrito(items) {
             </button>
         </div>
         <hr class="mt-3"/>
-    `;
+        `;
 
-    itemsContainer.insertBefore(itemElement, itemsContainer.firstChild);
-});
-}
+        itemsContainer.insertBefore(itemElement, itemsContainer.firstChild);
 
-function ActualizarCarrito(items) {
-const SubtotalProd = document.getElementById("subtotal");
-const TotalProd = document.getElementById("total");
+        const increaseBtn = itemElement.querySelector('.increase-btn');
+        const decreaseBtn = itemElement.querySelector('.decrease-btn');
+        const quantityInput = itemElement.querySelector('.quantity-input');
+        const itemCost = itemElement.querySelector('.item-cost');
 
-if (items.length === 0) {
-    SubtotalProd.textContent = "USD 0";
-    TotalProd.textContent = "USD 0";
-    return;
-}
+        increaseBtn.addEventListener('click', () => {
+            let currentQuantity = parseInt(quantityInput.value);
+            currentQuantity++;
+            quantityInput.value = currentQuantity;
+            cartData[index].quantity = currentQuantity;
+            
+            itemCost.textContent = new Intl.NumberFormat('de-DE').format(Number(item.cost) * currentQuantity);
+            
+            localStorage.setItem("cart", JSON.stringify(cartData));
+            ActualizarCarrito(cartData);
+        });
 
-const subtotal = items.reduce((sum, item) => sum + item.cost * item.quantity, 0);
-SubtotalProd.textContent = `${monedaSeleccionada} ${new Intl.NumberFormat('es-ES', {
-    minimumFractionDigits: 2,
-    maximumFractionDigits: 2
-}).format(subtotal)}`;
-TotalProd.textContent = `${monedaSeleccionada} ${new Intl.NumberFormat('es-ES', {
-    minimumFractionDigits: 2,
-    maximumFractionDigits: 2
-}).format(subtotal)}`;
+        decreaseBtn.addEventListener('click', () => {
+            let currentQuantity = parseInt(quantityInput.value);
+            if (currentQuantity > 1) {
+                currentQuantity--;
+                quantityInput.value = currentQuantity;
+                cartData[index].quantity = currentQuantity;
+                
+                itemCost.textContent = new Intl.NumberFormat('de-DE').format(Number(item.cost) * currentQuantity);
+                
+                localStorage.setItem("cart", JSON.stringify(cartData));
+                ActualizarCarrito(cartData);
+            }
+        });
+    });
 }
 
 function EliminarDelCarrito(index) {
-cartData.splice(index, 1);
-localStorage.setItem("cart", JSON.stringify(cartData));
+    cartData.splice(index, 1);
+    localStorage.setItem("cart", JSON.stringify(cartData));
 
-if (cartData.length === 0) {
-    CarritoVacio.style.display = "block";
-    document.getElementById("cart-summary").style.display = "none";
-    ActualizarCarrito([]);
-    MostrarCarrito([]); // Esto limpiará la tarjeta
-} else {
-    MostrarCarrito(cartData);
-    ActualizarCarrito(cartData);
-}
+    if (cartData.length === 0) {
+        CarritoVacio.style.display = "block";
+        document.getElementById("cart-summary").style.display = "none";
+        MostrarCarrito([]); 
+        ActualizarCarrito([]);
+    } else {
+        MostrarCarrito(cartData);
+        ActualizarCarrito(cartData);
+    }
 }
 
-// Evento DOMContentLoaded
 document.addEventListener("DOMContentLoaded", () => {
-const cartContainer = document.getElementById("cart-items");
 CarritoVacio = document.getElementById("empty-cart-message");
-const SubtotalProd = document.getElementById("subtotal");
-const TotalProd = document.getElementById("total");
 
 cartData = JSON.parse(localStorage.getItem("cart")) || [];
 
@@ -170,15 +175,132 @@ if (cartData.length === 0) {
 }
 });
 
+let tipoCambioGlobal = 40; 
+
+// Función para obtener el tipo de cambio del BCU
+async function obtenerTipoCambioBCU() {
+    const fechaActual = new Date();
+    const fechaAnterior = new Date(fechaActual);
+    fechaAnterior.setDate(fechaActual.getDate() - 2);
+
+    // Formato de fecha
+    const fechaHasta = fechaActual.toISOString().split('T')[0];
+    const fechaDesde = fechaAnterior.toISOString().split('T')[0];
+
+    const xmlBody = `<?xml version="1.0" encoding="UTF-8"?>
+        <soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:cot="Cotiza">
+            <soapenv:Header />
+            <soapenv:Body>
+                <cot:wsbcucotizaciones.Execute>
+                    <cot:Entrada>
+                        <cot:Moneda>
+                            <cot:item>2222</cot:item>
+                        </cot:Moneda>
+                        <cot:FechaDesde>${fechaDesde}</cot:FechaDesde>
+                        <cot:FechaHasta>${fechaHasta}</cot:FechaHasta>
+                        <cot:Grupo>0</cot:Grupo>
+                    </cot:Entrada>
+                </cot:wsbcucotizaciones.Execute>
+            </soapenv:Body>
+        </soapenv:Envelope>`;
+
+    try {
+        const response = await fetch('https://cotizaciones.bcu.gub.uy/wscotizaciones/servlet/awsbcucotizaciones', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'text/xml;charset=UTF-8',
+                'SOAPAction': ''
+            },
+            body: xmlBody
+        });
+
+        // Verifica si la respuesta es exitosa
+        if (!response.ok) {
+            console.error('Error en la respuesta del servidor:', response.statusText);
+            return null; // Retorna null si hay un error en la respuesta
+        }
+
+        // Obtiene el texto de la respuesta
+        const data = await response.text();
+        console.log("Respuesta del BCU:", data); // Imprimir la respuesta
+
+        const parser = new DOMParser();
+        const xmlDoc = parser.parseFromString(data, "text/xml");
+
+        // Busca el elemento TCC en la respuesta
+        const tccElements = xmlDoc.getElementsByTagName("TCC");
+        if (tccElements.length > 0) {
+            return parseFloat(tccElements[0].textContent);
+        } else {
+            console.error('No se encontró el elemento TCC en la respuesta.');
+            return null;
+        }
+    } catch (error) {
+        console.error('Error al obtener cotización del BCU:', error);
+        return null; // Retornar null en caso de error
+    }
+}
+
+// Ejemplo de uso
+async function inicializarTipoCambio() {
+    const tipoCambio = await obtenerTipoCambioBCU();
+    if (tipoCambio !== null) {
+        console.log("Tipo de cambio obtenido:", tipoCambio);
+    } else {
+        console.log("No se pudo obtener el tipo de cambio, usando valor por defecto.");
+    }
+}
+
+// Llamar a la función cuando el documento esté listo
+document.addEventListener('DOMContentLoaded', () => {
+    inicializarTipoCambio();
+});
+
+// Función para inicializar el tipo de cambio
+async function inicializarTipoCambio() {
+    const tipoCambioGuardado = localStorage.getItem('tipoCambio');
+    
+    if (tipoCambioGuardado) {
+        const datos = JSON.parse(tipoCambioGuardado);
+        const ahora = new Date().getTime();
+        
+        // Si el tipo de cambio guardado tiene menos de 1 hora, lo usamos
+        if (ahora - datos.timestamp < 3600000) {
+            tipoCambioGlobal = datos.valor;
+            return;
+        }
+    }
+
+    // Consultamos al BCU
+    const nuevoTipoCambio = await obtenerTipoCambioBCU();
+    
+    if (nuevoTipoCambio !== null) {
+        tipoCambioGlobal = nuevoTipoCambio;
+    } else {
+        console.warn('Usando tipo de cambio por defecto:', 40);
+    }
+    
+    // Guardamos en localStorage
+    localStorage.setItem('tipoCambio', JSON.stringify({
+        valor: tipoCambioGlobal,
+        timestamp: new Date().getTime()
+    }));
+}
+
+// Funciones de conversión
 function convertirUSDaUYU(monto) {
-    const tipoCambio = 40;
-    return monto * tipoCambio;
+    return monto * tipoCambioGlobal;
 }
 
 function convertirUYUaUSD(monto) {
-    const tipoCambio = 40;
-    return monto / tipoCambio;
+    return monto / tipoCambioGlobal;
 }
+
+// Inicializar el tipo de cambio cuando se carga la página
+document.addEventListener('DOMContentLoaded', () => {
+    inicializarTipoCambio();
+    
+});
 
 function ActualizarCarrito(items) {
     const SubtotalProd = document.getElementById("subtotal");
@@ -191,39 +313,62 @@ function ActualizarCarrito(items) {
         return;
     }
 
-    function calcularTotales(monedaSeleccionada) {
-        let subtotal = 0;
+    function calcularSubtotalesPorMoneda() {
+        let subtotalUSD = 0;
+        let subtotalUYU = 0;
 
         items.forEach(item => {
-            const cantidad = item.quantity;
-            const costo = item.cost;
+            const cantidad = parseInt(item.quantity);
+            const costo = parseFloat(item.cost);
 
-            if (item.currency === monedaSeleccionada) {
-                // Si la moneda del item coincide con la seleccionada
-                subtotal += costo * cantidad;
-            } else if (item.currency === 'USD' && monedaSeleccionada === 'UYU') {
-                // Convertir de USD a UYU
-                subtotal += convertirUSDaUYU(costo * cantidad);
-            } else if (item.currency === 'UYU' && monedaSeleccionada === 'USD') {
-                // Convertir de UYU a USD
-                subtotal += convertirUYUaUSD(costo * cantidad);
+            if (item.currency === 'USD') {
+                subtotalUSD += costo * cantidad;
+            } else if (item.currency === 'UYU') {
+                subtotalUYU += costo * cantidad;
             }
         });
 
-        return subtotal;
+        return { subtotalUSD, subtotalUYU };
     }
 
     function actualizarPrecios() {
-        const monedaSeleccionada = currencySelect.value;
-        const subtotal = calcularTotales(monedaSeleccionada);
+        const { subtotalUSD, subtotalUYU } = calcularSubtotalesPorMoneda();
         
-        SubtotalProd.textContent = `${monedaSeleccionada} ${new Intl.NumberFormat('es-ES').format(subtotal.toFixed(2))}`;
-        TotalProd.textContent = `${monedaSeleccionada} ${new Intl.NumberFormat('es-ES').format(subtotal.toFixed(2))}`;
+        // Obtener el contenedor de la lista de subtotales
+        const subtotalList = document.getElementById('subtotalList');
+        subtotalList.innerHTML = ''; // Limpiar la lista antes de actualizar
+    
+        // Mostrar subtotales en forma de lista
+        if (subtotalUSD > 0) {
+            const liUSD = document.createElement('li');
+            liUSD.textContent = `USD ${new Intl.NumberFormat('de-DE').format(subtotalUSD)}`;
+            subtotalList.appendChild(liUSD);
+        }
+        if (subtotalUYU > 0) {
+            const liUYU = document.createElement('li');
+            liUYU.textContent = `UYU ${new Intl.NumberFormat('de-DE').format(subtotalUYU)}`;
+            subtotalList.appendChild(liUYU);
+        }
+    
+        // Para el total, convertir según la moneda seleccionada
+        const monedaSeleccionada = currencySelect.value;
+        let totalFinal;
+    
+        if (monedaSeleccionada === 'USD') {
+            totalFinal = subtotalUSD + convertirUYUaUSD(subtotalUYU);
+        } else {
+            totalFinal = convertirUSDaUYU(subtotalUSD) + subtotalUYU;
+        }
+    
+        TotalProd.textContent = `${monedaSeleccionada} ${new Intl.NumberFormat('es-ES', {
+            minimumFractionDigits: 2,
+            maximumFractionDigits: 2
+        }).format(totalFinal)}`;
     }
-
+    
     // Actualizar precios inicialmente
     actualizarPrecios();
-
+    
     // Agregar evento para cuando cambie la moneda seleccionada
     currencySelect.addEventListener('change', actualizarPrecios);
 }
