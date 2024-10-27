@@ -39,15 +39,16 @@
     <div id="cart-container" class="row">
         <div class="col-md-8" id="cart-items">
         </div>
-        <div class="col-md-4 summary-card" id="cart-summary">
-          <h4>Resumen</h4>
-          <p>Subtotal: <span id="subtotal">USD 0</span></p>
-          <p>Total: <span id="total">USD 0</span></p>
+        <div class="col-md-4" id="cart-summary">
+          <div class="summary-card">
+          <h5>Resumen</h5><hr/>
+          <p>Subtotal: <span class="float-end" id="subtotal">USD 0</span></p>
+          <p><strong>Total:</strong> <span class="float-end"><strong><span id="total">USD 0</strong></span></p>
           <button id="checkout-button" class="btn btn-warning btn-block">Pagar</button>
       </div>
   </div>
     <div id="empty-cart-message" class="alert alert-warning text-center" style="display: none;">
-        No hay ningún producto cargado en el carrito.
+        No hay ningún producto en el carrito.
     </div>
 </main>
   <footer class="text-muted">

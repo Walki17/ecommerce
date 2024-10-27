@@ -65,19 +65,19 @@ document.addEventListener("DOMContentLoaded", () => {
 
            itemElement.innerHTML = `
     <div class="container mt-4">
-    <div class="row">
-        <div class="col-md-8">
-            <div class="custom-container mb-3"> <!-- Esta es la tarjeta del carrito -->
-                <div class="row align-items-center">
-                    <div class="col-md-6">
-                        <i class="fas fa-shopping-cart"></i> 
+   <div class="row">
+    <div class="col-md-8">
+     <div class="custom-container">
+      <div class="row align-items-center">
+       <div class="col-md-6">
+        <i class="fas fa-shopping-cart"></i> 
                         Mi carrito (${item.quantity} Item${item.quantity > 1 ? 's' : ''})
                     </div>
                     <div class="col-md-2"><strong>Cantidad</strong></div>
                     <div class="col-md-2"><strong>Moneda</strong></div>
                     <div class="col-md-2"><strong>Costo</strong></div>
                 </div>
-                <hr />
+                <hr/>
                 <div class="row align-items-center">
                     <div class="col-md-6">
                         <p>${item.name}</p>

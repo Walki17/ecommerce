@@ -962,7 +962,7 @@ body.night-mode, div.night-mode, .breadcrumb.night-mode, .modal-content.night-mo
   margin-left: 5px;
   margin-top: 5px;
 }
-
+ /* Carrito*/
 .TarjetaCarrito {
 background-color: transparent;
 border: none;
@@ -1014,6 +1014,12 @@ border: none;
 }
 .custom-container .btn {
     margin-right: 10px;
+}
+#empty-cart-message{
+  background-color: #f6b4af;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  border-color: red;
+  color: black;
 }
 
 /* Responsive */
@@ -1329,3 +1335,4 @@ button {
     padding-top: 3rem;
     padding-bottom: 3rem;
   }
+}
