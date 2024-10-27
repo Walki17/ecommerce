@@ -35,13 +35,21 @@
       </div>
     </div>
   </nav>
-  <main>
-    <div class="container">
-      <div class="alert alert-danger text-center" role="alert">
-        <h4 class="alert-heading">Funcionalidad en desarrollo</h4>
+  <main class="container my-5">
+    <div id="cart-container" class="row">
+        <div class="col-md-8" id="cart-items">
+        </div>
+        <div class="col-md-4 summary-card" id="cart-summary">
+          <h4>Resumen</h4>
+          <p>Subtotal: <span id="subtotal">USD 0</span></p>
+          <p>Total: <span id="total">USD 0</span></p>
+          <button id="checkout-button" class="btn btn-warning btn-block">Pagar</button>
       </div>
+  </div>
+    <div id="empty-cart-message" class="alert alert-warning text-center" style="display: none;">
+        No hay ningún producto cargado en el carrito.
     </div>
-  </main>
+</main>
   <footer class="text-muted">
     <div class="container">
       <p class="float-end">
