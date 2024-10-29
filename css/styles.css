@@ -1276,3 +1276,54 @@ button {
     padding-top: 3rem;
     padding-bottom: 3rem;
   }
+
+
+
+/* Categories responsive  */
+
+@media (min-width: 320px) and (max-width:568px){
+
+  #filtrocat{
+    display: flex;
+    margin-right: auto;
+    margin-left:5%;
+    width: 50%;
+    position: relative;
+    top: -1em;
+    border-radius: 5px;
+    border-color: #c2c0be;
+    border-style: double;
+    }
+    
+  #rangeFilterCountMin, #rangeFilterCountMax{
+    width: 50px;
+    height: 35px;
+    
+  } 
+
+  .btn-group{
+    display: block;
+  }
+  
+  #sortAsc, #sortDesc {
+    font-size:2em
+  }
+  
+}
+
+@media (min-width: 768px) and (max-width: 1024px){
+  #filtrocat{
+    display: flex;
+    margin-right: auto;
+    margin-left:5%;
+    width: 50%;
+    position: relative;
+    top: -1em;
+    border-radius: 5px;
+    border-color: #c2c0be;
+    border-style: double;
+    }
+
+   
+
+}
