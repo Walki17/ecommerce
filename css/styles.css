@@ -993,6 +993,8 @@ border: none;
     border: 2px solid #f0ad4e;
     border-radius: 10px;
     padding: 20px;
+    background-color: white;
+    margin-top: 20px;
 }
 .summary-card .btn {
     width: 100%;
@@ -1001,6 +1003,7 @@ border: none;
   border: 2px solid #f0ad4e;
   border-radius: 10px;
   padding: 20px;
+  background-color: white;
 }
 .custom-container .row {
     margin-bottom: 10px;
