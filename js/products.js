@@ -69,6 +69,7 @@ function selectProduct(productId) {
 }
 
 
+
 function filtrado() {
   fetch(DATOS)
   .then(response => response.json()) 
@@ -304,4 +305,3 @@ const usuarios = JSON.parse(localStorage.getItem("usuarios"));
           localStorage.removeItem('usuarios');
           window.location = "login.html"
         });
-
