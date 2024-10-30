@@ -402,6 +402,7 @@ form .link {
   padding: 10px 20px;
   cursor: pointer;
   font-weight: bold;
+  text-decoration: none;
 }
 
 #agregar {
@@ -961,7 +962,68 @@ body.night-mode, div.night-mode, .breadcrumb.night-mode, .modal-content.night-mo
   margin-left: 5px;
   margin-top: 5px;
 }
-
+ /* Carrito*/
+.TarjetaCarrito {
+background-color: transparent;
+border: none;
+}
+.card-header {
+    background-color: #fff;
+    border-bottom: 1px solid #dee2e6;
+    font-weight: bold;
+}
+.btn-warning {
+    background-color: #f0ad4e;
+    border-color: #f0ad4e;
+}
+.btn-warning:hover {
+    background-color: #ec971f;
+    border-color: #eb9316;
+}
+.btn-outline-warning {
+    color: #f0ad4e;
+    border-color: #f0ad4e;
+}
+.btn-outline-warning:hover {
+    color: #fff;
+    background-color: #f0ad4e;
+    border-color: #f0ad4e;
+}
+.summary-card {
+    border: 2px solid #f0ad4e;
+    border-radius: 10px;
+    padding: 20px;
+    background-color: white;
+    margin-top: 20px;
+}
+.summary-card .btn {
+    width: 100%;
+}
+.custom-container {
+  border: 2px solid #f0ad4e;
+  border-radius: 10px;
+  padding: 20px;
+  background-color: white;
+}
+.custom-container .row {
+    margin-bottom: 10px;
+}
+.custom-container .row:last-child {
+    margin-bottom: 0;
+}
+.custom-container .col-md-6 img {
+    border: 1px solid #dee2e6;
+    border-radius: 5px;
+}
+.custom-container .btn {
+    margin-right: 10px;
+}
+#empty-cart-message{
+  background-color: #f6b4af;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  border-color: red;
+  color: black;
+}
 
 /* Responsive */
 
@@ -993,13 +1055,9 @@ body.night-mode, div.night-mode, .breadcrumb.night-mode, .modal-content.night-mo
 }
 
 form label input {
-  margin-bottom: 4px;
-  font-size: 14px;
+  font-size: 2px;
 }
 
-form label{
-  margin: 8px;
-}
 
 button {
   font-size: 14px;
@@ -1276,3 +1334,114 @@ button {
     padding-top: 3rem;
     padding-bottom: 3rem;
   }
+
+}
+
+
+
+
+
+/* Categories responsive  */
+
+@media (min-width: 320px) and (max-width:568px){
+
+  #filtrocat{
+    display: flex;
+    margin-right: auto;
+    margin-left:5%;
+    width: 50%;
+    position: relative;
+    top: -1em;
+    border-radius: 5px;
+    border-color: #c2c0be;
+    border-style: double;
+    }
+    
+  #rangeFilterCountMin, #rangeFilterCountMax{
+    width: 50px;
+    height: 35px;
+    
+  } 
+
+  .btn-group{
+    display: block;
+  }
+  
+  #sortAsc, #sortDesc {
+    font-size:2em
+  }
+  
+}
+
+@media (min-width: 768px) and (max-width: 1024px){
+  #filtrocat{
+    display: flex;
+    margin-right: auto;
+    margin-left:5%;
+    width: 50%;
+    position: relative;
+    top: -1em;
+    border-radius: 5px;
+    border-color: #c2c0be;
+    border-style: double;
+    }
+
+   
+
+
+  /*responsive del perfil*/ 
+
+  /* Estilos generales */
+form {
+  max-width: 600px; /* Ancho máximo del formulario */
+  margin: auto; /* Centrar el formulario en su contenedor */
+}
+
+/* Media Queries */
+@media (max-width: 768px) {
+  .d-flex {
+      flex-direction: column; /* Cambia la dirección a columna en pantallas pequeñas */
+      align-items: center; /* Centra los elementos dentro del contenedor */
+  }
+
+  .form-label {
+      text-align: center; /* Centra las etiquetas en pantallas pequeñas */
+  }
+
+  .mb-2 {
+      width: 100%; /* Asegúrate de que el margen inferior tenga el ancho completo */
+  }
+
+  #profile-pic {
+      width: 150px; /* Tamaño reducido para la imagen de perfil */
+      height: 150px;
+      margin-bottom: 20px; /* Espacio debajo de la imagen */
+  }
+
+  .me-3 {
+      margin-right: 0; /* Elimina el margen derecho en pantallas pequeñas */
+  }
+
+  .flex-fill {
+      width: 100%; /* Asegura que los campos ocupen todo el ancho */
+  }
+
+  .col-10, .col-2 {
+      flex: 1 1 100%; /* Las columnas ocupan el 100% en pantallas pequeñas */
+  }
+}
+
+@media (max-width: 320px) {
+  /* Ajustes para teléfonos pequeños */
+  #profile-pic {
+      width: 120px; /* Tamaño aún más reducido para la imagen */
+      height: 120px;
+      align-items: center;
+  }
+
+  .btn {
+      width: 100%; /* Botones ocupan el ancho completo */
+  }
+
+}
+

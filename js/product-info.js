@@ -60,7 +60,7 @@ fetch(PRODUCT_URL)
                   <input type="number" id="campoContador" value="1" min="1" class="cantidad form-control d-inline w-25 mx-2">
                   <span class="aumentar">+</span>
                 </div>
-                <a href="cart.html" class="button" id="comprar" class="btn btn-warning mt-3"><strong>Comprar ahora</strong></a>
+                <a href="cart.html"  id="comprar" class="btn btn-warning mt-3"><strong>Comprar ahora</strong></a>
                 <button id="agregar" class="btn btn-light mt-3"><strong>Agregar al carrito</strong></button>
               </div>
             </div>
@@ -73,21 +73,42 @@ fetch(PRODUCT_URL)
       </div>
     `;
 
-    const cantidadInput = document.querySelector('.cantidad');
+
+    //Acá voy a agregar la parte de subir precio segun cantidad de products
+    const precioUnidad = product.cost;
+
+    
+
+    const cantidadProduct = document.querySelector('#campoContador');
+    const priceDisplay = document.querySelector('h2:nth-of-type(2)');  // Asegúrate de que este selector apunta al precio correcto
+
+    cantidadProduct.addEventListener('input', function() {
+      const cantidad = parseInt(cantidadProduct.value);
+      const precioTotal = precioUnidad * cantidad;
+      priceDisplay.textContent = `${product.currency} ${new Intl.NumberFormat('es-ES').format(precioTotal)}`;
+    ;
+
+    })
+
+    
     const botonAumentar = document.querySelector('.aumentar');
     const botonDisminuir = document.querySelector('.disminuir');
 
     botonAumentar.addEventListener('click', () => {
-      let cantidad = parseInt(cantidadInput.value);
+      let cantidad = parseInt(cantidadProduct.value);
       cantidad++;
-      cantidadInput.value = cantidad;
+      cantidadProduct.value = cantidad;
+      const precioTotal = precioUnidad * cantidad;
+      priceDisplay.textContent = `${product.currency} ${new Intl.NumberFormat('es-ES').format(precioTotal)}`
     });
 
     botonDisminuir.addEventListener('click', () => {
-      let cantidad = parseInt(cantidadInput.value);
+      let cantidad = parseInt(cantidadProduct.value);
       if (cantidad > 1) {
         cantidad--;
-        cantidadInput.value = cantidad;
+        cantidadProduct.value = cantidad;
+        const precioTotal = precioUnidad * cantidad;
+        priceDisplay.textContent = `${product.currency} ${new Intl.NumberFormat('es-ES').format(precioTotal)}`
       }
     });
 
@@ -197,36 +218,6 @@ enviarBtn.onclick = function() {
     showToast("Gracias por tu calificación de " + ratingSeleccionado + " estrellas", "success");
 
     const fechaActual = new Date().toISOString();
-
-    const usuarios = JSON.parse(localStorage.getItem("usuarios"));
-    const ultimoUsuario = usuarios[usuarios.length - 1];
-    document.getElementsByClassName("nav-item")[3].innerHTML=`
-        <div class="dropdown" >
-  <button class="btn dropdown-toggle d-flex justify-content-between align-items-center" type="button" data-bs-toggle="dropdown" aria-expanded="false" style="background-color: #212529; color: white;">
-    <a class="nav-link">
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-lines-fill" viewBox="0 0 16 16">
-              <path d="M6 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6m-5 6s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1zM11 3.5a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 0 1h-4a.5.5 0 0 1-.5-.5m.5 2.5a.5.5 0 0 0 0 1h4a.5.5 0 0 0 0-1zm2 3a.5.5 0 0 0 0 1h2a.5.5 0 0 0 0-1zm0 3a.5.5 0 0 0 0 1h2a.5.5 0 0 0 0-1z"/>
-            </svg>  
-        ${ultimoUsuario.email}</a>
-  </button>
-  <ul class="dropdown-menu">
-    <li><a class="dropdown-item" href="my-profile.html"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"  class="bi bi-person-fill" viewBox="0 0 16 16">
-  <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6"/>
-</svg> Perfil</a></li>
-    <li><a class="dropdown-item" href="cart.html"> <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cart4" viewBox="0 0 16 16">
-  <path d="M0 2.5A.5.5 0 0 1 .5 2H2a.5.5 0 0 1 .485.379L2.89 4H14.5a.5.5 0 0 1 .485.621l-1.5 6A.5.5 0 0 1 13 11H4a.5.5 0 0 1-.485-.379L1.61 3H.5a.5.5 0 0 1-.5-.5M3.14 5l.5 2H5V5zM6 5v2h2V5zm3 0v2h2V5zm3 0v2h1.36l.5-2zm1.11 3H12v2h.61zM11 8H9v2h2zM8 8H6v2h2zM5 8H3.89l.5 2H5zm0 5a1 1 0 1 0 0 2 1 1 0 0 0 0-2m-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0m9-1a1 1 0 1 0 0 2 1 1 0 0 0 0-2m-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0"/>
-</svg> Carrito</a></li>
-    <li id="btnCerrarSesion"><a class="dropdown-item"> <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-box-arrow-right" viewBox="0 0 16 16" style="cursor: pointer;">
-  <path fill-rule="evenodd" d="M10 12.5a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v2a.5.5 0 0 0 1 0v-2A1.5 1.5 0 0 0 9.5 2h-8A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-2a.5.5 0 0 0-1 0z"/>
-  <path fill-rule="evenodd" d="M15.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 0 0-.708.708L14.293 7.5H5.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708z"/>
-</svg> Cerrar sesión</a></li>
-  </ul>
-</div>
-        `
-        document.getElementById('btnCerrarSesion').addEventListener('click', function(){
-          localStorage.removeItem('usuarios');
-          window.location = "login.html"
-        });
 
     const nuevoComentario = {
       user: ultimoUsuario.email || "Anónimo",
@@ -444,5 +435,62 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 
+//testeo Raisa - agregar producto al localStorage al comprar
+
+function addToCart(productID) {
+
+  let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+  cart.push(productID);
+
+  localStorage.setItem("cart", JSON.stringify(cart));
+
+  showToast("Producto adicionado al carrito!");
+}
+
+fetch(PRODUCT_URL)
+    .then(response => response.json())
+    .then(product => {
 
 
+        const agregarButton = document.getElementById("comprar");
+        
+
+        agregarButton.addEventListener('click', () => {
+            const cantidad = parseInt(document.getElementById("campoContador").value);
+
+            const subtotal = product.cost * cantidad;
+
+            const productDetails = {
+                id: product.id,
+                name: product.name,
+                cost: product.cost,
+                currency: product.currency,
+                quantity: cantidad,
+                image: product.images[0], 
+                subtotal: subtotal 
+            };
+            addToCart(productDetails);
+        });
+    })
+    .catch(error => {
+        showToast('Error al obtener la información del producto: ' + error.message, "error");
+    });
+ //Cami
+ function contarItems() {
+  let cartData = JSON.parse(localStorage.getItem("cart")) || [];
+  
+  if (!Array.isArray(cartData)) {
+      cartData = [cartData];
+  }
+
+  let cantidades = 0;
+  cartData.forEach(item => {
+      cantidades += item.quantity || 0;
+  });
+
+  console.log(cantidades);
+
+}
+
+contarItems();
