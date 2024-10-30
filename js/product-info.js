@@ -73,21 +73,42 @@ fetch(PRODUCT_URL)
       </div>
     `;
 
-    const cantidadInput = document.querySelector('.cantidad');
+
+    //Acá voy a agregar la parte de subir precio segun cantidad de products
+    const precioUnidad = product.cost;
+
+    
+
+    const cantidadProduct = document.querySelector('#campoContador');
+    const priceDisplay = document.querySelector('h2:nth-of-type(2)');  // Asegúrate de que este selector apunta al precio correcto
+
+    cantidadProduct.addEventListener('input', function() {
+      const cantidad = parseInt(cantidadProduct.value);
+      const precioTotal = precioUnidad * cantidad;
+      priceDisplay.textContent = `${product.currency} ${new Intl.NumberFormat('es-ES').format(precioTotal)}`;
+    ;
+
+    })
+
+    
     const botonAumentar = document.querySelector('.aumentar');
     const botonDisminuir = document.querySelector('.disminuir');
 
     botonAumentar.addEventListener('click', () => {
-      let cantidad = parseInt(cantidadInput.value);
+      let cantidad = parseInt(cantidadProduct.value);
       cantidad++;
-      cantidadInput.value = cantidad;
+      cantidadProduct.value = cantidad;
+      const precioTotal = precioUnidad * cantidad;
+      priceDisplay.textContent = `${product.currency} ${new Intl.NumberFormat('es-ES').format(precioTotal)}`
     });
 
     botonDisminuir.addEventListener('click', () => {
-      let cantidad = parseInt(cantidadInput.value);
+      let cantidad = parseInt(cantidadProduct.value);
       if (cantidad > 1) {
         cantidad--;
-        cantidadInput.value = cantidad;
+        cantidadProduct.value = cantidad;
+        const precioTotal = precioUnidad * cantidad;
+        priceDisplay.textContent = `${product.currency} ${new Intl.NumberFormat('es-ES').format(precioTotal)}`
       }
     });
 
