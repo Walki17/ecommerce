@@ -962,7 +962,68 @@ body.night-mode, div.night-mode, .breadcrumb.night-mode, .modal-content.night-mo
   margin-left: 5px;
   margin-top: 5px;
 }
-
+ /* Carrito*/
+.TarjetaCarrito {
+background-color: transparent;
+border: none;
+}
+.card-header {
+    background-color: #fff;
+    border-bottom: 1px solid #dee2e6;
+    font-weight: bold;
+}
+.btn-warning {
+    background-color: #f0ad4e;
+    border-color: #f0ad4e;
+}
+.btn-warning:hover {
+    background-color: #ec971f;
+    border-color: #eb9316;
+}
+.btn-outline-warning {
+    color: #f0ad4e;
+    border-color: #f0ad4e;
+}
+.btn-outline-warning:hover {
+    color: #fff;
+    background-color: #f0ad4e;
+    border-color: #f0ad4e;
+}
+.summary-card {
+    border: 2px solid #f0ad4e;
+    border-radius: 10px;
+    padding: 20px;
+    background-color: white;
+    margin-top: 20px;
+}
+.summary-card .btn {
+    width: 100%;
+}
+.custom-container {
+  border: 2px solid #f0ad4e;
+  border-radius: 10px;
+  padding: 20px;
+  background-color: white;
+}
+.custom-container .row {
+    margin-bottom: 10px;
+}
+.custom-container .row:last-child {
+    margin-bottom: 0;
+}
+.custom-container .col-md-6 img {
+    border: 1px solid #dee2e6;
+    border-radius: 5px;
+}
+.custom-container .btn {
+    margin-right: 10px;
+}
+#empty-cart-message{
+  background-color: #f6b4af;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  border-color: red;
+  color: black;
+}
 
 /* Responsive */
 
@@ -1274,6 +1335,9 @@ button {
     padding-bottom: 3rem;
   }
 
+}
+
+
 
 
 
@@ -1380,3 +1444,4 @@ form {
   }
 
 }
+
