@@ -293,11 +293,9 @@ function ActualizarCarrito(items) {
     function actualizarPrecios() {
         const { subtotalUSD, subtotalUYU } = calcularSubtotalesPorMoneda();
         
-        // Obtener el contenedor de la lista de subtotales
         const subtotalList = document.getElementById('subtotalList');
-        subtotalList.innerHTML = ''; // Limpiar la lista antes de actualizar
+        subtotalList.innerHTML = '';
     
-        // Mostrar subtotales en forma de lista
         if (subtotalUSD > 0) {
             const liUSD = document.createElement('li');
             liUSD.textContent = `USD ${new Intl.NumberFormat('de-DE').format(subtotalUSD)}`;
@@ -309,7 +307,6 @@ function ActualizarCarrito(items) {
             subtotalList.appendChild(liUYU);
         }
     
-        // Para el total, convertir según la moneda seleccionada
         const monedaSeleccionada = currencySelect.value;
         let totalFinal;
     
@@ -325,17 +322,7 @@ function ActualizarCarrito(items) {
         }).format(totalFinal)}`;
     }
     
-    // Actualizar precios inicialmente
     actualizarPrecios();
     
-    // Agregar evento para cuando cambie la moneda seleccionada
     currencySelect.addEventListener('change', actualizarPrecios);
 }
-
-
-//Cami
-const incrementar = itemElement.querySelector('.increase-btn');
-const decreaseBtn = itemElement.querySelector('.decrease-btn');
-incrementar.addEventListener('click', function(){
-    location.reload();
-  })
