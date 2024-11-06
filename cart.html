@@ -76,6 +76,73 @@
     <div id="empty-cart-message" class="alert alert-warning text-center" style="display: none;">
         No hay ningún producto en el carrito.
     </div>
+
+    <div id="deliveries-card"> 
+      <div id="deliveries" class="card">
+        <div class="card-header">
+          Tipo de envio <i class="fas fa-truck"></i>
+        </div>
+        <div class="card-body">
+          <h5 class="card-title"><i class="fas fa-coins"></i> Premium (2 a 5 dias)</h5>
+          <h5 class="card-title"> <i class="fas fa-shipping-fast"></i> Express (5 a 8 dias)</h5>
+          <h5 class="card-title"> Standard (12 a 15 dias)</h5>
+          <p class="card-text"></p>
+          
+        </div>
+        <button type="button" id="selectdelivery" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal">
+          Seleccionar
+        </button>
+      </div>
+    </div>
+    
+     <!-- Botón para abrir la ventana emergente -->
+ 
+
+  <!-- Ventana emergente (Modal) -->
+  <div class="modal fade" id="myModal" tabindex="-1" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="myModalLabel">Envio y forma de pago</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+        </div>
+        <div class="modal-body">
+          <nav>
+            <div class="nav nav-tabs" id="nav-tab" role="tablist">
+              <button class="nav-link active" id="nav-delivery-tab" data-bs-toggle="tab" data-bs-target="#nav-delivery" type="button" role="tab" aria-controls="nav-delivery" aria-selected="true">Tipo de envio</button>
+              <button class="nav-link active" id="nav-address-tab" data-bs-toggle="tab" data-bs-target="#nav-address" type="button" role="tab" aria-controls="nav-address" aria-selected="false">Direccion de entrega</button>
+              <button class="nav-link active" id="nav-payment-tab" data-bs-toggle="tab" data-bs-target="#nav-payment" type="button" role="tab" aria-controls="nav-payment" aria-selected="false">Forma de pago</button>
+            </div>
+          </nav>
+          <div class="tab-content" id="nav-tabContent">
+            <div class="tab-pane fade show active" id="nav-delivery" role="tabpanel" aria-labelledby="nav-delivery-tab" tabindex="0">
+              <p>Selecciona el tipo de envío:</p>
+              <div>
+                <input type="radio" id="premium" name="shipping" value="premium">
+                <label for="premium">Premium (2 a 5 días)</label><br>
+                <input type="radio" id="express" name="shipping" value="express">
+                <label for="express">Express (5 a 8 días)</label><br>
+                <input type="radio" id="standard" name="shipping" value="standard">
+                <label for="standard">Standard (12 a 15 días)</label>  
+             </div>
+            <div class="tab-pane fade" id="nav-address" role="tabpanel" aria-labelledby="nav-address-tab" tabindex="0">
+
+            </div>
+            <div class="tab-pane fade" id="nav-payment" role="tabpanel" aria-labelledby="nav-payment-tab" tabindex="0">
+
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+   
+
 </main>
   <footer class="text-muted">
     <div class="container">

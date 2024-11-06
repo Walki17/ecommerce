@@ -326,3 +326,5 @@ function ActualizarCarrito(items) {
     
     currencySelect.addEventListener('change', actualizarPrecios);
 }
+
+
