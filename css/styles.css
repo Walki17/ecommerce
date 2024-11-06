@@ -16,7 +16,7 @@ nav a {
 }
 
 .nav-link{
-  color: rgb(255, 255, 255);
+  color: rgb(67, 64, 64);
 }
 
 .bd-placeholder-img {
@@ -1448,11 +1448,12 @@ font-size: 1em;
 
 #deliveries{
   display: flex;
-  width: 28%;
-  margin-left: 69%;
+  width: 25%;
   text-align: center;
   padding: 2%;
   border-color: orange;
+  position: relative;
+  left: 70%;
 }
 
 #selectdelivery{
@@ -1465,10 +1466,43 @@ font-size: 1em;
   border: none;
 }
 
-#myModal{
+.nav-tabs {
   display: flex;
-  background-color: #ccc;
+  flex-wrap: nowrap;
 }
 
+.nav-link {
+  white-space: nowrap; /* Evita que las etiquetas de las pestañas se corten */
+  text-align: center; /* Alineación del texto */
+}
 
+.modal-dialog {
+  max-width: 60%;  /* 70% del ancho de la pantalla */
+  max-height: 50%;
+}
 
+#nav-delivery{
+  margin-top: 2em;
+  margin-bottom: 2em;
+  text-align: center;
+ }
+ 
+ .form-control-custom {
+  background-color: #adadad95; /* Color de fondo personalizado */
+  color: #000000; /* Color del texto */
+}
+
+#additional{
+  width: 80%; 
+  text-align: left
+}
+
+#nav-payment{
+margin-right: 8px;
+}
+
+.form-check{
+text-align: left;
+margin-top: 2em;
+margin-bottom: 0.5em;
+}
