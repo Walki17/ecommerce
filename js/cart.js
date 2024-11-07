@@ -327,4 +327,53 @@ function ActualizarCarrito(items) {
     currencySelect.addEventListener('change', actualizarPrecios);
 }
 
+// ACÁ ARRANCA LA PARTE 3 -- ATT: CAMILUCHI
 
+const modalTipoEnvio = document.getElementById('nav-delivery');
+const tipoDeEnvio = modalTipoEnvio.querySelectorAll('input[type="radio"]');
+
+const modalFormaPago = document.getElementById('nav-payment');
+const tipoDeFormaPago = modalFormaPago.querySelectorAll('input[type="radio"]'); 
+
+const btnPagar = document.getElementById('checkout-button');
+
+const formulario = document.getElementById('data-envio');
+const allCampos = formulario.querySelectorAll('input');
+
+const dataEnLocal = localStorage.getItem('cart');
+const carritoConProductos = dataEnLocal && JSON.parse(dataEnLocal).length > 0;
+
+btnPagar.addEventListener('click', function() {
+
+    let radiosTipoEnvio = false;
+    for (let radiosEnvio of tipoDeEnvio) {
+        if (radiosEnvio.checked) {
+            radiosTipoEnvio = true;
+            break; //rompe el bucle cuando encuentra vacío
+        }
+    }
+
+    let todosCamposLlenos = true;
+    for (let campo of allCampos) {
+        if (campo.value.trim() === "") {
+            todosCamposLlenos = false;
+            break; //rompe el bucle cuando encuentra vacío
+        }
+    }
+
+    let radiosTipoPago = false;
+    for (let radiosPago of tipoDeFormaPago) {
+        if (radiosPago.checked) {
+            radiosTipoPago = true;
+            break; //rompe el bucle cuando encuentra vacío
+        }
+    }
+
+    if(radiosTipoEnvio && todosCamposLlenos && carritoConProductos && radiosTipoPago) {
+        alert('ta bien');
+    } else {
+        alert('no ta bien');
+    }
+});
+
+// ACÁ TERMINA LA PARTE 3
