@@ -412,6 +412,7 @@ function toggleDeliveriesCard() {
 }
 
 function addItemToCart(item) {
+    let cartData = JSON.parse(localStorage.getItem("cart")) || [];
     cartData.push(item);
     localStorage.setItem("cart", JSON.stringify(cartData));
     MostrarCarrito(cartData);
@@ -420,10 +421,18 @@ function addItemToCart(item) {
 }
 
 function EliminarDelCarrito(index) {
+    let cartData = JSON.parse(localStorage.getItem("cart")) || [];
     cartData.splice(index, 1);
     localStorage.setItem("cart", JSON.stringify(cartData));
     MostrarCarrito(cartData);
     ActualizarCarrito(cartData);
     toggleDeliveriesCard(); // Verifica si mostrar/ocultar la tarjeta de envíos
+
+    // Si el carrito queda vacío después de eliminar el artículo
+    if (cartData.length === 0) {
+        document.getElementById("empty-cart-message").style.display = "block";
+        document.getElementById("cart-summary").style.display = "none";
+    }
 }
+
 
