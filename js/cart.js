@@ -377,3 +377,53 @@ btnPagar.addEventListener('click', function() {
 });
 
 // ACÁ TERMINA LA PARTE 3
+
+
+//Funcion para mostrar tipo de envio solo cuando hay elementos en el carrito
+
+
+document.addEventListener("DOMContentLoaded", () => { 
+    // Llamada inicial para mostrar/ocultar la tarjeta según el estado del carrito al cargar la página
+    toggleDeliveriesCard();
+
+    let CarritoVacio = document.getElementById("empty-cart-message");
+    let cartData = JSON.parse(localStorage.getItem("cart")) || [];
+    
+    if (cartData.length === 0) {
+        CarritoVacio.style.display = "block";
+        document.getElementById("cart-summary").style.display = "none";
+    } else {
+        CarritoVacio.style.display = "none";
+        document.getElementById("cart-summary").style.display = "block";
+        MostrarCarrito(cartData);
+        ActualizarCarrito(cartData);
+    }
+});
+
+function toggleDeliveriesCard() {
+    let deliveriesCard = document.getElementById("deliveries-card");
+    let cartData = JSON.parse(localStorage.getItem("cart")) || [];
+    
+    if (cartData.length > 0) {
+        deliveriesCard.style.display = "block";
+    } else {
+        deliveriesCard.style.display = "none";
+    }
+}
+
+function addItemToCart(item) {
+    cartData.push(item);
+    localStorage.setItem("cart", JSON.stringify(cartData));
+    MostrarCarrito(cartData);
+    ActualizarCarrito(cartData);
+    toggleDeliveriesCard(); // Verifica si mostrar/ocultar la tarjeta de envíos
+}
+
+function EliminarDelCarrito(index) {
+    cartData.splice(index, 1);
+    localStorage.setItem("cart", JSON.stringify(cartData));
+    MostrarCarrito(cartData);
+    ActualizarCarrito(cartData);
+    toggleDeliveriesCard(); // Verifica si mostrar/ocultar la tarjeta de envíos
+}
+
