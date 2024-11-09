@@ -1559,3 +1559,8 @@ font-size: 0.7em;
   width:20%;
   margin-left: 2%;
 }
+
+.cardLogo {
+  width: 25px; 
+  height: auto; 
+}
