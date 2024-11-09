@@ -1398,10 +1398,6 @@ form {
       align-items: center; /* Centra los elementos dentro del contenedor */
   }
 
-  .form-label {
-      text-align: center; /* Centra las etiquetas en pantallas pequeñas */
-  }
-
   .mb-2 {
       width: 100%; /* Asegúrate de que el margen inferior tenga el ancho completo */
   }
@@ -1442,6 +1438,13 @@ form {
 
 /*Aqui va el estilo de tipo de envios*/
 
+#modalenvio{
+  border-color: orange;
+  border-width: 2px;
+  border-radius: 20px;
+  width: 70%;
+}
+
 .card-title{
 font-size: 1em;
 }
@@ -1454,6 +1457,7 @@ font-size: 1em;
   border-color: orange;
   position: relative;
   left: 70%;
+  cursor: pointer;
 }
 
 #selectdelivery{
@@ -1464,6 +1468,7 @@ font-size: 1em;
   background-color: orange;
   color: #000000;
   border: none;
+  cursor: pointer;
 }
 
 .nav-tabs {
@@ -1484,11 +1489,13 @@ font-size: 1em;
 #nav-delivery{
   margin-top: 2em;
   margin-bottom: 2em;
-  text-align: center;
+  text-align: left;
+  padding: 1em;
  }
  
  .form-control-custom {
-  background-color: #adadad95; /* Color de fondo personalizado */
+  border-color: #000000;
+  border-width: 1px;
   color: #000000; /* Color del texto */
 }
 
@@ -1505,4 +1512,19 @@ margin-right: 8px;
 text-align: left;
 margin-top: 2em;
 margin-bottom: 0.5em;
+}
+
+#premium,#express,#standard{
+  margin-bottom: 2em;
+}
+
+.form-label{
+  font-size: 0.7rem;
+  font-weight: bold;
+}
+
+#paymentmethod{
+ cursor: pointer;
+ width: 40%;
+ margin-top:2%;
 }
