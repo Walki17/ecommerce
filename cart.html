@@ -166,9 +166,21 @@
               <option value="Crédito">Crédito</option>
               <option value="Transferencia">Transferencia</option>
               </select>
+              <br>
           
-                    <!-- Formulario Débito / Crédito -->
+          <!-- Formulario Débito / Crédito -->
              <div id="debit-credit-form" style="display:none;">
+              <input type="radio" id="visa" name="cardType" value="Visa" required>
+              <label for="visa">
+                <img src="img/logovisa.png" alt="Visa" class="cardLogo">
+              </label>
+              <input type="radio" name="master" id="cardType" value="Master" required>
+              <label for="visa">
+                <img src="img/logomaster.png" alt="Master" class="cardLogo">
+              </label>
+              <br>
+
+
              <label id="cardnumber" for="card-number">Número de tarjeta</label>
              <input type="text" id="number" class="form-control" required />
     
