@@ -1534,3 +1534,28 @@ margin-bottom: 0.5em;
  padding: 1%;
  margin-right: 3%;
  }
+
+#transferinfo h3,h2,p{
+  font-size: 0.9em;
+  margin-top: 2%;
+  margin-left:2% ;
+}
+
+#cardnumber,#expirationcard,#codecard,#namecard{
+margin-top: 2%;
+margin-left: 2%;
+font-size: 0.7em;
+}
+
+#name,#number,#expiry-date{
+  width: 50%;
+  font-size: 0.9em;
+  margin-top: 2%;
+  margin-bottom: 2%;
+  margin-left: 2%;
+}
+
+#cvv{
+  width:20%;
+  margin-left: 2%;
+}

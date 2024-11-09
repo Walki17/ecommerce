@@ -160,14 +160,42 @@
 
           <!-- Pestaña 3: Forma de pago -->
           <div class="tab-pane fade" id="nav-payment" role="tabpanel" aria-labelledby="nav-payment-tab">
-            <select id="paymentmethod" class="form-control form-control-sm" required>
+              <select id="paymentmethod" class="form-control form-control-sm" required>
               <option value="Method">Seleccione método de pago</option>
               <option value="Débito">Débito</option>
               <option value="Crédito">Crédito</option>
               <option value="Transferencia">Transferencia</option>
-            </select>
+              </select>
+          
+                    <!-- Formulario Débito / Crédito -->
+             <div id="debit-credit-form" style="display:none;">
+             <label id="cardnumber" for="card-number">Número de tarjeta</label>
+             <input type="text" id="number" class="form-control" required />
+    
+             <label id="namecard"for="card-name">Nombre y apellido (como figura en la tarjeta)</label>
+             <input type="text" id="name" class="form-control" required />
+    
+             <label id="expirationcard"for="expiry-date">Fecha de vencimiento (MM / AA)</label>
+             <input type="month" id="expiry-date" class="form-control" required />
+    
+             <label id="codecard" for="cvv">Código de seguridad</label>
+             <input type="text" id="cvv" class="form-control" required />
+              </div>
+
+                    <!-- Transferencia -->
+              <div id="transfer-info" style="display:none;">
+              <h2>Banco Itaú</h2>
+              <h2>Cuenta:123456789</h2>
+             <br>
+             <h2>Prex</h2>
+             <h2>CI:123456789</h2>
+             <br>
+             <h2>BROU</h2>
+             <h2>Cuenta:123456789</h2>
+             <br>
+              <p>Favor en referencia Nombre y Apellido y número de orden.</p>
+              </div>
           </div>
-        </div>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
@@ -176,7 +204,6 @@
     </div>
   </div>
 </div>
-
 
 </main>
   <footer class="text-muted">

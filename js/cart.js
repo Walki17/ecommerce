@@ -435,4 +435,18 @@ function EliminarDelCarrito(index) {
     }
 }
 
+//Funcion de metodos de pago 
+
+document.getElementById('paymentmethod').addEventListener('change', function() {
+    // Ocultar ambos formularios inicialmente
+    document.getElementById('debit-credit-form').style.display = 'none';
+    document.getElementById('transfer-info').style.display = 'none';
+    
+    // Mostrar el formulario correspondiente
+    if (this.value === 'Débito' || this.value === 'Crédito') {
+      document.getElementById('debit-credit-form').style.display = 'block';
+    } else if (this.value === 'Transferencia') {
+      document.getElementById('transfer-info').style.display = 'block';
+    }
+  });
 
