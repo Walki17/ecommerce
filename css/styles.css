@@ -1511,6 +1511,7 @@ margin-right: 8px;
 
 .form-check{
 text-align: left;
+font-size: 0.9rem;
 margin-top: 2em;
 margin-bottom: 0.5em;
 }
@@ -1526,10 +1527,10 @@ margin-bottom: 0.5em;
 
 #paymentmethod{
  cursor: pointer;
- width: 40%;
+ width: 50%;
  margin-top:3%;
- border: #000000;
  font-weight: bold;
- border-radius: 30px;
-  padding: 1.5px;
+ border-radius: 10px;
+ padding: 1%;
+ margin-right: 3%;
  }
