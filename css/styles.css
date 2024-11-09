@@ -1495,8 +1495,9 @@ font-size: 1em;
  
  .form-control-custom {
   border-color: #000000;
-  border-width: 1px;
+  border-width: 2px;
   color: #000000; /* Color del texto */
+  border-radius: 30px;
 }
 
 #additional{
@@ -1526,5 +1527,9 @@ margin-bottom: 0.5em;
 #paymentmethod{
  cursor: pointer;
  width: 40%;
- margin-top:2%;
-}
+ margin-top:3%;
+ border: #000000;
+ font-weight: bold;
+ border-radius: 30px;
+  padding: 1.5px;
+ }
