@@ -456,3 +456,74 @@ document.getElementById('Confirmar').addEventListener('click', function() {
     console.log("Datos enviados con éxito!");
  });
 });
+//Funcion para mostrar tipo de envio solo cuando hay elementos en el carrito
+
+
+document.addEventListener("DOMContentLoaded", () => { 
+    // Llamada inicial para mostrar/ocultar la tarjeta según el estado del carrito al cargar la página
+    toggleDeliveriesCard();
+
+    let CarritoVacio = document.getElementById("empty-cart-message");
+    let cartData = JSON.parse(localStorage.getItem("cart")) || [];
+    
+    if (cartData.length === 0) {
+        CarritoVacio.style.display = "block";
+        document.getElementById("cart-summary").style.display = "none";
+    } else {
+        CarritoVacio.style.display = "none";
+        document.getElementById("cart-summary").style.display = "block";
+        MostrarCarrito(cartData);
+        ActualizarCarrito(cartData);
+    }
+});
+
+function toggleDeliveriesCard() {
+    let deliveriesCard = document.getElementById("deliveries-card");
+    let cartData = JSON.parse(localStorage.getItem("cart")) || [];
+    
+    if (cartData.length > 0) {
+        deliveriesCard.style.display = "block";
+    } else {
+        deliveriesCard.style.display = "none";
+    }
+}
+
+function addItemToCart(item) {
+    let cartData = JSON.parse(localStorage.getItem("cart")) || [];
+    cartData.push(item);
+    localStorage.setItem("cart", JSON.stringify(cartData));
+    MostrarCarrito(cartData);
+    ActualizarCarrito(cartData);
+    toggleDeliveriesCard(); // Verifica si mostrar/ocultar la tarjeta de envíos
+}
+
+function EliminarDelCarrito(index) {
+    let cartData = JSON.parse(localStorage.getItem("cart")) || [];
+    cartData.splice(index, 1);
+    localStorage.setItem("cart", JSON.stringify(cartData));
+    MostrarCarrito(cartData);
+    ActualizarCarrito(cartData);
+    toggleDeliveriesCard(); // Verifica si mostrar/ocultar la tarjeta de envíos
+
+    // Si el carrito queda vacío después de eliminar el artículo
+    if (cartData.length === 0) {
+        document.getElementById("empty-cart-message").style.display = "block";
+        document.getElementById("cart-summary").style.display = "none";
+    }
+}
+
+//Funcion de metodos de pago 
+
+document.getElementById('paymentmethod').addEventListener('change', function() {
+    // Ocultar ambos formularios inicialmente
+    document.getElementById('debit-credit-form').style.display = 'none';
+    document.getElementById('transfer-info').style.display = 'none';
+    
+    // Mostrar el formulario correspondiente
+    if (this.value === 'Débito' || this.value === 'Crédito') {
+      document.getElementById('debit-credit-form').style.display = 'block';
+    } else if (this.value === 'Transferencia') {
+      document.getElementById('transfer-info').style.display = 'block';
+    }
+  });
+

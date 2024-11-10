@@ -88,19 +88,19 @@
           <h5 class="card-title"> <i class="fas fa-shipping-fast"></i> Express (5 a 8 dias) </h5>
           <h5 class="card-title"> Standard (12 a 15 dias)</h5>
           <p class="card-text"></p>
-          
-        </div>
+       </div>
         <!-- Botón para abrir el modal -->
-<button type="button" id="selectdelivery" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal">
-  Seleccionar
-</button>
-
-<!-- Ventana emergente (Modal) -->
+         <button type="button" id="selectdelivery" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal">Seleccionar
+         </button>
+      </div>
+    </div>
+    
+ <!-- Ventana emergente (Modal) -->
 <div class="modal fade" id="myModal" tabindex="-1" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-dialog">
-    <div class="modal-content">
+    <div class="modal-content" id="modalenvio">
       <div class="modal-header">
-        <h5 class="modal-title" id="myModalLabel">Envio y forma de pago</h5>
+        <h5 class="modal-title" id="myModalLabel"></h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
       </div>
       <div class="modal-body">
@@ -108,75 +108,108 @@
           <!-- Pestañas -->
           <div class="nav nav-tabs" id="nav-tab" role="tablist">
             <button class="nav-link active" id="nav-delivery-tab" data-bs-toggle="tab" data-bs-target="#nav-delivery" type="button" role="tab" aria-controls="nav-delivery" aria-selected="true">Tipo de Envío</button>
-            <button class="nav-link" id="nav-address-tab" data-bs-toggle="tab" data-bs-target="#nav-address" type="button" role="tab" aria-controls="nav-address" aria-selected="false">Domicilio de entrega</button>
+            <button class="nav-link" id="nav-address-tab" data-bs-toggle="tab" data-bs-target="#nav-address" type="button" role="tab" aria-controls="nav-address" aria-selected="false">Dirección de envío</button>
             <button class="nav-link" id="nav-payment-tab" data-bs-toggle="tab" data-bs-target="#nav-payment" type="button" role="tab" aria-controls="nav-payment" aria-selected="false">Forma de pago</button>
           </div>
         </nav>
 
         <div class="tab-content" id="nav-tabContent">
           <!-- Pestaña 1: Tipo de Envío -->
-          <div class="tab-pane show active" id="nav-delivery" role="tabpanel" aria-labelledby="nav-delivery-tab">
-            <div class="form-check-label">
+          <div class="tab-pane fade show active" id="nav-delivery" role="tabpanel" aria-labelledby="nav-delivery-tab">
+            <div class="form-check">
               <input type="radio" id="premium" name="shipping" value="premium">
-              <label for="premium"class="form-check-label"> Premium 2 a 5 dias (15% del total de la compra)</label><br>
+              <label for="premium" class="form-check-label">Premium 2 a 5 días (15% del total de la compra)</label><br>
               <input type="radio" id="express" name="shipping" value="express">
-              <label for="express" class="form-check-label"> Express 5 a 8 dias (7% del total de la compra)</label><br>
+              <label for="express" class="form-check-label">Express 5 a 8 días (7% del total de la compra)</label><br>
               <input type="radio" id="standard" name="shipping" value="standard">
-              <label for="standard" class="form-check-label"> Standard 12 a 15 dias (5% del total de la compra)</label>
+              <label for="standard" class="form-check-label">Standard 12 a 15 días (5% del total de la compra)</label>
             </div>
           </div>
 
-          <!-- Pestaña 2: Datos -->
-          <div class="tab-pane show " id="nav-address" role="tabpanel" aria-labelledby="nav-address-tab">
+          <!-- Pestaña 2: Dirección de envío -->
+          <div class="tab-pane fade" id="nav-address" role="tabpanel" aria-labelledby="nav-address-tab">
             <form id="data-envio">
               <div class="row">
-              <div class="col-6 mb-3">
-                <label for="dpt" class="form-label">Departamento</label>
-                <input type="text" class="form-control" id="dpt" required>
+                <div class="col-6 mb-3 text-start">
+                  <label for="dpt" class="form-label">Departamento</label>
+                  <input type="text" class="form-control" id="dpt" required>
+                </div>
+                <div class="col-6 mb-3 text-start">
+                  <label for="city" class="form-label">Localidad</label>
+                  <input type="text" class="form-control" id="city" required>
+                </div>
+                <div class="col-6 mb-3 text-start">
+                  <label for="street" class="form-label">Calle</label>
+                  <input type="text" class="form-control" id="street" required>
+                </div>
+                <div class="col-6 mb-3 text-start">
+                  <label for="number" class="form-label">Número</label>
+                  <input type="text" class="form-control" id="number" required>
+                </div>
+                <div class="col-6 mb-3 text-start">
+                  <label for="corner" class="form-label">Esquina</label>
+                  <input type="text" class="form-control" id="corner" required>
+                </div>
+                <div class="col-8 mb-3 text-start">
+                  <label for="additional" class="form-label">Instrucciones adicionales</label>
+                  <textarea class="form-control" id="additional" rows="3"></textarea>
+                
+                </div>
               </div>
-              <div class="col-6 mb-3">
-                <label for="city" class="form-label">Localidad</label>
-                <input type="text" class="form-control" id="city" required>
-              </div>
-              <div class="col-6 mb-3">
-                <label for="street" class="form-label">Calle</label>
-                <input type="text" class="form-control" id="street" required>
-              </div>
-              <div class="col-6 mb-3">
-                <label for="number" class="form-label">Numero</label>
-                <input type="text" class="form-control" id="number" required>
-              </div>
-              <div class="col-6 mb-3">
-                <label for="corner" class="form-label">Esquina</label>
-                <input type="text" class="form-control" id="Corner" required>
-              </div>
-              <div class="col-8 mb-3"> <!--COMENTARLE A TAYSA LO DE TEXTAREA-->
-                <label for="additional" class="form-label">Instrucciones adicionales</label>
-                <input type="text" class="form-control" id="additional" required>
-              </div>
-             </div>
             </form>
           </div>
 
-          <!-- Pestaña 3: Forma de Pago -->
-          <div class="tab-pane show" id="nav-payment" role="tabpanel" aria-labelledby="nav-payment-tab">
-            <div class="form-check">
-              <input type="radio" id="transfer" name="payment" value="transfer" class="form-check-input">
-              <label for="transfer" class="form-check-label">Transferencia</label>
-            </div>
-            <div class="form-check">
-              <input type="radio" id="credit-card" name="payment" value="credit-card" class="form-check-input">
-              <label for="credit-card" class="form-check-label">Tarjeta de Crédito</label>
-            </div>
-            <div class="form-check">
-              <input type="radio" id="debit-card" name="payment" value="debit-card" class="form-check-input">
-              <label for="debit-card" class="form-check-label">Tarjeta de Débito</label>
-            </div>
-          </div>
+          <!-- Pestaña 3: Forma de pago -->
+          <div class="tab-pane fade" id="nav-payment" role="tabpanel" aria-labelledby="nav-payment-tab">
+              <select id="paymentmethod" class="form-control form-control-sm" required>
+              <option value="Method">Seleccione método de pago</option>
+              <option value="Débito">Débito</option>
+              <option value="Crédito">Crédito</option>
+              <option value="Transferencia">Transferencia</option>
+              </select>
+              <br>
           
-        </div>
+          <!-- Formulario Débito / Crédito -->
+             <div id="debit-credit-form" style="display:none;">
+              <label id="cardnumber" for="card-number">Número de tarjeta</label>
+              <input type="text" id="number" class="form-control" required />
+              <input type="radio" name="cardType" id="visa" value="Visa" required>
+              <label for="visa">
+                <img src="img/logovisa.png" alt="Visa" class="cardLogo">
+              </label>
+              <input type="radio" name="cardType" id="master" value="Master" required>
+              <label for="visa">
+                <img src="img/logomaster.png" alt="Master" class="cardLogo">
+              </label>
+              <br>
+    
+             <label id="namecard"for="card-name">Nombre y apellido (como figura en la tarjeta)</label>
+             <input type="text" id="name" class="form-control" required />
+    
+             <label id="expirationcard"for="expiry-date">Fecha de vencimiento (MM / AA)</label>
+             <input type="month" id="expiry-date" class="form-control" required />
+    
+             <label id="codecard" for="cvv">Código de seguridad</label>
+             <input type="text" id="cvv" class="form-control" required />
+            </div>
+
+                    <!-- Transferencia -->
+              <div id="transfer-info" style="display:none;">
+              <h2>Banco Itaú</h2>
+              <h2>Cuenta:123456789</h2>
+             <br>
+             <h2>Prex</h2>
+             <h2>CI:123456789</h2>
+             <br>
+             <h2>BROU</h2>
+             <h2>Cuenta:123456789</h2>
+             <br>
+              <p>Favor en referencia Nombre y Apellido y número de orden.</p>
+              </div>
+          </div>
       </div>
       <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
         <button type="button" id="Confirmar" class="btn btn-primary">Confirmar</button>
       </div>
     </div>
