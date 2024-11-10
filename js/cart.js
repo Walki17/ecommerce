@@ -271,7 +271,7 @@ function ActualizarCarrito(items) {
         TotalProd.textContent = "USD 0";
         return;
     }
-
+   
     function calcularSubtotalesPorMoneda() {
         let subtotalUSD = 0;
         let subtotalUYU = 0;
@@ -289,10 +289,37 @@ function ActualizarCarrito(items) {
 
         return { subtotalUSD, subtotalUYU };
     }
+    
+    function calcularCostoEnvio(subtotal) {
+        const shippingSelected = document.querySelector('input[name="shipping"]:checked');
+        if (!shippingSelected) {
+            return 0; 
+        }
+
+    let shippingPercentage = 0;
+    switch (shippingSelected.value) {
+        case 'premium':
+            shippingPercentage = 0.15; 
+            break;
+        case 'express':
+            shippingPercentage = 0.07; 
+            break;
+        case 'standard':
+            shippingPercentage = 0.05; 
+            break;
+        default:
+            shippingPercentage = 0; 
+    }
+    
+    return subtotal * shippingPercentage;
+}
 
     function actualizarPrecios() {
         const { subtotalUSD, subtotalUYU } = calcularSubtotalesPorMoneda();
-        
+
+        console.log("Subtotal USD: ", subtotalUSD);
+        console.log("Subtotal UYU: ", subtotalUYU);
+
         const subtotalList = document.getElementById('subtotalList');
         subtotalList.innerHTML = '';
     
@@ -309,11 +336,17 @@ function ActualizarCarrito(items) {
     
         const monedaSeleccionada = currencySelect.value;
         let totalFinal;
+
+        let envioUSD = calcularCostoEnvio(subtotalUSD);
+        let envioUYU = calcularCostoEnvio(subtotalUYU);
+
+        console.log("Envio USD: ", envioUSD);
+        console.log("Envio UYU: ", envioUYU);
     
         if (monedaSeleccionada === 'USD') {
-            totalFinal = subtotalUSD + convertirUYUaUSD(subtotalUYU);
+            totalFinal = subtotalUSD + envioUSD + convertirUYUaUSD(subtotalUYU + envioUYU);
         } else {
-            totalFinal = convertirUSDaUYU(subtotalUSD) + subtotalUYU;
+            totalFinal = convertirUSDaUYU(subtotalUSD + envioUSD) + subtotalUYU + envioUYU;
         }
     
         TotalProd.textContent = `${monedaSeleccionada} ${new Intl.NumberFormat('es-ES', {
@@ -321,9 +354,9 @@ function ActualizarCarrito(items) {
             maximumFractionDigits: 2
         }).format(totalFinal)}`;
     }
-    
+
     actualizarPrecios();
-    
+
     currencySelect.addEventListener('change', actualizarPrecios);
 }
 
@@ -377,3 +410,49 @@ btnPagar.addEventListener('click', function() {
 });
 
 // ACÁ TERMINA LA PARTE 3
+
+
+// testeo costos Rai
+document.addEventListener('DOMContentLoaded', function() {
+document.getElementById('Confirmar').addEventListener('click', function() {
+    // Verifica si el tipo de envío fue seleccionado
+    const shippingSelected = document.querySelector('input[name="shipping"]:checked');
+    if (!shippingSelected) {
+      alert("Por favor, seleccione el tipo de envío.");
+      return; 
+    }
+
+    // Verifica si todos los campos de dirección fueron llenados
+    const requiredFields = ['dpt', 'city', 'street', 'number', 'Corner', 'additional'];
+    for (let fieldId of requiredFields) {
+        const field = document.getElementById(fieldId);
+
+    console.log("Verificando campo: ", fieldId, " Valor: ", field ? field.value : "Campo no encontrado");
+
+    if (!field || !field.value || !field.value.trim()) {
+        const label = field ? field.previousElementSibling : null;
+        const errorMessage = label ? `Por favor, rellene el campo ${label.textContent}.` : "Por favor, rellene todos los campos obligatorios.";
+        alert(errorMessage);
+        return; 
+    }
+
+    // Verifica si la forma de pago fue seleccionada
+    const paymentSelected= document.querySelector('input[name="payment"]:checked');
+    if (!paymentSelected) {
+      alert("Por favor, seleccione la forma de pago.");
+      return; 
+    }
+ }
+
+    const modalElement = document.getElementById('myModal');
+    const modal = bootstrap.Modal.getInstance(modalElement); 
+    modal.hide();
+
+    const backdrop = document.querySelector('.modal-backdrop');
+    if (backdrop) {
+      backdrop.remove();
+    }
+
+    console.log("Datos enviados con éxito!");
+ });
+});
