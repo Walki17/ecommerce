@@ -314,6 +314,12 @@ function ActualizarCarrito(items) {
     return subtotal * shippingPercentage;
 }
 
+document.querySelectorAll('input[name="shipping"]').forEach((radioButton) => {
+    radioButton.addEventListener('change', function() {
+        actualizarPrecios(); // 
+    });
+});
+
     function actualizarPrecios() {
         const { subtotalUSD, subtotalUYU } = calcularSubtotalesPorMoneda();
 
@@ -422,12 +428,13 @@ document.getElementById('Confirmar').addEventListener('click', function() {
       return; 
     }
 
+    const shippingValue = shippingSelected.value;
+    localStorage.setItem('shipping', shippingValue);  // Guarda en localStorage o en otra variable
+
     // Verifica si todos los campos de dirección fueron llenados
-    const requiredFields = ['dpt', 'city', 'street', 'number', 'Corner', 'additional'];
+    const requiredFields = ['dpt', 'city', 'street', 'number', 'corner', 'additional'];
     for (let fieldId of requiredFields) {
         const field = document.getElementById(fieldId);
-
-    console.log("Verificando campo: ", fieldId, " Valor: ", field ? field.value : "Campo no encontrado");
 
     if (!field || !field.value || !field.value.trim()) {
         const label = field ? field.previousElementSibling : null;
@@ -436,9 +443,12 @@ document.getElementById('Confirmar').addEventListener('click', function() {
         return; 
     }
 
+    console.log("Verificando campo: ", fieldId, " Valor: ", field ? field.value : "Campo no encontrado");
+
     // Verifica si la forma de pago fue seleccionada
-    const paymentSelected= document.querySelector('input[name="payment"]:checked');
-    if (!paymentSelected) {
+    const paymentSelected= document.getElementById('paymentmethod').value;
+    console.log("Forma de pago seleccionada:", paymentSelected); 
+    if (!paymentSelected || paymentSelected === 'Method') {
       alert("Por favor, seleccione la forma de pago.");
       return; 
     }
@@ -456,6 +466,7 @@ document.getElementById('Confirmar').addEventListener('click', function() {
     console.log("Datos enviados con éxito!");
  });
 });
+
 //Funcion para mostrar tipo de envio solo cuando hay elementos en el carrito
 
 
@@ -526,4 +537,3 @@ document.getElementById('paymentmethod').addEventListener('change', function() {
       document.getElementById('transfer-info').style.display = 'block';
     }
   });
-
