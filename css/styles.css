@@ -1450,14 +1450,15 @@ font-size: 1em;
 }
 
 #deliveries{
-  display: flex;
   width: 25%;
   text-align: center;
   padding: 2%;
   border-color: orange;
-  position: relative;
-  left: 70%;
+  position: absolute;
+  top:68%; 
+  left: 66%; 
   cursor: pointer;
+  margin-bottom: 10%;
 }
 
 #selectdelivery{
