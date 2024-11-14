@@ -481,59 +481,70 @@ document.getElementById('checkout-button').addEventListener('click', function() 
 //TAYSA
 //Funcion para mostrar tipo de envio solo cuando hay elementos en el carrito
 
-
 document.addEventListener("DOMContentLoaded", () => { 
-    // Llamada inicial para mostrar/ocultar la tarjeta según el estado del carrito al cargar la página
-    toggleDeliveriesCard();
+    // Configura la visibilidad de las tarjetas al cargar la página
+    actualizarVisibilidadCarteles();
 
-    let CarritoVacio = document.getElementById("empty-cart-message");
     let cartData = JSON.parse(localStorage.getItem("cart")) || [];
     
     if (cartData.length === 0) {
-        CarritoVacio.style.display = "block";
-        document.getElementById("cart-summary").style.display = "none";
+        document.getElementById("empty-cart-message").style.display = "block";
     } else {
-        CarritoVacio.style.display = "none";
-        document.getElementById("cart-summary").style.display = "block";
         MostrarCarrito(cartData);
         ActualizarCarrito(cartData);
     }
 });
 
-function toggleDeliveriesCard() {
-    let deliveriesCard = document.getElementById("deliveries-card");
-    let cartData = JSON.parse(localStorage.getItem("cart")) || [];
+// Función para actualizar la visibilidad de las tarjetas en función del contenido del carrito
     
-    if (cartData.length > 0) {
-        deliveriesCard.style.display = "block";
-    } else {
-        deliveriesCard.style.display = "none";
+    // Mostrar u ocultar tarjetas según el contenido inicial del carrito
+    function actualizarVisibilidadCarteles() {
+        const deliverCard = document.getElementById("deliveries-card");
+        const cartSummary = document.getElementById("cart-summary");
+    
+        if (cartData.length === 0) {
+            CarritoVacio.style.display = "block";
+            deliverCard.style.display = "none";
+            cartSummary.style.display = "none";
+        } else {
+            CarritoVacio.style.display = "none";
+            deliverCard.style.display = "block"; // O el estilo que prefieras
+            cartSummary.style.display = "block"; // O el estilo que prefieras
+        }
     }
-}
 
-function addItemToCart(item) {
-    let cartData = JSON.parse(localStorage.getItem("cart")) || [];
-    cartData.push(item);
-    localStorage.setItem("cart", JSON.stringify(cartData));
-    MostrarCarrito(cartData);
-    ActualizarCarrito(cartData);
-    toggleDeliveriesCard(); // Verifica si mostrar/ocultar la tarjeta de envíos
-}
 
+// Función para eliminar un elemento del carrito
 function EliminarDelCarrito(index) {
-    let cartData = JSON.parse(localStorage.getItem("cart")) || [];
     cartData.splice(index, 1);
     localStorage.setItem("cart", JSON.stringify(cartData));
+
+    if (cartData.length === 0) {
+        CarritoVacio.style.display = "block";
+        document.getElementById("deliveries-card").style.display = "none";
+        document.getElementById("cart-summary").style.display = "none";
+        MostrarCarrito([]); 
+        ActualizarCarrito([]);
+    } else {
+        MostrarCarrito(cartData);
+        ActualizarCarrito(cartData);
+    }
+    
+    // Actualizar la interfaz y visibilidad en tiempo real
     MostrarCarrito(cartData);
     ActualizarCarrito(cartData);
-    toggleDeliveriesCard(); // Verifica si mostrar/ocultar la tarjeta de envíos
+    actualizarVisibilidadCarteles(); // Verifica si mostrar/ocultar las tarjetas de resumen y tipo de envío
 
-    // Si el carrito queda vacío después de eliminar el artículo
-    if (cartData.length === 0) {
-        document.getElementById("empty-cart-message").style.display = "block";
-        document.getElementById("cart-summary").style.display = "none";
+    function MostrarCarrito(items) {
+        const cartContainer = document.getElementById("cart-items");
+        
+        if (items.length === 0) {
+            cartContainer.innerHTML = ''; // Limpia el carrito si está vacío
+            return;
+        }
     }
 }
+
 
 //Funcion de metodos de pago 
 
