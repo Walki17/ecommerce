@@ -491,6 +491,17 @@ fetch(PRODUCT_URL)
 
   console.log(cantidades);
 
+  const badgeElement = document.getElementById("cartBadge");
+  if (badgeElement){
+    badgeElement.textContent = cantidades;
+  }
+
+  console.log(cantidades);
+  return cantidades
+
 }
+
+
+
 
 contarItems();

@@ -85,6 +85,7 @@ function MostrarCarrito(items) {
             
             localStorage.setItem("cart", JSON.stringify(cartData));
             ActualizarCarrito(cartData);
+            contarItems()
         });
 
         decreaseBtn.addEventListener('click', () => {
@@ -98,6 +99,7 @@ function MostrarCarrito(items) {
                 
                 localStorage.setItem("cart", JSON.stringify(cartData));
                 ActualizarCarrito(cartData);
+                contarItems()
             }
         });
     });
@@ -114,8 +116,10 @@ function EliminarDelCarrito(index) {
         ActualizarCarrito([]);
     } else {
         MostrarCarrito(cartData);
-        ActualizarCarrito(cartData);
+        
     }
+    ActualizarCarrito(cartData);
+    contarItems()
 }
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -130,7 +134,7 @@ if (cartData.length === 0) {
     CarritoVacio.style.display = "none";
     document.getElementById("cart-summary").style.display = "block";
     MostrarCarrito(cartData);
-    ActualizarCarrito(cartData);
+    
 }
 });
 
@@ -371,24 +375,26 @@ document.querySelectorAll('input[name="shipping"]').forEach((radioButton) => {
 const modalTipoEnvio = document.getElementById('nav-delivery');
 const tipoDeEnvio = modalTipoEnvio.querySelectorAll('input[type="radio"]');
 
-const modalFormaPago = document.getElementById('nav-payment');
-const tipoDeFormaPago = modalFormaPago.querySelectorAll('input[type="radio"]'); 
-
-const btnPagar = document.getElementById('checkout-button');
+const dropFormaPago = document.getElementById('paymentmethod');
 
 const formulario = document.getElementById('data-envio');
 const allCampos = formulario.querySelectorAll('input');
 
+const infoCreditoDebito = document.getElementById('debit-credit-form');
+const camposCreditoDebito = infoCreditoDebito.querySelectorAll('input');
+const radiosCreditoDebito = infoCreditoDebito.querySelectorAll('input[type="radio"]');
+
+
 const dataEnLocal = localStorage.getItem('cart');
 const carritoConProductos = dataEnLocal && JSON.parse(dataEnLocal).length > 0;
 
-btnPagar.addEventListener('click', function() {
+document.getElementById('checkout-button').addEventListener('click', function() {
 
     let radiosTipoEnvio = false;
     for (let radiosEnvio of tipoDeEnvio) {
         if (radiosEnvio.checked) {
             radiosTipoEnvio = true;
-            break; //rompe el bucle cuando encuentra vacío
+            break; 
         }
     }
 
@@ -396,77 +402,83 @@ btnPagar.addEventListener('click', function() {
     for (let campo of allCampos) {
         if (campo.value.trim() === "") {
             todosCamposLlenos = false;
-            break; //rompe el bucle cuando encuentra vacío
+            break; 
         }
     }
 
-    let radiosTipoPago = false;
-    for (let radiosPago of tipoDeFormaPago) {
-        if (radiosPago.checked) {
-            radiosTipoPago = true;
-            break; //rompe el bucle cuando encuentra vacío
+    const metodoPagoSeleccionado = dropFormaPago.value;
+
+
+    const medioPagoValido = (metodoPagoSeleccionado === "Débito" || metodoPagoSeleccionado === "Crédito" || metodoPagoSeleccionado === "Transferencia");
+
+  
+    let camposCompletos = true;
+    if (metodoPagoSeleccionado === "Débito" || metodoPagoSeleccionado === "Crédito") {
+        for (let campo of camposCreditoDebito) {
+            if (campo.value.trim() === "") {
+                camposCompletos = false;
+                break; 
+            }
         }
     }
 
-    if(radiosTipoEnvio && todosCamposLlenos && carritoConProductos && radiosTipoPago) {
-        alert('ta bien');
+    
+    if (metodoPagoSeleccionado === "Transferencia") {
+        camposCompletos = true;  
+    }
+
+
+    let radiosTarjeta = false;
+    if (metodoPagoSeleccionado === "Débito" || metodoPagoSeleccionado === "Crédito") {
+        for (let radioTarjeta of radiosCreditoDebito) {
+            if (radioTarjeta.checked) {
+                radiosTarjeta = true;
+                break; 
+            }
+        }
+    }
+
+    const alerta = document.getElementById('feedbackAlerta');
+
+
+    if (radiosTipoEnvio && todosCamposLlenos && carritoConProductos && medioPagoValido && camposCompletos && (metodoPagoSeleccionado === "Transferencia" || radiosTarjeta)) {
+        alerta.innerHTML = `
+        <div class="toast align-items-center text-bg-success border-0" role="alert" aria-live="assertive" aria-atomic="true" data-bs-autohide="true" data-bs-delay="3000" style="width: 600px; position: fixed; top: 10px; left: 50%; transform: translateX(-50%); z-index: 1050; font-size: 15px;">
+            <div class="d-flex">
+                <div class="toast-body">
+                    Campos completos correctamente.
+                </div>
+                <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+            </div>
+        </div>`;
+
+    
+        const toastElement = alerta.querySelector('.toast');
+        const toast = new bootstrap.Toast(toastElement);
+        toast.show();
+
     } else {
-        alert('no ta bien');
+        alerta.innerHTML = `
+        <div class="toast align-items-center text-bg-danger border-0" role="alert" aria-live="assertive" aria-atomic="true" data-bs-autohide="true" data-bs-delay="3000" style="width: 600px; position: fixed; top: 10px; left: 50%; transform: translateX(-50%); z-index: 1050; font-size: 15px;">
+            <div class="d-flex">
+                <div class="toast-body">
+                    Por favor, para continuar completa todos los campos obligatorios.
+                </div>
+                <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+            </div>
+        </div>`;
+
+        
+        const toastElement = alerta.querySelector('.toast');
+        const toast = new bootstrap.Toast(toastElement);
+        toast.show();
     }
 });
 
 // ACÁ TERMINA LA PARTE 3
 
 
-// testeo costos Rai
-document.addEventListener('DOMContentLoaded', function() {
-document.getElementById('Confirmar').addEventListener('click', function() {
-    // Verifica si el tipo de envío fue seleccionado
-    const shippingSelected = document.querySelector('input[name="shipping"]:checked');
-    if (!shippingSelected) {
-      alert("Por favor, seleccione el tipo de envío.");
-      return; 
-    }
-
-    const shippingValue = shippingSelected.value;
-    localStorage.setItem('shipping', shippingValue);  // Guarda en localStorage o en otra variable
-
-    // Verifica si todos los campos de dirección fueron llenados
-    const requiredFields = ['dpt', 'city', 'street', 'number', 'corner', 'additional'];
-    for (let fieldId of requiredFields) {
-        const field = document.getElementById(fieldId);
-
-    if (!field || !field.value || !field.value.trim()) {
-        const label = field ? field.previousElementSibling : null;
-        const errorMessage = label ? `Por favor, rellene el campo ${label.textContent}.` : "Por favor, rellene todos los campos obligatorios.";
-        alert(errorMessage);
-        return; 
-    }
-
-    console.log("Verificando campo: ", fieldId, " Valor: ", field ? field.value : "Campo no encontrado");
-
-    // Verifica si la forma de pago fue seleccionada
-    const paymentSelected= document.getElementById('paymentmethod').value;
-    console.log("Forma de pago seleccionada:", paymentSelected); 
-    if (!paymentSelected || paymentSelected === 'Method') {
-      alert("Por favor, seleccione la forma de pago.");
-      return; 
-    }
- }
-
-    const modalElement = document.getElementById('myModal');
-    const modal = bootstrap.Modal.getInstance(modalElement); 
-    modal.hide();
-
-    const backdrop = document.querySelector('.modal-backdrop');
-    if (backdrop) {
-      backdrop.remove();
-    }
-
-    console.log("Datos enviados con éxito!");
- });
-});
-
+//TAYSA
 //Funcion para mostrar tipo de envio solo cuando hay elementos en el carrito
 
 document.addEventListener("DOMContentLoaded", () => { 

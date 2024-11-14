@@ -1581,4 +1581,21 @@ font-size: 0.7em;
   display: flex;
   align-items: center;
   gap: 5px;
+  
 }
+
+/*Esto es parar que desaparezcan las flechitas de subir y bajar en los campos que tiene número -- att Cami*/
+
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+
+/*Acá se acomodaron los logos del apartado transferencia*/
+.logosTransferencia{
+  width: 25px;
+  margin-top: -0.5%;
+}
+
