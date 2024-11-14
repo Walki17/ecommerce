@@ -390,7 +390,7 @@ document.getElementById('checkout-button').addEventListener('click', function() 
     for (let radiosEnvio of tipoDeEnvio) {
         if (radiosEnvio.checked) {
             radiosTipoEnvio = true;
-            break; // Rompe el bucle cuando encuentra seleccionado
+            break; 
         }
     }
 
@@ -398,45 +398,45 @@ document.getElementById('checkout-button').addEventListener('click', function() 
     for (let campo of allCampos) {
         if (campo.value.trim() === "") {
             todosCamposLlenos = false;
-            break; // Rompe el bucle cuando encuentra vacío
+            break; 
         }
     }
 
     const metodoPagoSeleccionado = dropFormaPago.value;
 
-    // Aseguramos que el método de pago sea uno de los válidos
+
     const medioPagoValido = (metodoPagoSeleccionado === "Débito" || metodoPagoSeleccionado === "Crédito" || metodoPagoSeleccionado === "Transferencia");
 
-    // Condicional: Si el método de pago es "Débito" o "Crédito", validar los campos de débito/crédito
+  
     let camposCompletos = true;
     if (metodoPagoSeleccionado === "Débito" || metodoPagoSeleccionado === "Crédito") {
         for (let campo of camposCreditoDebito) {
             if (campo.value.trim() === "") {
                 camposCompletos = false;
-                break; // Rompe el bucle cuando encuentra vacío
+                break; 
             }
         }
     }
 
-    // Condicional: Si el método de pago es "Transferencia", no es necesario validar los campos de débito/crédito
+    
     if (metodoPagoSeleccionado === "Transferencia") {
-        camposCompletos = true;  // No validamos campos de débito/crédito para "Transferencia"
+        camposCompletos = true;  
     }
 
-    // Validar si el radio de tarjeta está seleccionado
+
     let radiosTarjeta = false;
     if (metodoPagoSeleccionado === "Débito" || metodoPagoSeleccionado === "Crédito") {
         for (let radioTarjeta of radiosCreditoDebito) {
             if (radioTarjeta.checked) {
                 radiosTarjeta = true;
-                break; // Rompe el bucle cuando encuentra seleccionado
+                break; 
             }
         }
     }
 
     const alerta = document.getElementById('feedbackAlerta');
 
-    // Mostrar el mensaje según el resultado de las validaciones
+
     if (radiosTipoEnvio && todosCamposLlenos && carritoConProductos && medioPagoValido && camposCompletos && (metodoPagoSeleccionado === "Transferencia" || radiosTarjeta)) {
         alerta.innerHTML = `
         <div class="toast align-items-center text-bg-success border-0" role="alert" aria-live="assertive" aria-atomic="true" data-bs-autohide="true" data-bs-delay="3000" style="width: 600px; position: fixed; top: 10px; left: 50%; transform: translateX(-50%); z-index: 1050; font-size: 15px;">
@@ -448,7 +448,7 @@ document.getElementById('checkout-button').addEventListener('click', function() 
             </div>
         </div>`;
 
-        // Inicializar y mostrar el toast
+    
         const toastElement = alerta.querySelector('.toast');
         const toast = new bootstrap.Toast(toastElement);
         toast.show();
@@ -464,7 +464,7 @@ document.getElementById('checkout-button').addEventListener('click', function() 
             </div>
         </div>`;
 
-        // Inicializar y mostrar el toast
+        
         const toastElement = alerta.querySelector('.toast');
         const toast = new bootstrap.Toast(toastElement);
         toast.show();
@@ -472,22 +472,6 @@ document.getElementById('checkout-button').addEventListener('click', function() 
 });
 
 // ACÁ TERMINA LA PARTE 3
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 //TAYSA
