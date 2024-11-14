@@ -85,6 +85,7 @@ function MostrarCarrito(items) {
             
             localStorage.setItem("cart", JSON.stringify(cartData));
             ActualizarCarrito(cartData);
+            contarItems()
         });
 
         decreaseBtn.addEventListener('click', () => {
@@ -98,6 +99,7 @@ function MostrarCarrito(items) {
                 
                 localStorage.setItem("cart", JSON.stringify(cartData));
                 ActualizarCarrito(cartData);
+                contarItems()
             }
         });
     });
@@ -114,8 +116,10 @@ function EliminarDelCarrito(index) {
         ActualizarCarrito([]);
     } else {
         MostrarCarrito(cartData);
-        ActualizarCarrito(cartData);
+        
     }
+    ActualizarCarrito(cartData);
+    contarItems()
 }
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -130,7 +134,7 @@ if (cartData.length === 0) {
     CarritoVacio.style.display = "none";
     document.getElementById("cart-summary").style.display = "block";
     MostrarCarrito(cartData);
-    ActualizarCarrito(cartData);
+    
 }
 });
 
