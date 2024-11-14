@@ -1450,6 +1450,7 @@ font-size: 1em;
 }
 
 #deliveries{
+  display: flex;
   width: 25%;
   text-align: center;
   padding: 2%;

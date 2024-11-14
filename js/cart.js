@@ -469,59 +469,54 @@ document.getElementById('Confirmar').addEventListener('click', function() {
 
 //Funcion para mostrar tipo de envio solo cuando hay elementos en el carrito
 
-
 document.addEventListener("DOMContentLoaded", () => { 
-    // Llamada inicial para mostrar/ocultar la tarjeta según el estado del carrito al cargar la página
-    toggleDeliveriesCard();
+    // Configura la visibilidad de las tarjetas al cargar la página
+    actualizarVisibilidadCarteles();
 
-    let CarritoVacio = document.getElementById("empty-cart-message");
     let cartData = JSON.parse(localStorage.getItem("cart")) || [];
     
     if (cartData.length === 0) {
-        CarritoVacio.style.display = "block";
-        document.getElementById("cart-summary").style.display = "none";
+        document.getElementById("empty-cart-message").style.display = "block";
     } else {
-        CarritoVacio.style.display = "none";
-        document.getElementById("cart-summary").style.display = "block";
         MostrarCarrito(cartData);
         ActualizarCarrito(cartData);
     }
 });
 
-function toggleDeliveriesCard() {
-    let deliveriesCard = document.getElementById("deliveries-card");
+// Función para actualizar la visibilidad de las tarjetas en función del contenido del carrito
+function actualizarVisibilidadCarteles() {
     let cartData = JSON.parse(localStorage.getItem("cart")) || [];
     
-    if (cartData.length > 0) {
-        deliveriesCard.style.display = "block";
-    } else {
-        deliveriesCard.style.display = "none";
-    }
+    // Actualizar visibilidad del mensaje de carrito vacío
+    document.getElementById("empty-cart-message").style.display = cartData.length === 0 ? "block" : "none";
+    document.getElementById("cart-summary").style.display = cartData.length > 0 ? "block" : "none";
+    document.getElementById("deliveries-card").style.display = cartData.length > 0 ? "block" : "none";
 }
 
+// Función para agregar un elemento al carrito
 function addItemToCart(item) {
     let cartData = JSON.parse(localStorage.getItem("cart")) || [];
     cartData.push(item);
     localStorage.setItem("cart", JSON.stringify(cartData));
+    
+    // Actualizar interfaz y visibilidad en tiempo real
     MostrarCarrito(cartData);
     ActualizarCarrito(cartData);
-    toggleDeliveriesCard(); // Verifica si mostrar/ocultar la tarjeta de envíos
+    actualizarVisibilidadCarteles(); // Actualiza las tarjetas de resumen y tipo de envío
 }
 
+// Función para eliminar un elemento del carrito
 function EliminarDelCarrito(index) {
     let cartData = JSON.parse(localStorage.getItem("cart")) || [];
-    cartData.splice(index, 1);
+    cartData.splice(index, 1); // Remueve el producto en el índice especificado
     localStorage.setItem("cart", JSON.stringify(cartData));
+    
+    // Actualizar la interfaz y visibilidad en tiempo real
     MostrarCarrito(cartData);
     ActualizarCarrito(cartData);
-    toggleDeliveriesCard(); // Verifica si mostrar/ocultar la tarjeta de envíos
-
-    // Si el carrito queda vacío después de eliminar el artículo
-    if (cartData.length === 0) {
-        document.getElementById("empty-cart-message").style.display = "block";
-        document.getElementById("cart-summary").style.display = "none";
-    }
+    actualizarVisibilidadCarteles(); // Verifica si mostrar/ocultar las tarjetas de resumen y tipo de envío
 }
+
 
 //Funcion de metodos de pago 
 
