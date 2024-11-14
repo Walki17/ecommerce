@@ -484,21 +484,23 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 // Función para actualizar la visibilidad de las tarjetas en función del contenido del carrito
-
-document.addEventListener("DOMContentLoaded", () => { 
-    CarritoVacio = document.getElementById("empty-cart-message");
-    cartData = JSON.parse(localStorage.getItem("cart")) || [];
     
     // Mostrar u ocultar tarjetas según el contenido inicial del carrito
-    actualizarVisibilidadCarteles();
+    function actualizarVisibilidadCarteles() {
+        const deliverCard = document.getElementById("deliveries-card");
+        const cartSummary = document.getElementById("cart-summary");
     
-    if (cartData.length === 0) {
-        CarritoVacio.style.display = "block";
-    } else {
-        MostrarCarrito(cartData);
-        ActualizarCarrito(cartData);
+        if (cartData.length === 0) {
+            CarritoVacio.style.display = "block";
+            deliverCard.style.display = "none";
+            cartSummary.style.display = "none";
+        } else {
+            CarritoVacio.style.display = "none";
+            deliverCard.style.display = "block"; // O el estilo que prefieras
+            cartSummary.style.display = "block"; // O el estilo que prefieras
+        }
     }
-});
+
 
 // Función para eliminar un elemento del carrito
 function EliminarDelCarrito(index) {
