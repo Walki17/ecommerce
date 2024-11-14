@@ -271,7 +271,7 @@ function ActualizarCarrito(items) {
         TotalProd.textContent = "USD 0";
         return;
     }
-
+   
     function calcularSubtotalesPorMoneda() {
         let subtotalUSD = 0;
         let subtotalUYU = 0;
@@ -289,10 +289,43 @@ function ActualizarCarrito(items) {
 
         return { subtotalUSD, subtotalUYU };
     }
+    
+    function calcularCostoEnvio(subtotal) {
+        const shippingSelected = document.querySelector('input[name="shipping"]:checked');
+        if (!shippingSelected) {
+            return 0; 
+        }
+
+    let shippingPercentage = 0;
+    switch (shippingSelected.value) {
+        case 'premium':
+            shippingPercentage = 0.15; 
+            break;
+        case 'express':
+            shippingPercentage = 0.07; 
+            break;
+        case 'standard':
+            shippingPercentage = 0.05; 
+            break;
+        default:
+            shippingPercentage = 0; 
+    }
+    
+    return subtotal * shippingPercentage;
+}
+
+document.querySelectorAll('input[name="shipping"]').forEach((radioButton) => {
+    radioButton.addEventListener('change', function() {
+        actualizarPrecios(); // 
+    });
+});
 
     function actualizarPrecios() {
         const { subtotalUSD, subtotalUYU } = calcularSubtotalesPorMoneda();
-        
+
+        console.log("Subtotal USD: ", subtotalUSD);
+        console.log("Subtotal UYU: ", subtotalUYU);
+
         const subtotalList = document.getElementById('subtotalList');
         subtotalList.innerHTML = '';
     
@@ -309,11 +342,17 @@ function ActualizarCarrito(items) {
     
         const monedaSeleccionada = currencySelect.value;
         let totalFinal;
+
+        let envioUSD = calcularCostoEnvio(subtotalUSD);
+        let envioUYU = calcularCostoEnvio(subtotalUYU);
+
+        console.log("Envio USD: ", envioUSD);
+        console.log("Envio UYU: ", envioUYU);
     
         if (monedaSeleccionada === 'USD') {
-            totalFinal = subtotalUSD + convertirUYUaUSD(subtotalUYU);
+            totalFinal = subtotalUSD + envioUSD + convertirUYUaUSD(subtotalUYU + envioUYU);
         } else {
-            totalFinal = convertirUSDaUYU(subtotalUSD) + subtotalUYU;
+            totalFinal = convertirUSDaUYU(subtotalUSD + envioUSD) + subtotalUYU + envioUYU;
         }
     
         TotalProd.textContent = `${monedaSeleccionada} ${new Intl.NumberFormat('es-ES', {
@@ -321,8 +360,188 @@ function ActualizarCarrito(items) {
             maximumFractionDigits: 2
         }).format(totalFinal)}`;
     }
-    
+
     actualizarPrecios();
-    
+
     currencySelect.addEventListener('change', actualizarPrecios);
 }
+
+// ACÁ ARRANCA LA PARTE 3 -- ATT: CAMILUCHI
+
+const modalTipoEnvio = document.getElementById('nav-delivery');
+const tipoDeEnvio = modalTipoEnvio.querySelectorAll('input[type="radio"]');
+
+const dropFormaPago = document.getElementById('paymentmethod');
+
+const formulario = document.getElementById('data-envio');
+const allCampos = formulario.querySelectorAll('input');
+
+const infoCreditoDebito = document.getElementById('debit-credit-form');
+const camposCreditoDebito = infoCreditoDebito.querySelectorAll('input');
+const radiosCreditoDebito = infoCreditoDebito.querySelectorAll('input[type="radio"]');
+
+
+const dataEnLocal = localStorage.getItem('cart');
+const carritoConProductos = dataEnLocal && JSON.parse(dataEnLocal).length > 0;
+
+document.getElementById('checkout-button').addEventListener('click', function() {
+
+    let radiosTipoEnvio = false;
+    for (let radiosEnvio of tipoDeEnvio) {
+        if (radiosEnvio.checked) {
+            radiosTipoEnvio = true;
+            break; 
+        }
+    }
+
+    let todosCamposLlenos = true;
+    for (let campo of allCampos) {
+        if (campo.value.trim() === "") {
+            todosCamposLlenos = false;
+            break; 
+        }
+    }
+
+    const metodoPagoSeleccionado = dropFormaPago.value;
+
+
+    const medioPagoValido = (metodoPagoSeleccionado === "Débito" || metodoPagoSeleccionado === "Crédito" || metodoPagoSeleccionado === "Transferencia");
+
+  
+    let camposCompletos = true;
+    if (metodoPagoSeleccionado === "Débito" || metodoPagoSeleccionado === "Crédito") {
+        for (let campo of camposCreditoDebito) {
+            if (campo.value.trim() === "") {
+                camposCompletos = false;
+                break; 
+            }
+        }
+    }
+
+    
+    if (metodoPagoSeleccionado === "Transferencia") {
+        camposCompletos = true;  
+    }
+
+
+    let radiosTarjeta = false;
+    if (metodoPagoSeleccionado === "Débito" || metodoPagoSeleccionado === "Crédito") {
+        for (let radioTarjeta of radiosCreditoDebito) {
+            if (radioTarjeta.checked) {
+                radiosTarjeta = true;
+                break; 
+            }
+        }
+    }
+
+    const alerta = document.getElementById('feedbackAlerta');
+
+
+    if (radiosTipoEnvio && todosCamposLlenos && carritoConProductos && medioPagoValido && camposCompletos && (metodoPagoSeleccionado === "Transferencia" || radiosTarjeta)) {
+        alerta.innerHTML = `
+        <div class="toast align-items-center text-bg-success border-0" role="alert" aria-live="assertive" aria-atomic="true" data-bs-autohide="true" data-bs-delay="3000" style="width: 600px; position: fixed; top: 10px; left: 50%; transform: translateX(-50%); z-index: 1050; font-size: 15px;">
+            <div class="d-flex">
+                <div class="toast-body">
+                    Campos completos correctamente.
+                </div>
+                <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+            </div>
+        </div>`;
+
+    
+        const toastElement = alerta.querySelector('.toast');
+        const toast = new bootstrap.Toast(toastElement);
+        toast.show();
+
+    } else {
+        alerta.innerHTML = `
+        <div class="toast align-items-center text-bg-danger border-0" role="alert" aria-live="assertive" aria-atomic="true" data-bs-autohide="true" data-bs-delay="3000" style="width: 600px; position: fixed; top: 10px; left: 50%; transform: translateX(-50%); z-index: 1050; font-size: 15px;">
+            <div class="d-flex">
+                <div class="toast-body">
+                    Por favor, para continuar completa todos los campos obligatorios.
+                </div>
+                <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+            </div>
+        </div>`;
+
+        
+        const toastElement = alerta.querySelector('.toast');
+        const toast = new bootstrap.Toast(toastElement);
+        toast.show();
+    }
+});
+
+// ACÁ TERMINA LA PARTE 3
+
+
+//TAYSA
+//Funcion para mostrar tipo de envio solo cuando hay elementos en el carrito
+
+
+document.addEventListener("DOMContentLoaded", () => { 
+    // Llamada inicial para mostrar/ocultar la tarjeta según el estado del carrito al cargar la página
+    toggleDeliveriesCard();
+
+    let CarritoVacio = document.getElementById("empty-cart-message");
+    let cartData = JSON.parse(localStorage.getItem("cart")) || [];
+    
+    if (cartData.length === 0) {
+        CarritoVacio.style.display = "block";
+        document.getElementById("cart-summary").style.display = "none";
+    } else {
+        CarritoVacio.style.display = "none";
+        document.getElementById("cart-summary").style.display = "block";
+        MostrarCarrito(cartData);
+        ActualizarCarrito(cartData);
+    }
+});
+
+function toggleDeliveriesCard() {
+    let deliveriesCard = document.getElementById("deliveries-card");
+    let cartData = JSON.parse(localStorage.getItem("cart")) || [];
+    
+    if (cartData.length > 0) {
+        deliveriesCard.style.display = "block";
+    } else {
+        deliveriesCard.style.display = "none";
+    }
+}
+
+function addItemToCart(item) {
+    let cartData = JSON.parse(localStorage.getItem("cart")) || [];
+    cartData.push(item);
+    localStorage.setItem("cart", JSON.stringify(cartData));
+    MostrarCarrito(cartData);
+    ActualizarCarrito(cartData);
+    toggleDeliveriesCard(); // Verifica si mostrar/ocultar la tarjeta de envíos
+}
+
+function EliminarDelCarrito(index) {
+    let cartData = JSON.parse(localStorage.getItem("cart")) || [];
+    cartData.splice(index, 1);
+    localStorage.setItem("cart", JSON.stringify(cartData));
+    MostrarCarrito(cartData);
+    ActualizarCarrito(cartData);
+    toggleDeliveriesCard(); // Verifica si mostrar/ocultar la tarjeta de envíos
+
+    // Si el carrito queda vacío después de eliminar el artículo
+    if (cartData.length === 0) {
+        document.getElementById("empty-cart-message").style.display = "block";
+        document.getElementById("cart-summary").style.display = "none";
+    }
+}
+
+//Funcion de metodos de pago 
+
+document.getElementById('paymentmethod').addEventListener('change', function() {
+    // Ocultar ambos formularios inicialmente
+    document.getElementById('debit-credit-form').style.display = 'none';
+    document.getElementById('transfer-info').style.display = 'none';
+    
+    // Mostrar el formulario correspondiente
+    if (this.value === 'Débito' || this.value === 'Crédito') {
+      document.getElementById('debit-credit-form').style.display = 'block';
+    } else if (this.value === 'Transferencia') {
+      document.getElementById('transfer-info').style.display = 'block';
+    }
+  });
