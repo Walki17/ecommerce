@@ -484,32 +484,22 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 // Función para actualizar la visibilidad de las tarjetas en función del contenido del carrito
-function actualizarVisibilidadCarteles() {
-    let cartData = JSON.parse(localStorage.getItem("cart")) || [];
-    
-    // Actualizar visibilidad del mensaje de carrito vacío
-    document.getElementById("empty-cart-message").style.display = cartData.length === 0 ? "block" : "none";
-    document.getElementById("cart-summary").style.display = cartData.length > 0 ? "block" : "none";
-    document.getElementById("deliveries-card").style.display = cartData.length > 0 ? "block" : "none";
-}
-
-// Función para agregar un elemento al carrito
-function addItemToCart(item) {
-    let cartData = JSON.parse(localStorage.getItem("cart")) || [];
-    cartData.push(item);
-    localStorage.setItem("cart", JSON.stringify(cartData));
-    
-    // Actualizar interfaz y visibilidad en tiempo real
-    MostrarCarrito(cartData);
-    ActualizarCarrito(cartData);
-    actualizarVisibilidadCarteles(); // Actualiza las tarjetas de resumen y tipo de envío
-}
 
 // Función para eliminar un elemento del carrito
 function EliminarDelCarrito(index) {
-    let cartData = JSON.parse(localStorage.getItem("cart")) || [];
-    cartData.splice(index, 1); // Remueve el producto en el índice especificado
+    cartData.splice(index, 1);
     localStorage.setItem("cart", JSON.stringify(cartData));
+
+    if (cartData.length === 0) {
+        CarritoVacio.style.display = "block";
+        document.getElementById("deliveries-card").style.display = "none";
+        document.getElementById("cart-summary").style.display = "none";
+        MostrarCarrito([]); 
+        ActualizarCarrito([]);
+    } else {
+        MostrarCarrito(cartData);
+        ActualizarCarrito(cartData);
+    }
     
     // Actualizar la interfaz y visibilidad en tiempo real
     MostrarCarrito(cartData);
