@@ -485,6 +485,21 @@ document.addEventListener("DOMContentLoaded", () => {
 
 // Función para actualizar la visibilidad de las tarjetas en función del contenido del carrito
 
+document.addEventListener("DOMContentLoaded", () => { 
+    CarritoVacio = document.getElementById("empty-cart-message");
+    cartData = JSON.parse(localStorage.getItem("cart")) || [];
+    
+    // Mostrar u ocultar tarjetas según el contenido inicial del carrito
+    actualizarVisibilidadCarteles();
+    
+    if (cartData.length === 0) {
+        CarritoVacio.style.display = "block";
+    } else {
+        MostrarCarrito(cartData);
+        ActualizarCarrito(cartData);
+    }
+});
+
 // Función para eliminar un elemento del carrito
 function EliminarDelCarrito(index) {
     cartData.splice(index, 1);
@@ -505,6 +520,15 @@ function EliminarDelCarrito(index) {
     MostrarCarrito(cartData);
     ActualizarCarrito(cartData);
     actualizarVisibilidadCarteles(); // Verifica si mostrar/ocultar las tarjetas de resumen y tipo de envío
+
+    function MostrarCarrito(items) {
+        const cartContainer = document.getElementById("cart-items");
+        
+        if (items.length === 0) {
+            cartContainer.innerHTML = ''; // Limpia el carrito si está vacío
+            return;
+        }
+    }
 }
 
 
