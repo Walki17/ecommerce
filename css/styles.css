@@ -16,7 +16,7 @@ nav a {
 }
 
 .nav-link{
-  color: rgb(255, 255, 255);
+  color: rgb(67, 64, 64);
 }
 
 .bd-placeholder-img {
@@ -618,7 +618,7 @@ margin-left: 42%
 }
 
 /* Modal */
-.modal {
+#calificarModal {
   display: none; /* Oculto por defecto */
   position: fixed;
   z-index: 1;
@@ -629,7 +629,7 @@ margin-left: 42%
   background-color: rgba(0, 0, 0, 0.5);
 }
 
-.modal-content {
+#bodymodal {
   background-color: #fefefe;
   margin: 15% auto;
   padding: 20px;
@@ -638,7 +638,7 @@ margin-left: 42%
   text-align: center;
 }
 
-.close {
+#closemodal {
   color: #070707;
   float: right;
   font-size: 28px;
@@ -646,12 +646,6 @@ margin-left: 42%
   align-self: flex-end;
 }
 
-.close:hover,
-.close:focus {
-  color: black;
-  text-decoration: none;
-  cursor: pointer;
-}
 
 /* Estrellas */
 .ratingestrellas {
@@ -1404,10 +1398,6 @@ form {
       align-items: center; /* Centra los elementos dentro del contenedor */
   }
 
-  .form-label {
-      text-align: center; /* Centra las etiquetas en pantallas pequeñas */
-  }
-
   .mb-2 {
       width: 100%; /* Asegúrate de que el margen inferior tenga el ancho completo */
   }
@@ -1443,5 +1433,169 @@ form {
       width: 100%; /* Botones ocupan el ancho completo */
   }
 
+}}
+
+
+/*Aqui va el estilo de tipo de envios*/
+
+#modalenvio{
+  border-color: orange;
+  border-width: 2px;
+  border-radius: 20px;
+  width: 70%;
+}
+
+.card-title{
+font-size: 1em;
+}
+
+#deliveries{
+  display: flex;
+  width: 25%;
+  text-align: center;
+  padding: 2%;
+  border-color: orange;
+  position: absolute;
+  top:70%; 
+  left: 66%; 
+  cursor: pointer;
+  margin-bottom: 10%;
+}
+
+#selectdelivery{
+  width: 60%;
+  text-align: center;
+  margin-left: 18%;
+  align-items: center;
+  background-color: orange;
+  color: #000000;
+  border: none;
+  cursor: pointer;
+}
+
+.nav-tabs {
+  display: flex;
+  flex-wrap: nowrap;
+}
+
+.nav-link {
+  white-space: nowrap; /* Evita que las etiquetas de las pestañas se corten */
+  text-align: center; /* Alineación del texto */
+}
+
+.modal-dialog {
+  max-width: 60%;  /* 70% del ancho de la pantalla */
+  max-height: 50%;
+}
+
+#nav-delivery{
+  margin-top: 2em;
+  margin-bottom: 2em;
+  text-align: left;
+  padding: 1em;
+ }
+ 
+ .form-control-custom {
+  border-color: #000000;
+  border-width: 2px;
+  color: #000000; /* Color del texto */
+  border-radius: 30px;
+}
+
+#additional{
+  width: 80%; 
+  text-align: left
+}
+
+#nav-payment{
+margin-right: 8px;
+}
+
+.form-check{
+text-align: left;
+font-size: 0.9rem;
+margin-top: 2em;
+margin-bottom: 0.5em;
+}
+
+#premium,#express,#standard{
+  margin-bottom: 2em;
+}
+
+.form-label{
+  font-size: 0.7rem;
+  font-weight: bold;
+}
+
+#paymentmethod{
+ cursor: pointer;
+ width: 50%;
+ margin-top:3%;
+ font-weight: bold;
+ border-radius: 10px;
+ padding: 1%;
+ margin-right: 3%;
+ }
+
+#transferinfo h3,h2,p{
+  font-size: 0.9em;
+  margin-top: 2%;
+  margin-left:2% ;
+}
+
+#cardnumber,#expirationcard,#codecard,#namecard{
+margin-top: 2%;
+margin-left: 2%;
+font-size: 0.7em;
+}
+
+#name,#number,#expiry-date{
+  width: 50%;
+  font-size: 0.9em;
+  margin-top: 2%;
+  margin-bottom: 2%;
+  margin-left: 2%;
+}
+
+#cvv{
+  width:20%;
+  margin-left: 2%;
+}
+
+.cardLogo {
+  width: 25px;
+  height: auto;
+  border: 0.5px solid #000;
+  border-radius: 3px;
+  
+}
+
+#debit-credit-form {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+#cardType label {
+ 
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  
+}
+
+/*Esto es parar que desaparezcan las flechitas de subir y bajar en los campos que tiene número -- att Cami*/
+
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+
+/*Acá se acomodaron los logos del apartado transferencia*/
+.logosTransferencia{
+  width: 25px;
+  margin-top: -0.5%;
 }
 
