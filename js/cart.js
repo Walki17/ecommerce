@@ -560,3 +560,63 @@ document.getElementById('paymentmethod').addEventListener('change', function() {
       document.getElementById('transfer-info').style.display = 'block';
     }
   });
+
+
+//testeo costos Rai 1
+    function calcularCostoEnvio(subtotal) {
+        const shippingSelected = document.querySelector('input[name="shipping"]:checked');
+        if (!shippingSelected) {
+            return 0; 
+        }
+
+    let shippingPercentage = 0;
+    switch (shippingSelected.value) {
+        case 'premium':
+            shippingPercentage = 0.15; 
+            break;
+        case 'express':
+            shippingPercentage = 0.07; 
+            break;
+        case 'standard':
+            shippingPercentage = 0.05; 
+            break;
+        default:
+            shippingPercentage = 0; 
+    }
+
+    return subtotal * shippingPercentage;
+}
+
+document.querySelectorAll('input[name="shipping"]').forEach((radioButton) => {
+    radioButton.addEventListener('change', function() {
+        actualizarPrecios();
+    });
+});
+
+document.addEventListener('DOMContentLoaded', () => {
+    const radiobuttons = document.querySelectorAll('input[name="shipping"]');
+    const Contenedor = document.getElementById('shippingContainer');
+
+    radiobuttons.forEach(option => {
+        option.addEventListener('change', (event) => {
+            let shippingText = "";
+
+            switch (event.target.value) {
+                case "premium":
+                    shippingText = "Premium";
+                    break;
+                case "express":
+                    shippingText = "Express";
+                    break;
+                case "standard":
+                    shippingText = "Standard";
+                    break;
+                default:
+                    shippingText = "Ninguno seleccionado";
+            }
+
+            Contenedor.innerHTML = `Tipo de envío: ${shippingText}`;
+        });
+    });
+});
+
