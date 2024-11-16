@@ -521,28 +521,18 @@ function EliminarDelCarrito(index) {
 
     if (cartData.length === 0) {
         CarritoVacio.style.display = "block";
-        document.getElementById("deliveries-card").style.display = "none";
         document.getElementById("cart-summary").style.display = "none";
+        document.getElementById("deliveries-card").style.display = "none";
+        
         MostrarCarrito([]); 
         ActualizarCarrito([]);
     } else {
         MostrarCarrito(cartData);
         ActualizarCarrito(cartData);
-    }
-    
-    // Actualizar la interfaz y visibilidad en tiempo real
-    MostrarCarrito(cartData);
-    ActualizarCarrito(cartData);
-    actualizarVisibilidadCarteles(); // Verifica si mostrar/ocultar las tarjetas de resumen y tipo de envío
 
-    function MostrarCarrito(items) {
-        const cartContainer = document.getElementById("cart-items");
-        
-        if (items.length === 0) {
-            cartContainer.innerHTML = ''; // Limpia el carrito si está vacío
-            return;
-        }
     }
+    ActualizarCarrito(cartData);
+    contarItems()
 }
 
 
