@@ -1331,7 +1331,84 @@ button {
 
 }
 
+/* responsive index*/
+/* Resolución: Tableta en modo vertical (máx. ancho 768px) */
+@media (max-width: 768px) {
+  .navbar-nav {
+    flex-direction: column;
+    align-items: flex-start;
+  }
 
+  .card {
+    margin-bottom: 1.5rem;
+  }
+
+  .jumbotron {
+    height: 200px;
+    padding: 1rem;
+  }
+
+  .card img {
+    height: auto;
+    max-height: 150px;
+  }
+
+  .card h3 {
+    font-size: 1.2rem;
+  }
+
+  .card p {
+    font-size: 1rem;
+  }
+
+  .btn {
+    font-size: 1rem;
+    width: 100%;
+  }
+
+  footer p {
+    font-size: 0.9rem;
+  }
+}
+
+/* Resolución: Smartphone pequeño (máx. ancho 576px) */
+@media (max-width: 576px) {
+  .navbar {
+    padding: 0.5rem;
+  }
+
+  .jumbotron {
+    height: 150px;
+    font-size: 1rem;
+  }
+
+  .card {
+    margin-bottom: 1rem;
+  }
+
+  .card img {
+    width: 100%;
+    height: auto;
+    max-height: 100px;
+  }
+
+  .card h3 {
+    font-size: 1rem;
+  }
+
+  .card p {
+    font-size: 0.8rem;
+  }
+
+  .btn {
+    font-size: 0.8rem;
+    width: 100%;
+  }
+
+  footer p {
+    font-size: 0.8rem;
+  }
+}
 
 
 
