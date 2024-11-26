@@ -58,10 +58,10 @@ function MostrarCarrito(items) {
              <p class="item-cost">${new Intl.NumberFormat('de-DE').format(Number(item.cost) * Number(item.quantity))}</p>
         </div>
         <div class="col-12 mt-2">
-            <button class="btn btn-warning delete-btn" onclick="EliminarDelCarrito(${index})">
+            <button class="btn btn-warning delete-btn" id="remove" onclick="EliminarDelCarrito(${index})">
                 <i class="fas fa-trash-alt"></i> Remover
             </button>
-            <button class="btn btn-warning">
+            <button class="btn btn-warning" id="delete">
                 <i class="fas fa-heart"></i> Guardar
             </button>
         </div>
