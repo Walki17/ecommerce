@@ -1464,61 +1464,25 @@ button {
 
   /* Estilos generales */
 form {
-  width: 100%;
+  max-width: 600px; /* Ancho máximo del formulario */
+  margin: auto; /* Centrar el formulario en su contenedor */
 }
-
-/* Estilos generales (Resolución estándar: 1366x768 px y mayores) */
-body {
-  font-family: Arial, sans-serif;
-  background-color: #f9f9f9;
-}
-
-img#profile-pic {
-  max-width: 200px;
-  max-height: 200px;
-}
-
-.form-label {
-  font-weight: bold;
-  text-align: start;
-}
-
-form input {
-  border-radius: 2px;
-  width: 1em;
-}
-
-footer {
-  padding: 1rem 0;
-  background-color: #f1f1f1;
-}
-
-#usuario,#btnGuardarCambios{
-  width: 50%;
-}
-
-
 
 /* Media Queries */
 @media (max-width: 768px) {
-
-  .form-contol{
-    width: 60%;
-  }
- 
   .d-flex {
       flex-direction: column; /* Cambia la dirección a columna en pantallas pequeñas */
       align-items: center; /* Centra los elementos dentro del contenedor */
   }
 
   .mb-2 {
-      width: 90%; /* Asegúrate de que el margen inferior tenga el ancho completo */
+      width: 100%; /* Asegúrate de que el margen inferior tenga el ancho completo */
   }
 
   #profile-pic {
       width: 150px; /* Tamaño reducido para la imagen de perfil */
       height: 150px;
-      margin-bottom: 10px; /* Espacio debajo de la imagen */
+      margin-bottom: 20px; /* Espacio debajo de la imagen */
   }
 
   .me-3 {
@@ -1526,7 +1490,7 @@ footer {
   }
 
   .flex-fill {
-      width: 90%; /* Asegura que los campos ocupen todo el ancho */
+      width: 100%; /* Asegura que los campos ocupen todo el ancho */
   }
 
   .col-10, .col-2 {
@@ -1535,46 +1499,19 @@ footer {
 }
 
 @media (max-width: 320px) {
-  /* Cambiar la disposición a columna para pantallas pequeñas */
-  .d-flex.align-items-start {
-    flex-direction: column; /* Pone los elementos en una columna */
-    align-items: center; /* Centra los elementos */
-    text-align: center; /* Alinea los textos al centro */
+  /* Ajustes para teléfonos pequeños */
+  #profile-pic {
+      width: 120px; /* Tamaño aún más reducido para la imagen */
+      height: 120px;
+      align-items: center;
   }
 
-  /* Ajustar la imagen del perfil */
-  img#profile-pic {
-    width: 120px;  /* Reduce el tamaño de la imagen */
-    height: 120px;
+  .btn {
+      width: 100%; /* Botones ocupan el ancho completo */
   }
 
-  /* Estilo para el botón de cambiar la imagen */
-  #change-pic {
-    margin-top: 10px; /* Da espacio entre la imagen y el botón */
-  }
+}}
 
-  /* Hacer que el formulario ocupe el ancho completo */
-  .flex-grow-1 {
-    width: 100%; /* El formulario ocupará todo el ancho disponible */
-    margin-top: 20px; /* Añade espacio entre la imagen y el formulario */
-  }
-
-  /* Cambiar los elementos dentro del formulario a columna */
-  .row {
-    flex-direction: column; /* Disposición en columna */
-  }
-
-  /* Asegurar que los inputs ocupen todo el ancho */
-  .form-control {
-    width: 100%; /* Los inputs ocupan el 100% del ancho */
-    margin-bottom: 10px; /* Espacio entre los inputs */
-  }
-
-  /* Alineación del botón de guardar */
-  .d-flex.justify-content-end {
-    justify-content: center; /* Centra el botón */
-  }
-}
 
 /*Aqui va el estilo de tipo de envios*/
 
@@ -1663,7 +1600,7 @@ margin-bottom: 0.5em;
 }
 
 .form-label{
-  font-size: 0.8rem;
+  font-size: 0.7rem;
   font-weight: bold;
 }
 
@@ -1739,4 +1676,3 @@ input[type="number"]::-webkit-inner-spin-button {
   margin-top: -0.5%;
 }
 
-}
