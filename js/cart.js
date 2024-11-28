@@ -1,5 +1,6 @@
-let cartData = [];
+let cartData = [];  //Variable para almacenar datos del carrito.
 let CarritoVacio;
+// La siguiente funcion recibe un array (items) como argumento, representando los productos en el carrito.
 function MostrarCarrito(items) {
     const cartContainer = document.getElementById("cart-items");
     
@@ -34,17 +35,19 @@ function MostrarCarrito(items) {
 
     const itemsContainer = document.getElementById("items-container");
     
+    // El siguiente for each Recorre el array items para traer la informacion
     items.forEach((item, index) => {
         const itemElement = document.createElement("div");
         itemElement.classList.add("row", "align-items-center", "mb-3");
         itemElement.setAttribute('data-index', index);
-            
+    
+    //Estructura del producto  y controles de cantidad      
         itemElement.innerHTML = `
         <div class="col-md-6">
             <p>${item.name}</p>
             <img alt="${item.name}" class="img-fluid" height="150" src="${item.image}" width="200"/>
         </div>
-        <div class="col-md-2">
+        <div class="col-md-2"> 
             <div class="input-group">
                 <button class="btn btn-outline-secondary btn-sm increase-btn" type="button">+</button>
                 <input class="form-control form-control-sm text-center quantity-input" type="text" value="${item.quantity}" readonly/>
@@ -105,6 +108,8 @@ function MostrarCarrito(items) {
     });
 }
 
+//Eliminar articulo del carrito
+
 function EliminarDelCarrito(index) {
     cartData.splice(index, 1);
     localStorage.setItem("cart", JSON.stringify(cartData));
@@ -140,117 +145,15 @@ if (cartData.length === 0) {
 
 let tipoCambioGlobal = 40; 
 
-// Función para obtener el tipo de cambio del BCU
-async function obtenerTipoCambioBCU() {
-    const fechaActual = new Date();
-    const fechaAnterior = new Date(fechaActual);
-    fechaAnterior.setDate(fechaActual.getDate() - 2);
 
-    // Formato de fecha
-    const fechaHasta = fechaActual.toISOString().split('T')[0];
-    const fechaDesde = fechaAnterior.toISOString().split('T')[0];
+// Guardamos en localStorage
+localStorage.setItem('tipoCambio', JSON.stringify({
+ valor: tipoCambioGlobal,
+ timestamp: new Date().getTime()
+}));
 
-    const xmlBody = `<?xml version="1.0" encoding="UTF-8"?>
-        <soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:cot="Cotiza">
-            <soapenv:Header />
-            <soapenv:Body>
-                <cot:wsbcucotizaciones.Execute>
-                    <cot:Entrada>
-                        <cot:Moneda>
-                            <cot:item>2222</cot:item>
-                        </cot:Moneda>
-                        <cot:FechaDesde>${fechaDesde}</cot:FechaDesde>
-                        <cot:FechaHasta>${fechaHasta}</cot:FechaHasta>
-                        <cot:Grupo>0</cot:Grupo>
-                    </cot:Entrada>
-                </cot:wsbcucotizaciones.Execute>
-            </soapenv:Body>
-        </soapenv:Envelope>`;
 
-    try {
-        const response = await fetch('https://cotizaciones.bcu.gub.uy/wscotizaciones/servlet/awsbcucotizaciones', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'text/xml;charset=UTF-8',
-                'SOAPAction': ''
-            },
-            body: xmlBody
-        });
-
-        // Verifica si la respuesta es exitosa
-        if (!response.ok) {
-            console.error('Error en la respuesta del servidor:', response.statusText);
-            return null; // Retorna null si hay un error en la respuesta
-        }
-
-        // Obtiene el texto de la respuesta
-        const data = await response.text();
-        console.log("Respuesta del BCU:", data); // Imprimir la respuesta
-
-        const parser = new DOMParser();
-        const xmlDoc = parser.parseFromString(data, "text/xml");
-
-        // Busca el elemento TCC en la respuesta
-        const tccElements = xmlDoc.getElementsByTagName("TCC");
-        if (tccElements.length > 0) {
-            return parseFloat(tccElements[0].textContent);
-        } else {
-            console.error('No se encontró el elemento TCC en la respuesta.');
-            return null;
-        }
-    } catch (error) {
-        console.error('Error al obtener cotización del BCU:', error);
-        return null; // Retornar null en caso de error
-    }
-}
-
-// Ejemplo de uso
-async function inicializarTipoCambio() {
-    const tipoCambio = await obtenerTipoCambioBCU();
-    if (tipoCambio !== null) {
-        console.log("Tipo de cambio obtenido:", tipoCambio);
-    } else {
-        console.log("No se pudo obtener el tipo de cambio, usando valor por defecto.");
-    }
-}
-
-// Llamar a la función cuando el documento esté listo
-document.addEventListener('DOMContentLoaded', () => {
-    inicializarTipoCambio();
-});
-
-// Función para inicializar el tipo de cambio
-async function inicializarTipoCambio() {
-    const tipoCambioGuardado = localStorage.getItem('tipoCambio');
-    
-    if (tipoCambioGuardado) {
-        const datos = JSON.parse(tipoCambioGuardado);
-        const ahora = new Date().getTime();
-        
-        // Si el tipo de cambio guardado tiene menos de 1 hora, lo usamos
-        if (ahora - datos.timestamp < 3600000) {
-            tipoCambioGlobal = datos.valor;
-            return;
-        }
-    }
-
-    // Consultamos al BCU
-    const nuevoTipoCambio = await obtenerTipoCambioBCU();
-    
-    if (nuevoTipoCambio !== null) {
-        tipoCambioGlobal = nuevoTipoCambio;
-    } else {
-        console.warn('Usando tipo de cambio por defecto:', 40);
-    }
-    
-    // Guardamos en localStorage
-    localStorage.setItem('tipoCambio', JSON.stringify({
-        valor: tipoCambioGlobal,
-        timestamp: new Date().getTime()
-    }));
-}
-
-// Funciones de conversión
+// Funciones de conversión de moneda 
 function convertirUSDaUYU(monto) {
     return monto * tipoCambioGlobal;
 }
@@ -370,7 +273,7 @@ document.querySelectorAll('input[name="shipping"]').forEach((radioButton) => {
     currencySelect.addEventListener('change', actualizarPrecios);
 }
 
-// ACÁ ARRANCA LA PARTE 3 -- ATT: CAMILUCHI
+// Configuracion de diferentes items dentro del modal
 
 const modalTipoEnvio = document.getElementById('nav-delivery');
 const tipoDeEnvio = modalTipoEnvio.querySelectorAll('input[type="radio"]');
@@ -475,10 +378,8 @@ document.getElementById('checkout-button').addEventListener('click', function() 
     }
 });
 
-// ACÁ TERMINA LA PARTE 3
 
 
-//TAYSA
 //Funcion para mostrar tipo de envio solo cuando hay elementos en el carrito
 
 document.addEventListener("DOMContentLoaded", () => { 
@@ -552,7 +453,7 @@ document.getElementById('paymentmethod').addEventListener('change', function() {
   });
 
 
-//testeo costos Rai 1
+//Calculo costos de envio
     function calcularCostoEnvio(subtotal) {
         const shippingSelected = document.querySelector('input[name="shipping"]:checked');
         if (!shippingSelected) {
