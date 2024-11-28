@@ -50,10 +50,13 @@
     </ol>
   </nav>
   <main class="container my-5">
+    <!-- Contenedor donde se mostraran los productos del carrito -->
     <div id="cart-container" class="row">
         <div class="col-md-8" id="cart-items">
         </div>
         <div class="col-md-4" id="cart-summary">
+
+          <!-- Contenedor resumen de la compra -->
           <div class="summary-card">
               <h5>Resumen</h5>
               <hr/>
@@ -78,10 +81,13 @@
               <button id="checkout-button" class="btn btn-warning btn-block">Pagar</button>
           </div>
       </div>
+
+      <!-- Mensaje de carrito vacio -->
     <div id="empty-cart-message" class="alert alert-warning text-center" style="display: none;">
         No hay ningún producto en el carrito.
     </div>
 
+    <!-- Contenedor donde estan los tipos de envio -->
     <div id="deliveries-card"> 
       <div id="deliveries" class="card">
         <div class="card-header">
@@ -197,9 +203,9 @@
 
            <label id="codecard" for="cvv">Código de seguridad</label>
            <input type="text" id="cvv" class="form-control" required />
-          </div> <!-- Arreglé un div acá que no permitía que se mostrara la información de transferencia -- att Cami -->
+          </div> 
 
-  <!-- Información de Transferencia --> <!-- Le agregué un poco más de información a "Transferencias" -- att Cami -->
+  <!-- Información de Transferencia --> 
   <div id="transfer-info" style="display:none;">
     <h2><img src="img/itau-logo.png" alt="itau" class="logosTransferencia"> Itaú</h2>
     <h2>Cuenta Pesos: 2863145</h2>
